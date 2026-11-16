@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:image" content="preview.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://davidmorofek-ux.github.io/Solar/"><meta property="og:image" content="https://davidmorofek-ux.github.io/Solar/preview.jpg"><meta name="twitter:image" content="https://davidmorofek-ux.github.io/Solar/preview.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="viewport" content="width=device-width, initial-scale=1">
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
-<!-- Solar System Voyage. Copyright (c) 2026 David Mor Ofek. All rights reserved. Planet, moon and asteroid images: NASA/JPL, ESA and other sources, which remain the property of their owners. -->
+<!-- Solar System Voyage. Copyright (c) 2026 David Mor Ofek. All rights reserved. Planet, moon and asteroid images: NASA/JPL, ESA, Solar System Scope (https://www.solarsystemscope.com/textures/) and other sources, which remain the property of their owners. -->
 <meta name="author" content="David Mor Ofek">
 <meta name="copyright" content="© 2026 David Mor Ofek">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500&display=swap">
@@ -45,7 +45,9 @@ button:hover, #find:hover { border-color: var(--ink); }
 #find { font: 400 12px/1 var(--font-b); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
   width: 15.5em; max-width: 100%; pointer-events: auto; }
 #find::placeholder { color: var(--dim); }
-.credit { position: absolute; left: 0; right: 0; bottom: 2px; text-align: center; font: 400 10px/1.2 var(--font-b); letter-spacing: .04em; color: var(--dim); opacity: .75; pointer-events: none; }
+.credit { position: absolute; left: 0; right: 0; bottom: 2px; text-align: center; font: 400 10px/1.2 var(--font-b); letter-spacing: .04em; color: var(--dim); opacity: .75; pointer-events: none; padding-inline: 8px; }
+.credit a { color: inherit; pointer-events: auto; text-decoration: underline; text-underline-offset: 2px; } .credit a:hover { color: var(--ink); }
+@media (max-width: 520px) { .credit { font-size: 8.5px; letter-spacing: 0; white-space: nowrap; } }
 .hud > * { transition: opacity .35s; }
 .app.bare .hud > *:not(#hint) { opacity: 0; visibility: hidden; transition: opacity .35s, visibility 0s .35s; }
 .find { position: relative; }
@@ -87,7 +89,7 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
 <div class="app">
   <canvas id="view" tabindex="0" aria-label="Flight view of the solar system"></canvas>
   <div id="marks"></div>
-  <div class="credit">© 2026 David Mor Ofek · Images: NASA/JPL, ESA and other sources</div>
+  <div class="credit">© 2026 David Mor Ofek · Images: NASA/JPL, ESA, <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a> and other sources</div>
   <div class="hud">
     <div class="readout panel">
       <div><span class="label">Date (UTC)</span><strong id="date" class="small">now</strong></div>
