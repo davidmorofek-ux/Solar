@@ -78,12 +78,12 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
 .hint { grid-area: 3 / 1 / 4 / -1; align-self: end; justify-self: center; max-width: 46ch; padding: 9px 14px; font-size: 13px; line-height: 1.4;
   color: var(--ink); transition: opacity .6s; text-align: center; }
 .hint kbd { font: 500 12px/1 var(--font-d); color: var(--amber); }
-.pad { grid-area: 3 / 1; align-self: end; justify-self: start; display: grid; grid-template-columns: repeat(3, 46px); grid-template-rows: repeat(2, 46px); gap: 6px; }
+.pad { grid-area: 3 / 1; align-self: end; justify-self: start; display: grid; grid-template-columns: repeat(3, 46px); grid-template-rows: repeat(3, 46px); gap: 6px; }
 .pad button { padding: 0; font-size: 15px; }
-.pad .up { grid-column: 2; }
-.pad .centre { grid-column: 3; grid-row: 1; }
+.pad .up { grid-column: 2; grid-row: 1; }
+.pad .centre { grid-column: 2; grid-row: 2; }
 .pad .left { grid-column: 1; grid-row: 2; }
-.pad .down { grid-column: 2; grid-row: 2; }
+.pad .down { grid-column: 2; grid-row: 3; }
 .pad .right { grid-column: 3; grid-row: 2; }
 .nav { grid-area: 3 / 2; align-self: end; justify-self: end; padding: 8px; display: grid; gap: 6px; }
 .nav canvas { display: block; width: var(--map, 210px); height: var(--map, 210px); pointer-events: auto; cursor: pointer; touch-action: none; }
@@ -204,9 +204,9 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
     <div class="pad">
       <button class="up" type="button" data-k="up" aria-label="Look up" title="Look up">▲</button>
       <button class="centre" type="button" data-k="centre" aria-label="Look straight ahead" title="Look straight ahead">◎</button>
-      <button class="left" type="button" data-k="left" aria-label="Look left" title="Look left">◀</button>
+      <button class="left" type="button" data-k="left" aria-label="Circle to the left" title="Circle to the left">◀</button>
       <button class="down" type="button" data-k="down" aria-label="Look down" title="Look down">▼</button>
-      <button class="right" type="button" data-k="right" aria-label="Look right" title="Look right">▶</button>
+      <button class="right" type="button" data-k="right" aria-label="Circle to the right" title="Circle to the right">▶</button>
     </div>
     <div class="nav panel"><span class="label" id="navlabel" data-t="nav">Navigation · map not to scale</span><i id="grip" title="Drag to resize the map" aria-hidden="true"></i><canvas id="map" width="420" height="420" title="Double-click to jump there" aria-label="Map of the solar system with your position. Double-click a place to jump there."></canvas></div>
   </div>
@@ -228,8 +228,8 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 const UI = {
   en: { find: 'Find a planet, moon or asteroid', orbitOf: 'Orbit {n}', stopOrbit: 'Stop orbit', startTour: 'Start tour', stopTour: 'Stop tour', roam: 'Random trip', stopRoam: 'Stop trip', pause: 'Pause', play: 'Play', info: 'Info', home: 'Back to Earth',
     time: ['Time: live', 'Time: 1 hour/s', 'Time: 1 day/s', 'Time: 10 days/s'], date: 'Date (UTC)', nearest: 'Nearest', speed: 'Speed', xlight: '× light', nav: 'Navigation · map not to scale', belt: 'Asteroid belt',
-    hintClick: 'Click anywhere on the view to use the arrow keys', hintKeys: 'Pick a place in the search box, or double-click it on the map, to jump there. Double-click any object for facts about it. <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> turn the view.',
-    tourNote: 'Tour: from the Sun to Neptune in about a minute.', circling: 'Circling {n}, one lap every 40 seconds. The arrows turn the view.', hidden: 'Controls hidden. The arrow keys still turn the view. Double-click empty sky to bring them back.', shown: 'Controls back. Double-click empty sky to hide them.',
+    hintClick: 'Click anywhere on the view to use the arrow keys', hintKeys: 'Pick a place in the search box, or double-click it on the map, to fly there. Double-click any object for facts about it. Hold <kbd>←</kbd> <kbd>→</kbd> to circle faster, either way; <kbd>↑</kbd> <kbd>↓</kbd> tilt the view.',
+    tourNote: 'Tour: from the Sun to Neptune in about a minute.', circling: 'Circling {n}, one lap every 40 seconds. Hold ← or → to circle faster, either way.', hidden: 'Controls hidden. The arrow keys still turn the view. Double-click empty sky to bring them back.', shown: 'Controls back. Double-click empty sky to hide them.',
     flyTo: 'Flying to {n}', next: 'Next stop: {n}', stay: 'Circling {n} for 30 seconds, then on to somewhere new.', paused: 'Paused. Press Play to carry on.', none: 'Nothing by that name',
     now: 'Right now', worth: 'Worth knowing', go: 'Go there', src: 'Figures: NASA fact sheets', size: 'Size', day: 'One day', year: 'One year', orbit1: 'One orbit', temp: 'Temperature', grav: 'Gravity', gravOf: '{n}% of Earth’s', weighs: '70 kg person weighs', moons: 'Known moons',
     fromSun: 'From the Sun', fromEarth: 'From Earth', from: 'From {n}', lightTakes: 'Light or radio takes', sunLight: 'Light from the Sun takes', fromE: '{n} from Earth',
@@ -237,8 +237,8 @@ const UI = {
     kStar: 'star', kPlanet: 'planet', kDwarf: 'dwarf planet', kAst: 'asteroid', kMoon: 'moon of {n}', trips: 'Trips', tripEnd: 'End of the trip. You are now circling {n}.', stops: 'stops', tT: 'Grand tour', tTs: '1 minute', tR: 'Random trip', tRs: 'never ends', tM: 'All the moons', tV1: 'Voyager 1', tV2: 'Voyager 2', tC: 'Cassini', tG: 'Galileo', tN: 'New Horizons', tD: 'Dawn', tA: 'Apollo 11', tP: 'Planets, one by one', kStation: 'space station', alt: 'Height above the ground', issPos: 'Position', issLive: 'live, from tracking data', issApprox: 'approximate (no live data)', title1: 'Solar System', title2: 'Voyage', sub: 'Real positions · true scale · right now', images: 'Images', other: 'and other sources' },
   he: { find: 'חיפוש כוכב לכת, ירח או אסטרואיד', orbitOf: 'הקפת {n}', stopOrbit: 'עצירת הקפה', startTour: 'התחלת סיור', stopTour: 'עצירת סיור', roam: 'מסע אקראי', stopRoam: 'עצירת מסע', pause: 'השהיה', play: 'המשך', info: 'מידע', home: 'חזרה לכדור הארץ',
     time: ['זמן: אמת', 'זמן: שעה בשנייה', 'זמן: יום בשנייה', 'זמן: 10 ימים בשנייה'], date: 'תאריך (UTC)', nearest: 'הקרוב ביותר', speed: 'מהירות', xlight: '× מהירות האור', nav: 'ניווט · המפה אינה בקנה מידה', belt: 'חגורת האסטרואידים',
-    hintClick: 'לחצו על התצוגה כדי להשתמש במקשי החצים', hintKeys: 'בחרו יעד בתיבת החיפוש, או לחצו עליו פעמיים במפה, כדי לקפוץ אליו. לחיצה כפולה על כל גוף מציגה עובדות עליו. <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> מסובבים את המבט.',
-    tourNote: 'סיור: מהשמש עד נפטון בכדקה.', circling: 'מקיפים את {n}, הקפה אחת כל 40 שניות. החצים מסובבים את המבט.', hidden: 'הפקדים הוסתרו. מקשי החצים עדיין מסובבים את המבט. לחיצה כפולה על שמיים ריקים תחזיר אותם.', shown: 'הפקדים חזרו. לחיצה כפולה על שמיים ריקים תסתיר אותם.',
+    hintClick: 'לחצו על התצוגה כדי להשתמש במקשי החצים', hintKeys: 'בחרו יעד בתיבת החיפוש, או לחצו עליו פעמיים במפה, כדי לטוס אליו. לחיצה כפולה על כל גוף מציגה עובדות עליו. החזיקו <kbd>←</kbd> <kbd>→</kbd> כדי להקיף מהר יותר, לכל כיוון; <kbd>↑</kbd> <kbd>↓</kbd> מטים את המבט.',
+    tourNote: 'סיור: מהשמש עד נפטון בכדקה.', circling: 'מקיפים את {n}, הקפה אחת כל 40 שניות. החזיקו ← או → כדי להקיף מהר יותר, לכל כיוון.', hidden: 'הפקדים הוסתרו. מקשי החצים עדיין מסובבים את המבט. לחיצה כפולה על שמיים ריקים תחזיר אותם.', shown: 'הפקדים חזרו. לחיצה כפולה על שמיים ריקים תסתיר אותם.',
     flyTo: 'טסים אל {n}', next: 'היעד הבא: {n}', stay: 'מקיפים את {n} במשך 30 שניות, ואז ממשיכים ליעד חדש.', paused: 'המסע מושהה. לחצו על "המשך" כדי להמשיך.', none: 'לא נמצא גוף בשם הזה',
     now: 'ברגע זה', worth: 'כדאי לדעת', go: 'קפיצה לשם', src: 'נתונים: דפי הנתונים של נאס"א', size: 'גודל', day: 'יממה', year: 'שנה', orbit1: 'הקפה אחת', temp: 'טמפרטורה', grav: 'כוח המשיכה', gravOf: '{n}% מזה של כדור הארץ', weighs: 'אדם של 70 ק"ג שוקל', moons: 'ירחים ידועים',
     fromSun: 'מרחק מהשמש', fromEarth: 'מרחק מכדור הארץ', from: 'מרחק מ{n}', lightTakes: 'אור או אות רדיו מגיעים תוך', sunLight: 'אור השמש מגיע תוך', fromE: '{n} מכדור הארץ',
@@ -246,8 +246,8 @@ const UI = {
     kStar: 'כוכב', kPlanet: 'כוכב לכת', kDwarf: 'כוכב לכת ננסי', kAst: 'אסטרואיד', kMoon: 'ירח של {n}', trips: 'מסעות', tripEnd: 'סוף המסע. כעת מקיפים את {n}.', stops: 'תחנות', tT: 'הסיור הגדול', tTs: 'דקה אחת', tR: 'מסע אקראי', tRs: 'ללא סוף', tM: 'כל הירחים', tV1: 'וויאג׳ר 1', tV2: 'וויאג׳ר 2', tC: 'קסיני', tG: 'גלילאו', tN: 'ניו הורייזונס', tD: 'החללית Dawn', tA: 'אפולו 11', tP: 'כוכבי הלכת, אחד אחד', kStation: 'תחנת חלל', alt: 'גובה מעל פני הקרקע', issPos: 'מיקום', issLive: 'חי, מנתוני מעקב', issApprox: 'משוער (אין נתונים חיים)', title1: 'מסע במערכת', title2: 'השמש', sub: 'מיקומים אמיתיים · קנה מידה אמיתי · ברגע זה', images: 'תמונות', other: 'ומקורות נוספים' },
   ar: { find: 'ابحث عن كوكب أو قمر أو كويكب', orbitOf: 'الدوران حول {n}', stopOrbit: 'إيقاف الدوران', startTour: 'بدء الجولة', stopTour: 'إيقاف الجولة', roam: 'رحلة عشوائية', stopRoam: 'إيقاف الرحلة', pause: 'إيقاف مؤقت', play: 'متابعة', info: 'معلومات', home: 'العودة إلى الأرض',
     time: ['الزمن: مباشر', 'الزمن: ساعة في الثانية', 'الزمن: يوم في الثانية', 'الزمن: 10 أيام في الثانية'], date: 'التاريخ (UTC)', nearest: 'الأقرب', speed: 'السرعة', xlight: '× سرعة الضوء', nav: 'الملاحة · الخريطة ليست بمقياس حقيقي', belt: 'حزام الكويكبات',
-    hintClick: 'انقر على العرض لاستخدام مفاتيح الأسهم', hintKeys: 'اختر وجهة من مربع البحث، أو انقر عليها نقرًا مزدوجًا في الخريطة، للانتقال إليها. انقر نقرًا مزدوجًا على أي جرم لعرض حقائق عنه. <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> لتدوير المنظر.',
-    tourNote: 'جولة: من الشمس إلى نبتون في نحو دقيقة.', circling: 'ندور حول {n}، دورة واحدة كل 40 ثانية. الأسهم تدير المنظر.', hidden: 'أُخفيت عناصر التحكم. مفاتيح الأسهم ما زالت تدير المنظر. انقر نقرًا مزدوجًا على السماء الفارغة لإظهارها.', shown: 'عادت عناصر التحكم. انقر نقرًا مزدوجًا على السماء الفارغة لإخفائها.',
+    hintClick: 'انقر على العرض لاستخدام مفاتيح الأسهم', hintKeys: 'اختر وجهة من مربع البحث، أو انقر عليها نقرًا مزدوجًا في الخريطة، للطيران إليها. انقر نقرًا مزدوجًا على أي جرم لعرض حقائق عنه. اضغط مطولًا على <kbd>←</kbd> <kbd>→</kbd> للدوران أسرع في أي اتجاه؛ <kbd>↑</kbd> <kbd>↓</kbd> لإمالة المنظر.',
+    tourNote: 'جولة: من الشمس إلى نبتون في نحو دقيقة.', circling: 'ندور حول {n}، دورة واحدة كل 40 ثانية. اضغط مطولًا على ← أو → للدوران أسرع في أي اتجاه.', hidden: 'أُخفيت عناصر التحكم. مفاتيح الأسهم ما زالت تدير المنظر. انقر نقرًا مزدوجًا على السماء الفارغة لإظهارها.', shown: 'عادت عناصر التحكم. انقر نقرًا مزدوجًا على السماء الفارغة لإخفائها.',
     flyTo: 'نتجه إلى {n}', next: 'الوجهة التالية: {n}', stay: 'ندور حول {n} لمدة 30 ثانية، ثم ننتقل إلى وجهة جديدة.', paused: 'الرحلة متوقفة مؤقتًا. اضغط «متابعة» للاستمرار.', none: 'لا يوجد جرم بهذا الاسم',
     now: 'الآن', worth: 'معلومات تستحق المعرفة', go: 'انتقل إلى هناك', src: 'الأرقام: صحائف بيانات ناسا', size: 'الحجم', day: 'اليوم', year: 'السنة', orbit1: 'دورة واحدة', temp: 'درجة الحرارة', grav: 'الجاذبية', gravOf: '{n}% من جاذبية الأرض', weighs: 'وزن شخص كتلته 70 كغ', moons: 'الأقمار المعروفة',
     fromSun: 'البعد عن الشمس', fromEarth: 'البعد عن الأرض', from: 'البعد عن {n}', lightTakes: 'يصل الضوء أو الإشارة خلال', sunLight: 'يصل ضوء الشمس خلال', fromE: '{n} من الأرض',
@@ -646,7 +646,7 @@ app.addEventListener('pointerdown', e => { if (!e.target.closest('button, input,
 const grabSoft = () => { if (document.activeElement !== document.getElementById('find')) grab(); };
 app.addEventListener('pointerenter', grabSoft);
 grab();
-const HINT = { click: 'Click anywhere on the view to use the arrow keys', keys: 'Pick a place in the search box, or double-click it on the map, to jump there. Double-click any object for facts about it. <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> turn the view.' }; let hintMode = '';
+const HINT = { click: 'Click anywhere on the view to use the arrow keys', keys: 'Pick a place in the search box, or double-click it on the map, to fly there. Double-click any object for facts about it. Hold <kbd>←</kbd> <kbd>→</kbd> to circle faster, either way; <kbd>↑</kbd> <kbd>↓</kbd> tilt the view.' }; let hintMode = '';
 // the on-screen arrows only turn the view; the direction of travel stays with the keyboard
 const gaze = { yaw: 0, pitch: 0 }, peek = { yaw: 0, pitch: 0 }, lookKeys = { up: false, down: false, left: false, right: false }; let lookShip = null;
 const press = (k, on) => { if (k === 'centre') { if (on) { peek.yaw = peek.pitch = 0; if (!orbit) gaze.yaw = gaze.pitch = 0; } } else lookKeys[k] = on; };
@@ -771,11 +771,14 @@ let orbit = null;
 const RING = { Sun: 2.6, Saturn: 4.8, Eros: 6.5 }, orbitBtn = document.getElementById('orbit'), orbitName = b => 'Orbit ' + (b.name === 'Sun' ? 'the Sun' : b.name);
 function stopOrbit() { if (!orbit) return; orbit = null; ship.v = 0; orbitBtn.setAttribute('aria-pressed', false); }
 function startOrbit(b) { stopTour(); if (hop && !roam) hop = null; b = b || near; if (b && (b.name === 'Earth' || (b.parent && b.parent.name === 'Earth'))) sharpEarth(); const dx = ship.x - b.x, dz = ship.z - b.z;
-  peek.yaw = peek.pitch = 0; orbit = { body: b, r: Math.max(Math.hypot(dx, dz), 1.3 * b.r), r1: (RING[b.name] || 3.6) * b.r, ang: Math.atan2(dz, dx), dy: (ship.y || 0) - b.y, t: 0, ship };
+  peek.yaw = peek.pitch = 0; orbit = { body: b, r: Math.max(Math.hypot(dx, dz), 1.3 * b.r), r1: (RING[b.name] || 3.6) * b.r, ang: Math.atan2(dz, dx), dy: (ship.y || 0) - b.y, t: 0, ship, dir: 1, w: 0 };
   begin(); orbitBtn.textContent = 'Stop orbit'; orbitBtn.setAttribute('aria-pressed', true);
   note = tr('circling', inS(b)); noteUntil = performance.now() + 6000; }
 function orbitStep(dt) { const O = orbit, b = O.body; O.t += dt;
-  O.r = O.r1 + (O.r - O.r1) * Math.exp(-1.5 * dt); O.ang += 2 * Math.PI / 40 * dt * sm(O.t / 2);
+  O.r = O.r1 + (O.r - O.r1) * Math.exp(-1.5 * dt); 
+  // left and right swing the viewer round the body, fast, for as long as they are held; let go and the lap settles back to its gentle pace, in the direction last pressed
+  { const k = (lookKeys.right ? 1 : 0) - (lookKeys.left ? 1 : 0), w0 = 2 * Math.PI / 40; if (k) O.dir = -k;
+    O.w += ((k ? O.dir * w0 * 7 : O.dir * w0 * sm(O.t / 2)) - O.w) * (1 - Math.exp(-(k ? 3 : 5) * dt)); O.ang += O.w * dt; }
   const x = b.x + O.r * Math.cos(O.ang), z = b.z + O.r * Math.sin(O.ang), dx = x - ship.x, dz = z - ship.z, d = Math.hypot(dx, dz);
   if (d > 1e-9) ship.th = Math.atan2(dz, dx); ship.v = dt > 0 ? d / dt : 0; ship.x = x; ship.z = z; O.dy += ((b.sprite ? .8 * O.r1 : 0) - O.dy) * (1 - Math.exp(-1.5 * dt)); ship.y = b.y + O.dy;       // a flat photo is circled from above, so it is seen turning below you
   gaze.yaw = wrap(Math.atan2(b.z - z, b.x - x) - ship.th + peek.yaw); gaze.pitch = clamp(Math.atan2(-O.dy, O.r) + peek.pitch, -1.5, 1.5); bank *= .9; target = null; near = b; clearance = 1e12;
@@ -1003,7 +1006,7 @@ requestAnimationFrame(() => requestAnimationFrame(() => document.querySelector('
 function step(dt) { clock += dt;
   if (ship !== lookShip) { lookShip = ship; gaze.yaw = gaze.pitch = 0; }
   { const g = orbit ? peek : gaze;       // while circling, the arrows look away from the body being circled
-    g.yaw = wrap(g.yaw + ((lookKeys.right ? 1 : 0) - (lookKeys.left ? 1 : 0)) * 1.1 * dt);
+    if (!orbit) g.yaw = wrap(g.yaw + ((lookKeys.right ? 1 : 0) - (lookKeys.left ? 1 : 0)) * 1.1 * dt);
     g.pitch = clamp(g.pitch + ((lookKeys.up ? 1 : 0) - (lookKeys.down ? 1 : 0)) * .9 * dt, -1.4, 1.4); }
   if (roam && roam.clock !== undefined) { if (!hop && !paused) roam.clock += dt * 1000 * 600; simMs = roam.clock; }       // a mission keeps its own calendar
   else if (rateIx) simMs += dt * 1000 * RATES[rateIx][0]; else simMs = Date.now();
