@@ -837,13 +837,15 @@ function nextHop() { const T = roam.trip;
     for (let i = d.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [d[i], d[j]] = [d[j], d[i]]; }
     if (d[d.length - 1] === roam.at) [d[0], d[d.length - 1]] = [d[d.length - 1], d[0]]; roam.deck = d.map(o => [o]); }
   const [o, when] = roam.deck.pop(); roam.when = when;
-  const c1 = when ? Math.max(roam.clock, Date.parse(when + 'T12:00:00Z')) : 0;
+  let c1 = when ? Math.max(roam.clock, Date.parse(when + 'T12:00:00Z')) : 0; const sys = b => b.parent || b;
+  // Within one planet's family the calendar steps to the new date at once: sweeping weeks past in seconds would whirl a moon round its planet dozens of times.
+  if (c1 && roam.at && sys(roam.at) === sys(o) && !(orbit && orbit.body === o)) { roam.clock = c1; simMs = c1; place(); c1 = 0; }
   if (orbit && orbit.body === o) { if (when) roam.clock = c1; roam.at = o; roam.timer = 0; note = tripNote(o); noteUntil = performance.now() + 7000; return; }       // already there
   stopOrbit(); roam.at = o; roam.timer = 0; const th0 = ship.th + gaze.yaw, turn = Math.abs(wrap(Math.atan2(o.z - ship.z, o.x - ship.x) - th0));
   hop = { to: o, t: 0, c0: roam.clock, c1, sx: ship.x, sy: ship.y, sz: ship.z, vy: th0, vp: gaze.pitch, ship, turn: 1.2 + 2.2 * turn / Math.PI, da: Math.max(clearance, 1e-4) };       // a wider turn takes longer
   note = T ? tripNote(o) : tr('next', inS(o)) + (o !== sun ? ' (' + kindOf(o) + ')' : ''); noteUntil = performance.now() + (T ? 9000 : 6000); }
 function hopStep(dt) { const h = hop, o = h.to; h.t += dt;
-  if (h.c1) roam.clock = h.c0 + (h.c1 - h.c0) * sm((h.t - h.turn) / HOP_FLY);       // the calendar runs forward while the ship crosses
+  if (h.c1) roam.clock = h.c0 + (h.c1 - h.c0) * sm((h.t - h.turn) / (HOP_FLY * .62));       // the calendar runs forward during the cruise and has settled before the ship closes in
   let dx = h.sx - o.x, dy = h.sy - o.y, dz = h.sz - o.z; const D0 = Math.hypot(dx, dy, dz) || 1e-9; dx /= D0; dy /= D0; dz /= D0;
   // After the turn the ship pulls away slowly, measured against the body it is leaving, keeps gathering speed to the half-way
   // point, then sheds it the same way, measured against the body it is arriving at.
