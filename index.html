@@ -86,11 +86,11 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
 .pad .down { grid-column: 2; grid-row: 2; }
 .pad .right { grid-column: 3; grid-row: 2; }
 .nav { grid-area: 3 / 2; align-self: end; justify-self: end; padding: 8px; display: grid; gap: 6px; }
-.nav canvas { display: block; width: 210px; height: 210px; pointer-events: auto; cursor: pointer; touch-action: none; }
+.nav canvas { display: block; width: var(--map, 210px); height: var(--map, 210px); pointer-events: auto; cursor: pointer; touch-action: none; }
 .fail { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--dim); }
 @media (max-width: 760px) { .hint { grid-area: 2 / 1 / 3 / -1; } }
 @media (max-width: 560px) {
-  .nav canvas { width: 138px; height: 138px; }
+  .nav canvas { width: var(--map, 138px); height: var(--map, 138px); }
   .readout { min-width: 0; padding: 10px 12px; }
   .readout strong { font-size: 16px; }
   .hint { font-size: 12px; }
@@ -143,6 +143,9 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
   .tools { grid-area: 2 / 1 / 3 / -1; justify-self: stretch; justify-content: center; } .tools button { padding: 8px 9px 8px 8px; gap: 5px; font-size: 11.5px; } #find { width: 100%; } .find { flex: 1 1 100%; }
   #objects { left: 0; right: 0; width: auto; } #info h2 { font-size: 25px; } }
 .tools button[hidden] { display: none; }
+.nav { position: relative; } #grip { position: absolute; top: 0; left: 0; width: 26px; height: 26px; pointer-events: auto; cursor: nwse-resize; touch-action: none; border-radius: 14px 0 8px 0; }
+#grip::before { content: ''; position: absolute; top: 7px; left: 7px; width: 9px; height: 9px; border-top: 2px solid var(--dim); border-left: 2px solid var(--dim); border-radius: 3px 0 0 0; } #grip:hover::before, #grip.drag::before { border-color: var(--amber); }
+.app[lang="he"] #grip, .app[lang="ar"] #grip { left: auto; right: 0; cursor: nesw-resize; transform: scaleX(-1); }
 .tools { position: relative; z-index: 6; }       /* its dropdown opens over the panels below */
 /* right-to-left: the map moves to the left and the look arrows to the right, mirroring the toolbar */
 .app[lang="he"] .nav, .app[lang="ar"] .nav { grid-area: 3 / 1; justify-self: start; } .app[lang="he"] .pad, .app[lang="ar"] .pad { grid-area: 3 / 2; justify-self: end; }
@@ -197,7 +200,7 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
       <button class="down" type="button" data-k="down" aria-label="Look down" title="Look down">▼</button>
       <button class="right" type="button" data-k="right" aria-label="Look right" title="Look right">▶</button>
     </div>
-    <div class="nav panel"><span class="label" id="navlabel" data-t="nav">Navigation · map not to scale</span><canvas id="map" width="420" height="420" title="Double-click to jump there" aria-label="Map of the solar system with your position. Double-click a place to jump there."></canvas></div>
+    <div class="nav panel"><span class="label" id="navlabel" data-t="nav">Navigation · map not to scale</span><i id="grip" title="Drag to resize the map" aria-hidden="true"></i><canvas id="map" width="420" height="420" title="Double-click to jump there" aria-label="Map of the solar system with your position. Double-click a place to jump there."></canvas></div>
   </div>
 </div>
 
@@ -384,7 +387,7 @@ const pDust = prog(
   'void main(){ vec3 p = (fract(aP - uOff) - .5) * uBox; float d = length(p); gl_Position = (uVP * vec4(p, 0.)).xyww;' +
   ' gl_PointSize = clamp(uPx * 30. / max(d, 1.), 1., 5. * uPx); vA = uK * smoothstep(60., 28., d) * smoothstep(1.5, 6., d); }',
   HP + 'varying float vA; void main(){ float d = length(gl_PointCoord - .5); gl_FragColor = vec4(vec3(.7, .82, 1.) * vA * smoothstep(.5, .15, d), 1.); }');
-const pSprite = prog(       // a photograph that always faces the viewer (the space station)
+const pSprite = prog(       // a photograph laid flat in space (the space station)
   'attribute vec2 aQ; uniform mat4 uVP; uniform vec3 uR, uU, uC; uniform float uSize; varying vec2 vQ;' +
   'void main(){ vQ = aQ; gl_Position = uVP * vec4(uC + (uR * aQ.x + uU * aQ.y) * uSize, 1.); }',
   HP + 'uniform sampler2D uTex; varying vec2 vQ; void main(){ vec4 c = texture2D(uTex, vec2(vQ.x * .5 + .5, .5 - vQ.y * .5)); gl_FragColor = vec4(c.rgb, c.a); }');
@@ -613,7 +616,7 @@ addEventListener('keyup', e => { if (typing(e)) return; const k = keyOf(e); if (
 addEventListener('blur', () => { for (const k in keys) keys[k] = lookKeys[k] = false; });
 const app = document.querySelector('.app');
 const grab = () => { try { window.focus(); if (document.activeElement !== cv) cv.focus({ preventScroll: true }); } catch (e) {} };
-app.addEventListener('pointerdown', e => { if (!e.target.closest('button, input, #objects, #slider, #info')) grab(); });
+app.addEventListener('pointerdown', e => { if (!e.target.closest('button, input, #objects, #slider, #info, #grip')) grab(); });
 const grabSoft = () => { if (document.activeElement !== document.getElementById('find')) grab(); };
 app.addEventListener('pointerenter', grabSoft);
 grab();
@@ -748,7 +751,7 @@ function startOrbit(b) { stopTour(); b = b || near; const dx = ship.x - b.x, dz 
 function orbitStep(dt) { const O = orbit, b = O.body; O.t += dt;
   O.r = O.r1 + (O.r - O.r1) * Math.exp(-1.5 * dt); O.ang += 2 * Math.PI / 40 * dt * sm(O.t / 2);
   const x = b.x + O.r * Math.cos(O.ang), z = b.z + O.r * Math.sin(O.ang), dx = x - ship.x, dz = z - ship.z, d = Math.hypot(dx, dz);
-  if (d > 1e-9) ship.th = Math.atan2(dz, dx); ship.v = dt > 0 ? d / dt : 0; ship.x = x; ship.z = z; O.dy *= Math.exp(-1.5 * dt); ship.y = b.y + O.dy;
+  if (d > 1e-9) ship.th = Math.atan2(dz, dx); ship.v = dt > 0 ? d / dt : 0; ship.x = x; ship.z = z; O.dy += ((b.sprite ? .8 * O.r1 : 0) - O.dy) * (1 - Math.exp(-1.5 * dt)); ship.y = b.y + O.dy;       // a flat photo is circled from above, so it is seen turning below you
   gaze.yaw = wrap(Math.atan2(b.z - z, b.x - x) - ship.th + peek.yaw); gaze.pitch = clamp(Math.atan2(-O.dy, O.r) + peek.pitch, -1.5, 1.5); bank *= .9; target = null; near = b; clearance = 1e12;
   for (const p of BODIES) for (const o of [p].concat(p.moons || [])) clearance = Math.min(clearance, sep(o) - o.r);
   for (const k of ASTEROIDS) clearance = Math.min(clearance, sep(k) - k.r);
@@ -1034,7 +1037,8 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
     gl.uniform3f(pRing.u.uC, b.x - ship.x, b.y - ship.y, b.z - ship.z); gl.drawArrays(gl.TRIANGLES, 0, 6); }
   for (const [dist, b, m] of draws) if (m && m.sprite && m.r * focal / dist > .35) { gl.useProgram(pSprite.p); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     gl.bindBuffer(gl.ARRAY_BUFFER, quad); gl.enableVertexAttribArray(pSprite.a.aQ); gl.vertexAttribPointer(pSprite.a.aQ, 2, gl.FLOAT, false, 0, 0);
-    gl.uniformMatrix4fv(pSprite.u.uVP, false, VP); gl.uniform3fv(pSprite.u.uR, right); gl.uniform3fv(pSprite.u.uU, up); gl.uniform3f(pSprite.u.uC, m.x - ship.x, m.y - ship.y, m.z - ship.z);
+    gl.uniformMatrix4fv(pSprite.u.uVP, false, VP); gl.uniform3f(pSprite.u.uR, 1, 0, 0); gl.uniform3f(pSprite.u.uU, 0, 0, -1);       // the photo lies flat and keeps its direction in space; it does not turn to face the viewer
+    gl.uniform3f(pSprite.u.uC, m.x - ship.x, m.y - ship.y, m.z - ship.z);
     gl.uniform1f(pSprite.u.uSize, m.r); gl.uniform1i(pSprite.u.uTex, 0); gl.bindTexture(gl.TEXTURE_2D, TEX[m.tex]); gl.drawArrays(gl.TRIANGLES, 0, 6); }
   // sun glow, dust
   gl.blendFunc(gl.ONE, gl.ONE); gl.useProgram(pGlow.p);
@@ -1059,6 +1063,13 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   if (hk !== hintMode) { hintMode = hk; if (hm === 'note') hint.textContent = note; else if (hm !== 'hide') hint.innerHTML = tr(hm === 'click' ? 'hintClick' : 'hintKeys'); hint.style.opacity = hm === 'hide' ? 0 : 1; }
   if (infoObj && now - infoT > 500) { infoT = now; rows(iEl('inow'), nowRows(infoObj)); }      // the distances keep up with the clock
   drawMap(); requestAnimationFrame(frame); }
+// drag the corner of the navigation map to make it larger or smaller; the size is remembered
+{ const grip = document.getElementById('grip'), setMap = v => { map.style.setProperty('--map', Math.round(v) + 'px'); }; let g0 = null;
+  try { const v = +localStorage.getItem('ssv-map'); if (v >= 110 && v <= 520) setMap(v); } catch (e) {}
+  grip.addEventListener('pointerdown', e => { g0 = { x: e.clientX, y: e.clientY, s: map.clientWidth }; grip.setPointerCapture(e.pointerId); grip.classList.add('drag'); e.preventDefault(); });
+  grip.addEventListener('pointermove', e => { if (!g0) return; const out = lang === 'en' ? g0.x - e.clientX : e.clientX - g0.x, lim = Math.min(520, app.clientWidth - 40, app.clientHeight - 150);
+    setMap(clamp(g0.s + Math.max(out, g0.y - e.clientY), 110, Math.max(110, lim))); });
+  for (const ev of ['pointerup', 'pointercancel']) grip.addEventListener(ev, () => { if (g0) { try { localStorage.setItem('ssv-map', map.clientWidth); } catch (e) {} } g0 = null; grip.classList.remove('drag'); }); }
 const pauseBtn = document.getElementById('pause'), setText = (el, v) => { if (el.textContent !== v) el.textContent = v; };
 // every label that depends on what is going on, in the current language
 function relabel() { if (!(roam || tour)) paused = false;
