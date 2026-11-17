@@ -230,7 +230,7 @@ const UI = {
     time: ['Time: live', 'Time: 1 hour/s', 'Time: 1 day/s', 'Time: 10 days/s'], date: 'Date (UTC)', nearest: 'Nearest', speed: 'Speed', xlight: '× light', nav: 'Navigation · map not to scale', belt: 'Asteroid belt',
     hintClick: 'Click anywhere on the view to use the arrow keys', hintKeys: 'Pick a place in the search box, or double-click it on the map, to jump there. Double-click any object for facts about it. <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> turn the view.',
     tourNote: 'Tour: from the Sun to Neptune in about a minute.', circling: 'Circling {n}, one lap every 40 seconds. The arrows turn the view.', hidden: 'Controls hidden. The arrow keys still turn the view. Double-click empty sky to bring them back.', shown: 'Controls back. Double-click empty sky to hide them.',
-    next: 'Next stop: {n}', stay: 'Circling {n} for 30 seconds, then on to somewhere new.', paused: 'Paused. Press Play to carry on.', none: 'Nothing by that name',
+    flyTo: 'Flying to {n}', next: 'Next stop: {n}', stay: 'Circling {n} for 30 seconds, then on to somewhere new.', paused: 'Paused. Press Play to carry on.', none: 'Nothing by that name',
     now: 'Right now', worth: 'Worth knowing', go: 'Go there', src: 'Figures: NASA fact sheets', size: 'Size', day: 'One day', year: 'One year', orbit1: 'One orbit', temp: 'Temperature', grav: 'Gravity', gravOf: '{n}% of Earth’s', weighs: '70 kg person weighs', moons: 'Known moons',
     fromSun: 'From the Sun', fromEarth: 'From Earth', from: 'From {n}', lightTakes: 'Light or radio takes', sunLight: 'Light from the Sun takes', fromE: '{n} from Earth',
     km: 'km', mkm: 'million km', bkm: 'billion km', au: 'AU', sec: 'seconds', min: 'minutes', hr: 'hours', kg: 'kg', g: 'grams',
@@ -239,7 +239,7 @@ const UI = {
     time: ['זמן: אמת', 'זמן: שעה בשנייה', 'זמן: יום בשנייה', 'זמן: 10 ימים בשנייה'], date: 'תאריך (UTC)', nearest: 'הקרוב ביותר', speed: 'מהירות', xlight: '× מהירות האור', nav: 'ניווט · המפה אינה בקנה מידה', belt: 'חגורת האסטרואידים',
     hintClick: 'לחצו על התצוגה כדי להשתמש במקשי החצים', hintKeys: 'בחרו יעד בתיבת החיפוש, או לחצו עליו פעמיים במפה, כדי לקפוץ אליו. לחיצה כפולה על כל גוף מציגה עובדות עליו. <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> מסובבים את המבט.',
     tourNote: 'סיור: מהשמש עד נפטון בכדקה.', circling: 'מקיפים את {n}, הקפה אחת כל 40 שניות. החצים מסובבים את המבט.', hidden: 'הפקדים הוסתרו. מקשי החצים עדיין מסובבים את המבט. לחיצה כפולה על שמיים ריקים תחזיר אותם.', shown: 'הפקדים חזרו. לחיצה כפולה על שמיים ריקים תסתיר אותם.',
-    next: 'היעד הבא: {n}', stay: 'מקיפים את {n} במשך 30 שניות, ואז ממשיכים ליעד חדש.', paused: 'המסע מושהה. לחצו על "המשך" כדי להמשיך.', none: 'לא נמצא גוף בשם הזה',
+    flyTo: 'טסים אל {n}', next: 'היעד הבא: {n}', stay: 'מקיפים את {n} במשך 30 שניות, ואז ממשיכים ליעד חדש.', paused: 'המסע מושהה. לחצו על "המשך" כדי להמשיך.', none: 'לא נמצא גוף בשם הזה',
     now: 'ברגע זה', worth: 'כדאי לדעת', go: 'קפיצה לשם', src: 'נתונים: דפי הנתונים של נאס"א', size: 'גודל', day: 'יממה', year: 'שנה', orbit1: 'הקפה אחת', temp: 'טמפרטורה', grav: 'כוח המשיכה', gravOf: '{n}% מזה של כדור הארץ', weighs: 'אדם של 70 ק"ג שוקל', moons: 'ירחים ידועים',
     fromSun: 'מרחק מהשמש', fromEarth: 'מרחק מכדור הארץ', from: 'מרחק מ{n}', lightTakes: 'אור או אות רדיו מגיעים תוך', sunLight: 'אור השמש מגיע תוך', fromE: '{n} מכדור הארץ',
     km: 'ק"מ', mkm: 'מיליון ק"מ', bkm: 'מיליארד ק"מ', au: 'יחידות אסטרונומיות', sec: 'שניות', min: 'דקות', hr: 'שעות', kg: 'ק"ג', g: 'גרם',
@@ -248,7 +248,7 @@ const UI = {
     time: ['الزمن: مباشر', 'الزمن: ساعة في الثانية', 'الزمن: يوم في الثانية', 'الزمن: 10 أيام في الثانية'], date: 'التاريخ (UTC)', nearest: 'الأقرب', speed: 'السرعة', xlight: '× سرعة الضوء', nav: 'الملاحة · الخريطة ليست بمقياس حقيقي', belt: 'حزام الكويكبات',
     hintClick: 'انقر على العرض لاستخدام مفاتيح الأسهم', hintKeys: 'اختر وجهة من مربع البحث، أو انقر عليها نقرًا مزدوجًا في الخريطة، للانتقال إليها. انقر نقرًا مزدوجًا على أي جرم لعرض حقائق عنه. <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> لتدوير المنظر.',
     tourNote: 'جولة: من الشمس إلى نبتون في نحو دقيقة.', circling: 'ندور حول {n}، دورة واحدة كل 40 ثانية. الأسهم تدير المنظر.', hidden: 'أُخفيت عناصر التحكم. مفاتيح الأسهم ما زالت تدير المنظر. انقر نقرًا مزدوجًا على السماء الفارغة لإظهارها.', shown: 'عادت عناصر التحكم. انقر نقرًا مزدوجًا على السماء الفارغة لإخفائها.',
-    next: 'الوجهة التالية: {n}', stay: 'ندور حول {n} لمدة 30 ثانية، ثم ننتقل إلى وجهة جديدة.', paused: 'الرحلة متوقفة مؤقتًا. اضغط «متابعة» للاستمرار.', none: 'لا يوجد جرم بهذا الاسم',
+    flyTo: 'نتجه إلى {n}', next: 'الوجهة التالية: {n}', stay: 'ندور حول {n} لمدة 30 ثانية، ثم ننتقل إلى وجهة جديدة.', paused: 'الرحلة متوقفة مؤقتًا. اضغط «متابعة» للاستمرار.', none: 'لا يوجد جرم بهذا الاسم',
     now: 'الآن', worth: 'معلومات تستحق المعرفة', go: 'انتقل إلى هناك', src: 'الأرقام: صحائف بيانات ناسا', size: 'الحجم', day: 'اليوم', year: 'السنة', orbit1: 'دورة واحدة', temp: 'درجة الحرارة', grav: 'الجاذبية', gravOf: '{n}% من جاذبية الأرض', weighs: 'وزن شخص كتلته 70 كغ', moons: 'الأقمار المعروفة',
     fromSun: 'البعد عن الشمس', fromEarth: 'البعد عن الأرض', from: 'البعد عن {n}', lightTakes: 'يصل الضوء أو الإشارة خلال', sunLight: 'يصل ضوء الشمس خلال', fromE: '{n} من الأرض',
     km: 'كم', mkm: 'مليون كم', bkm: 'مليار كم', au: 'وحدة فلكية', sec: 'ثانية', min: 'دقيقة', hr: 'ساعة', kg: 'كغ', g: 'غرام',
@@ -427,7 +427,10 @@ function useMesh(m) { gl.bindBuffer(gl.ARRAY_BUFFER, m.vb); gl.bindBuffer(gl.ELE
 // ---------------------------------------------------------------- textures (a flat colour until the picture arrives)
 const aniso = gl.getExtension('EXT_texture_filter_anisotropic');
 const pot = n => (n & (n - 1)) === 0;
-function texture(src, col) { const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+// phones and small tablets get pictures half the size (a quarter of the download), from tex/s/
+const LITE = (() => { try { const m = Math.max(screen.width, screen.height), touch = matchMedia('(pointer: coarse)').matches; return m < 1000 || (touch && m < 1400) || (navigator.deviceMemory !== undefined && navigator.deviceMemory < 4); } catch (e) { return false; } })();
+function texture(src, col) { if (LITE && typeof src === 'string' && src.indexOf('tex/') === 0) src = 'tex/s/' + src.slice(4);
+  const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([col[0], col[1], col[2], col[3] === undefined ? 255 : col[3]]));
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   if (!src) return t;
@@ -634,7 +637,7 @@ const keyOf = e => KEY[e.code] || KEY[e.key] || KC[e.keyCode], typing = e => e.t
 const hint = document.getElementById('hint'); let started = false, note = '', noteUntil = 0;
 const begin = () => { started = true; };
 addEventListener('keydown', e => { if (typing(e)) return; const k = keyOf(e); if (k) { lookKeys[k] = true; e.preventDefault(); begin(); }
-  else if (e.code === 'KeyR' && !e.repeat) goTo(earth); else if (e.code === 'KeyC') press('centre', true); }, true);
+  else if (e.code === 'KeyR' && !e.repeat) flyTo(earth); else if (e.code === 'KeyC') press('centre', true); }, true);
 addEventListener('keyup', e => { if (typing(e)) return; const k = keyOf(e); if (k) { lookKeys[k] = false; e.preventDefault(); } }, true);
 addEventListener('blur', () => { for (const k in keys) keys[k] = lookKeys[k] = false; });
 const app = document.querySelector('.app');
@@ -652,7 +655,7 @@ for (const b of document.querySelectorAll('.pad button')) { const k = b.dataset.
   for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) b.addEventListener(ev, () => press(k, false));
   b.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') press(k, true); });
   b.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') press(k, false); }); }
-document.getElementById('home').addEventListener('click', () => goTo(earth));
+document.getElementById('home').addEventListener('click', () => flyTo(earth));
 const scaleBtn = document.getElementById('scale'), navLabel = document.getElementById('navlabel');
 function showScale() { scaleBtn.setAttribute('aria-pressed', TRUE); }
 scaleBtn.addEventListener('click', () => { const at = near; setScale(!TRUE); goTo(at); showScale();
@@ -718,7 +721,7 @@ let tapT = 0, tapX = 0, tapY = 0;
 map.addEventListener('pointerdown', e => { const r = map.getBoundingClientRect(), x = (e.clientX - r.left) * MS / r.width, y = (e.clientY - r.top) * MS / r.height, t = performance.now();
   const twice = t - tapT < 450 && Math.hypot(x - tapX, y - tapY) < 30; tapT = twice ? 0 : t; tapX = x; tapY = y; if (!twice) return;
   let pick = null, pd = 1e9; for (const b of BODIES.concat(ASTEROIDS)) { const [bx, by] = mapXY(b.x, b.z), d = Math.hypot(x - bx, y - by); if (d < pd) { pd = d; pick = b; } }
-  goTo(pick);
+  flyTo(pick);
   begin(); grab(); e.preventDefault(); });
 
 // ---------------------------------------------------------------- frame
@@ -767,7 +770,7 @@ tourBtn.addEventListener('click', () => { if (tour) { stopTour(); startOrbit(nea
 let orbit = null;
 const RING = { Sun: 2.6, Saturn: 4.8, Eros: 6.5 }, orbitBtn = document.getElementById('orbit'), orbitName = b => 'Orbit ' + (b.name === 'Sun' ? 'the Sun' : b.name);
 function stopOrbit() { if (!orbit) return; orbit = null; ship.v = 0; orbitBtn.setAttribute('aria-pressed', false); }
-function startOrbit(b) { stopTour(); b = b || near; if (b && (b.name === 'Earth' || (b.parent && b.parent.name === 'Earth'))) sharpEarth(); const dx = ship.x - b.x, dz = ship.z - b.z;
+function startOrbit(b) { stopTour(); if (hop && !roam) hop = null; b = b || near; if (b && (b.name === 'Earth' || (b.parent && b.parent.name === 'Earth'))) sharpEarth(); const dx = ship.x - b.x, dz = ship.z - b.z;
   peek.yaw = peek.pitch = 0; orbit = { body: b, r: Math.max(Math.hypot(dx, dz), 1.3 * b.r), r1: (RING[b.name] || 3.6) * b.r, ang: Math.atan2(dz, dx), dy: (ship.y || 0) - b.y, t: 0, ship };
   begin(); orbitBtn.textContent = 'Stop orbit'; orbitBtn.setAttribute('aria-pressed', true);
   note = tr('circling', inS(b)); noteUntil = performance.now() + 6000; }
@@ -799,6 +802,12 @@ slider.addEventListener('pointerdown', e => { const t = thumb.getBoundingClientR
 slider.addEventListener('pointermove', e => { if (dragOff !== null) slideTo(e.clientY); });
 for (const ev of ['pointerup', 'pointercancel']) slider.addEventListener(ev, () => { dragOff = null; slider.classList.remove('drag'); });
 const closeList = () => { list.hidden = true; slider.hidden = true; find.setAttribute('aria-expanded', false); pickIx = -1; };
+// A chosen object is flown to the way a trip does it: turn towards it, gather speed, slow down, then circle it.
+function flyTo(o) { find.value = ''; closeList(); cv.focus(); if (!o) return; if (orbit && orbit.body === o && !roam && !tour) return;
+  if (ship.y === undefined || !isFinite(sep(o))) { goTo(o); return; }
+  stopRoam(); stopTour(); stopOrbit(); const th0 = ship.th + gaze.yaw, turn = Math.abs(wrap(Math.atan2(o.z - ship.z, o.x - ship.x) - th0));
+  hop = { to: o, t: 0, c0: 0, c1: 0, sx: ship.x, sy: ship.y, sz: ship.z, vy: th0, vp: gaze.pitch, ship, turn: 1.2 + 2.2 * turn / Math.PI, da: Math.max(clearance, 1e-4) };
+  note = tr('flyTo', inS(o)); noteUntil = performance.now() + 6000; begin(); }
 function goTo(o) { stopRoam(); stopTour(); stopOrbit(); const a = o === sun ? 40 * DEG + Math.PI : Math.atan2(o.z, o.x), off = 4.8 * o.r;
   ship = { x: o.x - off * Math.cos(a), y: o.y, z: o.z - off * Math.sin(a), th: a, v: 0 }; startOrbit(o); find.value = ''; closeList(); cv.focus(); }
 const mark = () => { [...list.children].forEach((el, i) => { el.classList.toggle('on', i === pickIx); el.setAttribute('aria-selected', i === pickIx); if (i === pickIx) el.scrollIntoView({ block: 'nearest' }); }); };
@@ -807,7 +816,7 @@ function openList() { const q = find.value.trim().toLowerCase(); list.textConten
   const keys = o => [nm(o).toLowerCase(), o.name.toLowerCase()], starts = o => keys(o).some(k => k.startsWith(q));       // the name in this language, or in English
   shown = q ? OBJ.filter(starts).concat(OBJ.filter(o => !starts(o) && keys(o).some(k => k.indexOf(q) > 0))) : OBJ.slice();
   for (const o of shown) { const el = document.createElement('div'), k = document.createElement('span'); el.setAttribute('role', 'option'); el.textContent = nm(o); k.textContent = kindOf(o); el.appendChild(k);
-    el.addEventListener('click', () => goTo(o)); list.appendChild(el); }
+    el.addEventListener('click', () => flyTo(o)); list.appendChild(el); }
   if (!shown.length) { const el = document.createElement('p'); el.textContent = tr('none'); list.appendChild(el); }
   pickIx = q && shown.length ? 0 : -1; list.hidden = false; list.scrollTop = 0; find.setAttribute('aria-expanded', true); mark(); syncSlider(); }
 find.addEventListener('focus', openList); find.addEventListener('pointerdown', () => { if (list.hidden) openList(); }); find.addEventListener('input', openList);
@@ -815,7 +824,7 @@ find.addEventListener('blur', closeList);
 list.addEventListener('mousedown', e => e.preventDefault());      // dragging the scrollbar or picking a row keeps the box open
 find.addEventListener('keydown', e => {
   if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { if (list.hidden) openList(); else if (shown.length) { pickIx = (pickIx + (e.key === 'ArrowDown' ? 1 : -1) + shown.length) % shown.length; mark(); } e.preventDefault(); }
-  else if (e.key === 'Enter') { const o = shown[pickIx] || (find.value.trim() && shown[0]); if (o && !list.hidden) goTo(o); }
+  else if (e.key === 'Enter') { const o = shown[pickIx] || (find.value.trim() && shown[0]); if (o && !list.hidden) flyTo(o); }
   else if (e.key === 'Escape') { find.value = ''; closeList(); cv.focus(); } });
 
 
@@ -843,7 +852,7 @@ function startTrip(T) { stopTour(); stopRoam(); if (T.id === 'tour') { startTour
   if (roam.trip && T.stops && T.stops[0][1]) { roam.clock = Date.parse(T.stops[0][1] + 'T12:00:00Z'); simMs = roam.clock; place(); }
   if (roam.trip) roam.deck = tripStops(T).map(([n, y]) => [OBJ.find(o => o.name === n), y]).reverse();
   roamBtn.setAttribute('aria-pressed', true); begin(); nextHop(); }
-function stopRoam() { if (!roam) return; roam = null; hop = null; roamBtn.textContent = 'Random trip'; roamBtn.setAttribute('aria-pressed', false); }
+function stopRoam() { if (!roam) { hop = null; return; } roam = null; hop = null; roamBtn.textContent = 'Random trip'; roamBtn.setAttribute('aria-pressed', false); }
 function nextHop() { const T = roam.trip;
   if (!roam.deck || !roam.deck.length) { if (T) { const at = roam.at; stopRoam(); note = tr('tripEnd', inS(at)); noteUntil = performance.now() + 7000; if (!orbit) startOrbit(at); return; }       // an itinerary ends at its last stop
     const d = OBJ.slice();       // the random trip deals a fresh shuffled deck: every object once before any repeats
@@ -879,7 +888,7 @@ function hopStep(dt) { const h = hop, o = h.to; h.t += dt;
   for (const b of BODIES) for (const c of [b].concat(b.moons || [])) { const dc = sep(c) - c.r; clearance = Math.min(clearance, dc); if (c === b && dc < best) { best = dc; near = b; } }
   for (const c of ASTEROIDS) clearance = Math.min(clearance, sep(c) - c.r);
   clearance = Math.max(clearance, 1e-4);
-  if (h.t >= h.turn + HOP_FLY) { hop = null; startOrbit(o); note = roam.trip ? tripNote(o) : tr('stay', inS(o)); noteUntil = performance.now() + 6000; } }
+  if (h.t >= h.turn + HOP_FLY) { hop = null; startOrbit(o); if (!roam) return; note = roam.trip ? tripNote(o) : tr('stay', inS(o)); noteUntil = performance.now() + 6000; } }
 roamBtn.addEventListener('click', () => { if (roam) { const at = hop ? null : roam.at; stopRoam(); if (!orbit) startOrbit(near); }
   else { stopTour(); roam = { at: orbit ? orbit.body : near, timer: 0 }; roamBtn.textContent = 'Stop trip'; roamBtn.setAttribute('aria-pressed', true); begin(); nextHop(); }
   cv.focus(); });
@@ -983,7 +992,7 @@ function showInfo(o) { const E = INFO[o.name]; if (!E) return; const L = lang !=
 let infoAuto = null;
 function hideInfo() { if (infoObj) { infoObj = null; infoEl.hidden = true; } }
 iEl('infox').addEventListener('click', () => { hideInfo(); cv.focus(); });
-iEl('igo').addEventListener('click', () => { const o = infoObj; if (o) { goTo(o); iEl('igo').hidden = true; } });
+iEl('igo').addEventListener('click', () => { const o = infoObj; if (o) { flyTo(o); iEl('igo').hidden = true; } });
 document.getElementById('about').addEventListener('click', () => { const o = orbit ? orbit.body : near; if (infoObj === o) hideInfo(); else showInfo(o); });
 addEventListener('keydown', e => { if (e.key === 'Escape' && infoObj) { hideInfo(); cv.focus(); } });
 infoEl.addEventListener('mousedown', e => e.stopPropagation());
