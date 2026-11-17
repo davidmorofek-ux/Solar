@@ -980,6 +980,7 @@ function showInfo(o) { const E = INFO[o.name]; if (!E) return; const L = lang !=
     [tr('weighs'), I.g ? weigh(I.g) : ''], [tr('moons'), I.moons === undefined ? '' : String(I.moons)]]);
   rows(iEl('inow'), nowRows(o)); const ul = iEl('ifacts'); ul.textContent = ''; for (const f of I.f) { const li = document.createElement('li'); li.textContent = f; ul.appendChild(li); }
   iEl('igo').hidden = !!(orbit && orbit.body === o); infoEl.hidden = false; infoEl.scrollTop = 0; begin(); }
+let infoAuto = null;
 function hideInfo() { if (infoObj) { infoObj = null; infoEl.hidden = true; } }
 iEl('infox').addEventListener('click', () => { hideInfo(); cv.focus(); });
 iEl('igo').addEventListener('click', () => { const o = infoObj; if (o) { goTo(o); iEl('igo').hidden = true; } });
@@ -1108,6 +1109,8 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   if (hit !== tipName) { tip.style.opacity = hit ? 1 : 0; tipName = hit; }
   const ds = new Date(simMs).toISOString().replace('T', ' ').slice(0, rateIx > 1 || (roam && roam.clock !== undefined) ? 10 : 16); if (dateEl.textContent !== ds) dateEl.textContent = ds;
   relabel();
+  // an open fact sheet follows the viewer: it turns to the body being circled, or the one being flown to
+  { const o = orbit ? orbit.body : hop ? hop.to : near; if (o !== infoAuto) { infoAuto = o; if (infoObj && infoObj !== o && INFO[o.name]) showInfo(o); } }
   const hn = target ? target.name : 'Open space'; if (headEl.textContent !== hn) headEl.textContent = hn;
   const c = ship.v / LIGHT, sv = !TRUE ? String(Math.round(ship.v)) : (c < 10 ? c.toFixed(1) : Math.round(c).toLocaleString('en-US')) + ' ' + tr('xlight');
   if (spdEl.textContent !== sv) { spdEl.textContent = sv; barEl.style.width = (pace * 100).toFixed(1) + '%'; }
