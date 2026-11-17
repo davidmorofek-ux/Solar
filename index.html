@@ -112,6 +112,7 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
 .tools button::before { content: ''; flex: none; width: 15px; height: 15px; background: currentColor; opacity: .8; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
 .tools button:hover { background: rgba(255, 255, 255, .08); border-color: transparent; }
 .tools button[aria-pressed="true"] { background: rgba(255, 182, 72, .13); border-color: rgba(255, 182, 72, .42); color: var(--amber); }
+#voice { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M11 5 6 9H3v6h3l5 4z%22/%3E%3Cpath d=%22M15.5 8.5a5 5 0 0 1 0 7%22/%3E%3Cpath d=%22M18.5 5.5a9 9 0 0 1 0 13%22/%3E%3C/svg%3E"); } #music { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M9 18V5l11-2v13%22/%3E%3Ccircle cx=%226%22 cy=%2218%22 r=%223%22/%3E%3Ccircle cx=%2217%22 cy=%2216%22 r=%223%22/%3E%3C/svg%3E"); }
 #orbit { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%223.2%22 fill=%22black%22/%3E%3Cellipse cx=%2212%22 cy=%2212%22 rx=%2210%22 ry=%224.6%22 transform=%22rotate%28-28 12 12%29%22/%3E%3C/svg%3E"); } #tour { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 18c4-9 10-13 16-13%22/%3E%3Cpath d=%22M14 4.5l6 .5-1.6 5.6%22/%3E%3Ccircle cx=%224%22 cy=%2218%22 r=%221.6%22 fill=%22black%22/%3E%3C/svg%3E"); } #roam { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%223.5%22 y=%223.5%22 width=%2217%22 height=%2217%22 rx=%224%22/%3E%3Ccircle cx=%228.5%22 cy=%228.5%22 r=%221.3%22 fill=%22black%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221.3%22 fill=%22black%22/%3E%3Ccircle cx=%2215.5%22 cy=%2215.5%22 r=%221.3%22 fill=%22black%22/%3E%3C/svg%3E"); } #time { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Cpath d=%22M12 7v5l3.2 2%22/%3E%3C/svg%3E"); } #about { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Cpath d=%22M12 11v6%22/%3E%3Ccircle cx=%2212%22 cy=%227.6%22 r=%22.9%22 fill=%22black%22/%3E%3C/svg%3E"); } #home { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Cpath d=%22M3 12h18%22/%3E%3Cpath d=%22M12 3c3 3 3 15 0 18c-3-3-3-15 0-18%22/%3E%3C/svg%3E"); }
 #find { background: rgba(255, 255, 255, .06) url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2393a0b8%22 stroke-width=%222.2%22 stroke-linecap=%22round%22%3E%3Ccircle cx=%2210.5%22 cy=%2210.5%22 r=%226.5%22/%3E%3Cpath d=%22M15.5 15.5L21 21%22/%3E%3C/svg%3E") 10px center / 14px no-repeat; border-color: transparent; border-radius: 9px; padding: 9px 10px 9px 32px; transition: background-color .18s, border-color .18s; }
 #find:hover, #find:focus { background-color: rgba(255, 255, 255, .1); border-color: var(--line); }
@@ -197,6 +198,8 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
       <button id="time" type="button">Time: live</button>
       <button id="scale" type="button" aria-pressed="false" hidden style="display:none">True scale</button>
       <button id="about" type="button" data-t="info">Info</button>
+      <button id="voice" type="button" aria-pressed="false" data-t="voice" title="Read the facts aloud">Voice</button>
+      <button id="music" type="button" aria-pressed="false" data-t="music" title="Richard Strauss, Also sprach Zarathustra (synthesized)">Music</button>
       <button id="home" type="button" data-t="home">Back to Earth</button>
       <div class="langs" role="group" aria-label="Language"><button type="button" data-l="en" lang="en">EN</button><button type="button" data-l="he" lang="he">עב</button><button type="button" data-l="ar" lang="ar">ع</button></div>
     </div>
@@ -226,7 +229,7 @@ const DEG = Math.PI / 180, calm = matchMedia('(prefers-reduced-motion: reduce)')
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 // ---------------------------------------------------------------- languages: English, Hebrew, Arabic
 const UI = {
-  en: { find: 'Find a planet, moon or asteroid', orbitOf: 'Orbit {n}', stopOrbit: 'Stop orbit', startTour: 'Start tour', stopTour: 'Stop tour', roam: 'Random trip', stopRoam: 'Stop trip', pause: 'Pause', play: 'Play', info: 'Info', home: 'Back to Earth',
+  en: { voice: 'Voice', music: 'Music', noVoice: 'This device has no voice for this language.', noSpeech: 'This browser cannot read aloud.', musicOn: 'Richard Strauss · Also sprach Zarathustra (synthesized)', find: 'Find a planet, moon or asteroid', orbitOf: 'Orbit {n}', stopOrbit: 'Stop orbit', startTour: 'Start tour', stopTour: 'Stop tour', roam: 'Random trip', stopRoam: 'Stop trip', pause: 'Pause', play: 'Play', info: 'Info', home: 'Back to Earth',
     time: ['Time: live', 'Time: 1 hour/s', 'Time: 1 day/s', 'Time: 10 days/s'], date: 'Date (UTC)', nearest: 'Nearest', speed: 'Speed', xlight: '× light', nav: 'Navigation · map not to scale', belt: 'Asteroid belt',
     hintClick: 'Click anywhere on the view to use the arrow keys', hintKeys: 'Pick a place in the search box, or double-click it on the map, to fly there. Double-click any object for facts about it. On the keyboard, hold <kbd>←</kbd> <kbd>→</kbd> to circle faster, either way. The arrows on screen turn the view.',
     tourNote: 'Tour: from the Sun to Neptune in about a minute.', circling: 'Circling {n}, one lap every 40 seconds. Hold ← or → on the keyboard to circle faster, either way.', hidden: 'Controls hidden. The arrow keys still turn the view. Double-click empty sky to bring them back.', shown: 'Controls back. Double-click empty sky to hide them.',
@@ -235,7 +238,7 @@ const UI = {
     fromSun: 'From the Sun', fromEarth: 'From Earth', from: 'From {n}', lightTakes: 'Light or radio takes', sunLight: 'Light from the Sun takes', fromE: '{n} from Earth',
     km: 'km', mkm: 'million km', bkm: 'billion km', au: 'AU', sec: 'seconds', min: 'minutes', hr: 'hours', kg: 'kg', g: 'grams',
     kStar: 'star', kPlanet: 'planet', kDwarf: 'dwarf planet', kAst: 'asteroid', kMoon: 'moon of {n}', trips: 'Trips', tripEnd: 'End of the trip. You are now circling {n}.', stops: 'stops', tT: 'Grand tour', tTs: '1 minute', tR: 'Random trip', tRs: 'never ends', tM: 'All the moons', tV1: 'Voyager 1', tV2: 'Voyager 2', tC: 'Cassini', tG: 'Galileo', tN: 'New Horizons', tD: 'Dawn', tA: 'Apollo 11', tP: 'Planets, one by one', kStation: 'space station', alt: 'Height above the ground', issPos: 'Position', issLive: 'live, from tracking data', issApprox: 'approximate (no live data)', title1: 'Solar System', title2: 'Voyage', sub: 'Real positions · true scale · right now', images: 'Images', other: 'and other sources' },
-  he: { find: 'חיפוש כוכב לכת, ירח או אסטרואיד', orbitOf: 'הקפת {n}', stopOrbit: 'עצירת הקפה', startTour: 'התחלת סיור', stopTour: 'עצירת סיור', roam: 'מסע אקראי', stopRoam: 'עצירת מסע', pause: 'השהיה', play: 'המשך', info: 'מידע', home: 'חזרה לכדור הארץ',
+  he: { voice: 'קריינות', music: 'מוזיקה', noVoice: 'במכשיר הזה אין קול קריינות בעברית.', noSpeech: 'הדפדפן הזה אינו יכול להקריא.', musicOn: 'ריכרד שטראוס · כה אמר זרתוסטרא (גרסה מסונתזת)', find: 'חיפוש כוכב לכת, ירח או אסטרואיד', orbitOf: 'הקפת {n}', stopOrbit: 'עצירת הקפה', startTour: 'התחלת סיור', stopTour: 'עצירת סיור', roam: 'מסע אקראי', stopRoam: 'עצירת מסע', pause: 'השהיה', play: 'המשך', info: 'מידע', home: 'חזרה לכדור הארץ',
     time: ['זמן: אמת', 'זמן: שעה בשנייה', 'זמן: יום בשנייה', 'זמן: 10 ימים בשנייה'], date: 'תאריך (UTC)', nearest: 'הקרוב ביותר', speed: 'מהירות', xlight: '× מהירות האור', nav: 'ניווט · המפה אינה בקנה מידה', belt: 'חגורת האסטרואידים',
     hintClick: 'לחצו על התצוגה כדי להשתמש במקשי החצים', hintKeys: 'בחרו יעד בתיבת החיפוש, או לחצו עליו פעמיים במפה, כדי לטוס אליו. לחיצה כפולה על כל גוף מציגה עובדות עליו. במקלדת, החזיקו <kbd>←</kbd> <kbd>→</kbd> כדי להקיף מהר יותר, לכל כיוון. החצים שעל המסך מסובבים את המבט.',
     tourNote: 'סיור: מהשמש עד נפטון בכדקה.', circling: 'מקיפים את {n}, הקפה אחת כל 40 שניות. החזיקו ← או → במקלדת כדי להקיף מהר יותר, לכל כיוון.', hidden: 'הפקדים הוסתרו. מקשי החצים עדיין מסובבים את המבט. לחיצה כפולה על שמיים ריקים תחזיר אותם.', shown: 'הפקדים חזרו. לחיצה כפולה על שמיים ריקים תסתיר אותם.',
@@ -244,7 +247,7 @@ const UI = {
     fromSun: 'מרחק מהשמש', fromEarth: 'מרחק מכדור הארץ', from: 'מרחק מ{n}', lightTakes: 'אור או אות רדיו מגיעים תוך', sunLight: 'אור השמש מגיע תוך', fromE: '{n} מכדור הארץ',
     km: 'ק"מ', mkm: 'מיליון ק"מ', bkm: 'מיליארד ק"מ', au: 'יחידות אסטרונומיות', sec: 'שניות', min: 'דקות', hr: 'שעות', kg: 'ק"ג', g: 'גרם',
     kStar: 'כוכב', kPlanet: 'כוכב לכת', kDwarf: 'כוכב לכת ננסי', kAst: 'אסטרואיד', kMoon: 'ירח של {n}', trips: 'מסעות', tripEnd: 'סוף המסע. כעת מקיפים את {n}.', stops: 'תחנות', tT: 'הסיור הגדול', tTs: 'דקה אחת', tR: 'מסע אקראי', tRs: 'ללא סוף', tM: 'כל הירחים', tV1: 'וויאג׳ר 1', tV2: 'וויאג׳ר 2', tC: 'קסיני', tG: 'גלילאו', tN: 'ניו הורייזונס', tD: 'החללית Dawn', tA: 'אפולו 11', tP: 'כוכבי הלכת, אחד אחד', kStation: 'תחנת חלל', alt: 'גובה מעל פני הקרקע', issPos: 'מיקום', issLive: 'חי, מנתוני מעקב', issApprox: 'משוער (אין נתונים חיים)', title1: 'מסע במערכת', title2: 'השמש', sub: 'מיקומים אמיתיים · קנה מידה אמיתי · ברגע זה', images: 'תמונות', other: 'ומקורות נוספים' },
-  ar: { find: 'ابحث عن كوكب أو قمر أو كويكب', orbitOf: 'الدوران حول {n}', stopOrbit: 'إيقاف الدوران', startTour: 'بدء الجولة', stopTour: 'إيقاف الجولة', roam: 'رحلة عشوائية', stopRoam: 'إيقاف الرحلة', pause: 'إيقاف مؤقت', play: 'متابعة', info: 'معلومات', home: 'العودة إلى الأرض',
+  ar: { voice: 'تعليق صوتي', music: 'موسيقى', noVoice: 'لا يوجد صوت قراءة بالعربية على هذا الجهاز.', noSpeech: 'هذا المتصفح لا يستطيع القراءة بصوت مسموع.', musicOn: 'ريتشارد شتراوس · هكذا تكلم زرادشت (نسخة مُولَّفة)', find: 'ابحث عن كوكب أو قمر أو كويكب', orbitOf: 'الدوران حول {n}', stopOrbit: 'إيقاف الدوران', startTour: 'بدء الجولة', stopTour: 'إيقاف الجولة', roam: 'رحلة عشوائية', stopRoam: 'إيقاف الرحلة', pause: 'إيقاف مؤقت', play: 'متابعة', info: 'معلومات', home: 'العودة إلى الأرض',
     time: ['الزمن: مباشر', 'الزمن: ساعة في الثانية', 'الزمن: يوم في الثانية', 'الزمن: 10 أيام في الثانية'], date: 'التاريخ (UTC)', nearest: 'الأقرب', speed: 'السرعة', xlight: '× سرعة الضوء', nav: 'الملاحة · الخريطة ليست بمقياس حقيقي', belt: 'حزام الكويكبات',
     hintClick: 'انقر على العرض لاستخدام مفاتيح الأسهم', hintKeys: 'اختر وجهة من مربع البحث، أو انقر عليها نقرًا مزدوجًا في الخريطة، للطيران إليها. انقر نقرًا مزدوجًا على أي جرم لعرض حقائق عنه. على لوحة المفاتيح، اضغط مطولًا على <kbd>←</kbd> <kbd>→</kbd> للدوران أسرع في أي اتجاه. الأسهم على الشاشة تدير المنظر.',
     tourNote: 'جولة: من الشمس إلى نبتون في نحو دقيقة.', circling: 'ندور حول {n}، دورة واحدة كل 40 ثانية. اضغط مطولًا على ← أو → في لوحة المفاتيح للدوران أسرع في أي اتجاه.', hidden: 'أُخفيت عناصر التحكم. مفاتيح الأسهم ما زالت تدير المنظر. انقر نقرًا مزدوجًا على السماء الفارغة لإظهارها.', shown: 'عادت عناصر التحكم. انقر نقرًا مزدوجًا على السماء الفارغة لإخفائها.',
@@ -991,7 +994,7 @@ function showInfo(o) { const E = INFO[o.name]; if (!E) return; const L = lang !=
   rows(iEl('istats'), [[tr('size'), I.d], [tr('day'), I.day], [tr(o.parent ? 'orbit1' : 'year'), I.yr], [tr('temp'), I.t], [tr('grav'), I.g ? tr('gravOf', nf(I.g / 9.81 * 100, I.g < .5 ? 2 : 0)) : ''],
     [tr('weighs'), I.g ? weigh(I.g) : ''], [tr('moons'), I.moons === undefined ? '' : String(I.moons)]]);
   rows(iEl('inow'), nowRows(o)); const ul = iEl('ifacts'); ul.textContent = ''; for (const f of I.f) { const li = document.createElement('li'); li.textContent = f; ul.appendChild(li); }
-  iEl('igo').hidden = !!(orbit && orbit.body === o); infoEl.hidden = false; infoEl.scrollTop = 0; begin(); }
+  iEl('igo').hidden = !!(orbit && orbit.body === o); infoEl.hidden = false; infoEl.scrollTop = 0; begin(); if (voiceOn && o !== said) say(o); }
 let infoAuto = null;
 function hideInfo() { if (infoObj) { infoObj = null; infoEl.hidden = true; } }
 iEl('infox').addEventListener('click', () => { hideInfo(); cv.focus(); });
@@ -1015,7 +1018,7 @@ function step(dt) { clock += dt;
   if (orbit && orbit.ship !== ship) stopOrbit();
   if (paused && (roam || tour)) { ship.v = 0; return; }       // a paused trip holds still; the look arrows still work
   if (hop) { if (hop.ship !== ship) stopRoam(); else { hopStep(dt); return; } }
-  if (orbit) { orbitStep(dt); if (roam && (roam.timer += dt) >= (roam.trip ? roam.trip.stay : STAY)) nextHop(); return; }
+  if (orbit) { orbitStep(dt); { const stay = roam ? (roam.trip ? roam.trip.stay : STAY) : 0; if (roam && (roam.timer += dt) >= stay && !(talking() && roam.timer < stay + 75)) nextHop(); } return; }       // a trip waits for the voice to finish
   if (tour && tour.ship !== ship) stopTour();
   if (tour) { tourStep(dt); return; }
   const turn = (keys.right ? 1 : 0) - (keys.left ? 1 : 0);
@@ -1121,7 +1124,7 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
     tip.style.transform = `translate(${clamp(mouse.x + 14, 4, cw - tw - 4).toFixed(0)}px,${clamp(mouse.y + 16, 4, ch - 30).toFixed(0)}px)`; }
   if (hit !== tipName) { tip.style.opacity = hit ? 1 : 0; tipName = hit; }
   const ds = new Date(simMs).toISOString().replace('T', ' ').slice(0, rateIx > 1 || (roam && roam.clock !== undefined) ? 10 : 16); if (dateEl.textContent !== ds) dateEl.textContent = ds;
-  relabel();
+  relabel(); soundStep();
   // an open fact sheet follows the viewer: it turns to the body being circled, or the one being flown to
   { const o = orbit ? orbit.body : hop ? hop.to : near; if (o !== infoAuto) { infoAuto = o; if (infoObj && infoObj !== o && INFO[o.name]) showInfo(o); } }
   const hn = target ? target.name : 'Open space'; if (headEl.textContent !== hn) headEl.textContent = hn;
@@ -1151,11 +1154,83 @@ addEventListener('pointerdown', e => { if (!tripMenu.hidden && !e.target.closest
 addEventListener('keydown', e => { if (e.key === 'Escape' && !tripMenu.hidden) { closeTrips(); cv.focus(); } });
 const pauseBtn = document.getElementById('pause'), setText = (el, v) => { if (el.textContent !== v) el.textContent = v; };
 // every label that depends on what is going on, in the current language
+// ---------------------------------------------------------------- music: the opening of Richard Strauss's "Also sprach Zarathustra" (1896), played by a small synthesizer built here
+// score(ac, out, t0) writes one performance into the audio context, starting at t0, and returns its length in seconds
+function score(ac, out, t0) { const hz = m => 440 * Math.pow(2, (m - 69) / 12), made = [];
+  const dry = ac.createGain(), wet = ac.createGain(), hall = ac.createConvolver(); dry.gain.value = .8; wet.gain.value = .42;
+  { const n = Math.floor(ac.sampleRate * 3.4), buf = ac.createBuffer(2, n, ac.sampleRate); let s = 12345;       // the hall: three seconds of fading noise
+    for (let c = 0; c < 2; c++) { const d = buf.getChannelData(c); for (let i = 0; i < n; i++) { s = (s * 1103515245 + 12345) & 0x7fffffff; d[i] = (s / 0x3fffffff - 1) * Math.pow(1 - i / n, 2.6); } } hall.buffer = buf; }
+  dry.connect(out); hall.connect(wet); wet.connect(out); const bus = ac.createGain(); bus.connect(dry); bus.connect(hall);
+  const osc = (type, f, t, end, cents) => { const o = ac.createOscillator(); o.type = type; o.frequency.value = f; if (cents) o.detune.value = cents; o.start(t); o.stop(end); made.push(o); return o; };
+  // brass and strings: two saws a hair apart, through a filter that opens as the note swells
+  const horn = (m, t, dur, vol, slow) => { const f = hz(m), a = slow ? .5 : .09, g = ac.createGain(), lp = ac.createBiquadFilter(), end = t + dur + .5; lp.type = 'lowpass'; lp.Q.value = .7;
+    const top = Math.min(f * (slow ? 2.6 : 4.2), 5200); lp.frequency.setValueAtTime(Math.min(f * 1.2, 900), t); lp.frequency.linearRampToValueAtTime(top, t + a * 1.6); lp.frequency.setTargetAtTime(top * .7, t + a * 1.6, 1.2);
+    const v = vol * Math.min(1, 520 / f + .35); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + a); g.gain.setTargetAtTime(v * .82, t + a, .9); g.gain.setTargetAtTime(0, t + dur, .13);
+    osc('sawtooth', f, t, end, -5).connect(lp); osc('sawtooth', f, t, end, 6).connect(lp); lp.connect(g); g.connect(bus); };
+  const chord = (ms, t, dur, vol) => { for (const m of ms) { horn(m, t, dur, vol); if (m < 70) horn(m, t, dur, vol * .5, true); } };
+  const noise = (t, dur, vol, type, f) => { const n = Math.floor(ac.sampleRate * dur), buf = ac.createBuffer(1, n, ac.sampleRate), d = buf.getChannelData(0); for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+    const src = ac.createBufferSource(), fl = ac.createBiquadFilter(), g = ac.createGain(); src.buffer = buf; fl.type = type; fl.frequency.value = f; g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    src.connect(fl); fl.connect(g); g.connect(bus); src.start(t); made.push(src); };
+  const drum = (m, t, vol) => { const f = hz(m), o = ac.createOscillator(), g = ac.createGain(); o.frequency.setValueAtTime(f * 1.6, t); o.frequency.exponentialRampToValueAtTime(f, t + .06);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .008); g.gain.exponentialRampToValueAtTime(.0001, t + .9); o.connect(g); g.connect(bus); o.start(t); o.stop(t + 1); made.push(o); noise(t, .09, vol * .5, 'lowpass', 900); };
+  const drums = (t, n, vol) => { for (let i = 0; i < n; i++) drum(i % 2 ? 43 : 48, t + i * .43, vol * Math.pow(1 - i / n, .7)); };       // the kettledrums answer: C, G, C, G...
+  // the deep C that everything stands on, with a slow shiver
+  const pedal = (t, dur) => { const g = ac.createGain(), lp = ac.createBiquadFilter(), trem = ac.createGain(), end = t + dur + 3; lp.type = 'lowpass'; lp.frequency.value = 260;
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.022, t + 5); g.gain.setTargetAtTime(0, t + dur, .9); trem.gain.value = .006; osc('sine', 5.5, t, end).connect(trem); trem.connect(g.gain);
+    osc('sine', hz(24), t, end).connect(g); osc('sawtooth', hz(36), t, end, 4).connect(lp); osc('sawtooth', hz(36), t, end, -4).connect(lp); osc('triangle', hz(48), t, end).connect(lp); lp.connect(g); g.connect(bus); };
+  const CM = [48, 55, 60, 64, 67, 72, 76], Cm = [48, 55, 60, 63, 67, 72, 75], F = [41, 53, 60, 65, 69, 72, 77, 81], G = [43, 55, 62, 67, 71, 74, 79, 83];
+  let t = t0; pedal(t, 79);
+  for (let k = 0; k < 3; k++) { const a = t0 + 6 + k * 20, v = .13 + .035 * k;       // three times: C, G, C on the trumpets
+    horn(60, a, 3.9, v); horn(67, a + 4, 3.9, v * 1.1); horn(72, a + 8, 3.3, v * 1.25); if (k) { horn(48, a, 3.9, v * .5, true); horn(55, a + 4, 3.9, v * .5, true); horn(60, a + 8, 3.3, v * .6, true); }
+    if (k < 2) { chord(k ? Cm : CM, a + 11.4, .3, .085); chord(k ? CM : Cm, a + 11.75, 4.6, .08); noise(a + 11.4, 1.6, .05, 'highpass', 5000); drums(a + 12.3, 13, .5); } }       // major to minor, then minor to major
+  t = t0 + 57.4; chord(CM, t, .3, .09); noise(t, 2.5, .07, 'highpass', 4500);
+  for (const [ms, at, dur, v] of [[F, .35, 4.6, .085], [G, 4.95, .55, .08], [[48, 55, 64, 67, 72, 76, 79, 84], 5.6, 3.1, .09], [[43, 55, 62, 67, 71, 79, 86], 8.7, .8, .085],
+    [[48, 60, 64, 67, 72, 79, 84, 88], 9.5, .75, .09], [[41, 53, 65, 69, 72, 81, 89], 10.25, .75, .09], [[43, 55, 64, 72, 76, 84, 91], 11, 3.3, .095],
+    [[41, 53, 65, 72, 77, 81, 93], 14.3, .75, .09], [[43, 55, 62, 71, 74, 79, 83, 95], 15.05, .85, .095]]) chord(ms, t + at, dur, v);       // the climb
+  drum(48, t + .35, .5); drum(43, t + 5.6, .5); drum(48, t + 11, .55); const fin = t + 15.9;
+  chord([36, 48, 55, 60, 64, 67, 72, 76, 79, 84, 96], fin, 6.5, .1); noise(fin, 4, .1, 'highpass', 4000); for (let i = 0; i < 8; i++) drum(i % 2 ? 43 : 48, fin + i * .2, .6 - i * .05);
+  for (const m of [36, 48, 55, 60, 64, 67, 72]) { const g = ac.createGain(); g.gain.setValueAtTime(0, fin); g.gain.linearRampToValueAtTime(.045, fin + 1); g.gain.setTargetAtTime(0, fin + 9, 1.4);       // the organ holds the last chord alone
+    osc('triangle', hz(m), fin, fin + 16).connect(g); osc('sine', hz(m + 12), fin, fin + 16).connect(g); g.connect(bus); }
+  // afterwards, a quiet open fifth until the next sunrise
+  for (const [m, v] of [[36, .026], [43, .018], [48, .015], [55, .01]]) { const g = ac.createGain(), a = fin + 12; g.gain.setValueAtTime(0, a); g.gain.linearRampToValueAtTime(v, a + 10); g.gain.setTargetAtTime(0, a + 52, 4);
+    osc('sine', hz(m), a, a + 72, 3).connect(g); osc('sine', hz(m), a, a + 72, -3).connect(g); g.connect(bus); }
+  return { len: fin - t0 + 78, made, stop: () => { for (const n of made) { try { n.stop(); } catch (e) {} } try { bus.disconnect(); dry.disconnect(); wet.disconnect(); } catch (e) {} } }; }
+
+let AC = null, mOut = null, mCur = null, mTimer = 0, musicOn = false, mDuck = false; const musicBtn = document.getElementById('music');
+function musicCycle() { mCur = score(AC, mOut, AC.currentTime + .3); mTimer = setTimeout(musicCycle, mCur.len * 1000); }
+function setMusic(on) { if (on === musicOn) return;
+  if (on) { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); AC.resume(); } catch (e) { return; }
+    const comp = AC.createDynamicsCompressor(); mOut = AC.createGain(); mOut.gain.value = 0; mOut.connect(comp); comp.connect(AC.destination); mDuck = talking(); mOut.gain.setTargetAtTime(mDuck ? .25 : .9, AC.currentTime, .4);
+    musicCycle(); note = tr('musicOn'); noteUntil = performance.now() + 6000; }
+  else { clearTimeout(mTimer); const g = mOut, c = mCur; g.gain.setTargetAtTime(0, AC.currentTime, .2); setTimeout(() => { c.stop(); try { g.disconnect(); } catch (e) {} }, 1200); }
+  musicOn = on; musicBtn.setAttribute('aria-pressed', on); }
+musicBtn.addEventListener('click', () => { setMusic(!musicOn); cv.focus(); });
+
+// ---------------------------------------------------------------- voice: the browser reads the summary and the facts of the object being visited
+const SS = window.speechSynthesis || null, voiceBtn = document.getElementById('voice'), LTAG = { en: 'en-US', he: 'he-IL', ar: 'ar-SA' }; let voiceOn = false, said = null, sayT = 0, lastStop = null;
+if (SS) { try { SS.getVoices(); } catch (e) {} }
+const talking = () => !!(voiceOn && SS && (SS.speaking || SS.pending));
+function pickVoice() { let all = []; try { all = SS.getVoices(); } catch (e) {} const code = lang === 'he' ? /^(he|iw)/i : new RegExp('^' + lang, 'i'), fit = all.filter(v => code.test(v.lang));
+  const rank = v => (/natural|neural|premium|enhanced|online/i.test(v.name) ? 4 : 0) + (/google|siri|samantha|daniel|aria|jenny|guy|carmit|maged/i.test(v.name) ? 2 : 0) + (/en-(US|GB)/i.test(v.lang) ? 1 : 0);
+  fit.sort((a, b) => rank(b) - rank(a)); return { voice: fit[0] || null, none: all.length > 0 && !fit.length }; }
+function say(o) { said = o; if (!SS || !o) return; const E = INFO[o.name]; try { SS.cancel(); } catch (e) {} clearTimeout(sayT); if (!E) return;
+  const L = lang !== 'en' && LOC[lang][o.name], parts = [nm(o) + '. ' + (L ? L[1] : E.lead)].concat(L ? L[6] : E.f), pv = pickVoice();
+  if (pv.none) { note = tr('noVoice'); noteUntil = performance.now() + 7000; return; }
+  // one sentence group at a time, the opening a little slower and the facts with a slight lift, so that it does not drone
+  sayT = setTimeout(() => { parts.forEach((t, i) => { const u = new SpeechSynthesisUtterance(t); u.lang = LTAG[lang]; if (pv.voice) u.voice = pv.voice; u.rate = i ? .97 : .9; u.pitch = i % 2 ? 1.06 : .98; try { SS.speak(u); } catch (e) {} }); }, 120); }
+function setVoice(on) { if (on && !SS) { note = tr('noSpeech'); noteUntil = performance.now() + 7000; return; }
+  voiceOn = on; voiceBtn.setAttribute('aria-pressed', on); if (on) say(orbit ? orbit.body : hop ? hop.to : near); else { clearTimeout(sayT); try { SS.cancel(); } catch (e) {} said = null; } }
+voiceBtn.addEventListener('click', () => { setVoice(!voiceOn); cv.focus(); });
+addEventListener('pagehide', () => { try { if (SS) SS.cancel(); } catch (e) {} });
+// every frame: start reading when the viewer sets off for, or arrives at, a new object, and keep the music under the voice
+function soundStep() { const o = tour ? null : orbit ? orbit.body : hop ? hop.to : null; if (o !== lastStop) { lastStop = o; if (voiceOn && o && o !== said) say(o); }
+  if (musicOn) { const d = talking(); if (d !== mDuck) { mDuck = d; mOut.gain.setTargetAtTime(d ? .25 : .9, AC.currentTime, .5); } } }
+
 function relabel() { if (!(roam || tour)) paused = false;
   setText(orbitBtn, orbit ? tr('stopOrbit') : tr('orbitOf', inS(near))); setText(tourBtn, tr(tour ? 'stopTour' : 'startTour')); setText(roamBtn, tr(roam ? 'stopRoam' : 'roam')); setText(timeBtn, tr('time')[rateIx]); setText(nearEl, nm(near));
   setText(tripsBtn, tr(roam || tour ? 'stopRoam' : 'trips')); tripsBtn.setAttribute('aria-pressed', !!(roam || tour));
   setText(pauseBtn, tr(paused ? 'play' : 'pause')); pauseBtn.hidden = !(roam || tour); pauseBtn.classList.toggle('on', paused); pauseBtn.setAttribute('aria-pressed', paused); }
-const togglePause = () => { if (!(roam || tour)) return; paused = !paused; note = paused ? tr('paused') : ''; noteUntil = paused ? performance.now() + 4000 : 0; };
+const togglePause = () => { if (!(roam || tour)) return; paused = !paused; try { if (SS && voiceOn) { if (paused) SS.pause(); else SS.resume(); } } catch (e) {} note = paused ? tr('paused') : ''; noteUntil = paused ? performance.now() + 4000 : 0; };
 pauseBtn.addEventListener('click', () => { togglePause(); cv.focus(); });
 addEventListener('keydown', e => { if (e.code === 'Space' && !typing(e) && !(e.target && e.target.tagName === 'BUTTON') && (roam || tour)) { togglePause(); e.preventDefault(); } });
 function applyLang(l) { if (l && UI[l]) { lang = l; try { localStorage.setItem('ssv-lang', l); } catch (e) {} }
@@ -1165,7 +1240,7 @@ function applyLang(l) { if (l && UI[l]) { lang = l; try { localStorage.setItem('
   for (const el of document.querySelectorAll('[data-brand]')) { el.textContent = tr('title1') + ' '; const b = document.createElement('b'); b.textContent = tr('title2'); el.appendChild(b); }
   find.placeholder = tr('find'); find.setAttribute('aria-label', tr('find')); document.documentElement.lang = lang;
   for (const b of document.querySelectorAll('.langs button')) b.setAttribute('aria-pressed', b.dataset.l === lang);
-  relabel(); hintMode = ''; tipName = ''; if (infoObj) { const top = infoEl.scrollTop; showInfo(infoObj); infoEl.scrollTop = top; } if (!list.hidden) openList(); if (!tripMenu.hidden) openTrips(); }
+  relabel(); hintMode = ''; tipName = ''; if (voiceOn && said) say(said); if (infoObj) { const top = infoEl.scrollTop; showInfo(infoObj); infoEl.scrollTop = top; } if (!list.hidden) openList(); if (!tripMenu.hidden) openTrips(); }
 for (const b of document.querySelectorAll('.langs button')) b.addEventListener('click', () => { applyLang(b.dataset.l); cv.focus(); });
 applyLang();
 requestAnimationFrame(frame);
