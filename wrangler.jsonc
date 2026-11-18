@@ -1,0 +1,6 @@
+{
+  // Cloudflare: serve this folder as a plain static site (no build step)
+  "name": "solar",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./" }
+}
