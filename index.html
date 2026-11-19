@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-131938"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-132330"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -781,6 +781,8 @@ function orient(name, d, spin) { const [ra, dec, W0, rate] = POLE[name], a = ra 
 const EPOCH = Date.UTC(2000, 0, 1, 12), RATES = [[1, 'Time: live'], [3600, 'Time: 1 hour/s'], [86400, 'Time: 1 day/s'], [864000, 'Time: 10 days/s']];
 let simMs = Date.now(), rateIx = 0;
 const days = () => (simMs - EPOCH) / 86400000;
+// While a trip races the calendar forward, the planets keep the turn they will have on arrival instead of spinning hundreds of times a second
+const spinDays = () => (typeof hop !== 'undefined' && hop && hop.c1 && hop.c1 > hop.c0 ? (hop.c1 - EPOCH) / 86400000 : days());
 // The plane each moon orbits in, as the direction of its orbital north pole. The Moon: 5.1 degrees to the ecliptic, with its
 // 18.6-year swing. Triton: its own tilted, backwards orbit. Iapetus: its own tilted orbit. The rest: their planet's equator.
 const eqv = (ra, dec) => { const a = ra * DEG, d = dec * DEG; return toGame([Math.cos(d) * Math.cos(a), Math.cos(d) * Math.sin(a), Math.sin(d)]); };
@@ -1369,18 +1371,18 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   gl.uniformMatrix4fv(pBody.u.uVP, false, VP); gl.uniform3fv(pBody.u.uSun, sunRel); gl.uniform1i(pBody.u.uTex, 0);
   gl.uniform1i(pBody.u.uNight, 1); gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, TEX.night);
   gl.uniform1i(pBody.u.uCloud, 2); gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, TEX.clouds); gl.activeTexture(gl.TEXTURE0);
-  gl.uniform1i(pBody.u.uHigh, 4); gl.uniform1f(pBody.u.uBump, 0); gl.uniform1f(pBody.u.uCloudU, (days() / 45 + clock * .0005) % 1);   // the weather drifts slowly over the ground
+  gl.uniform1i(pBody.u.uHigh, 4); gl.uniform1f(pBody.u.uBump, 0); gl.uniform1f(pBody.u.uCloudU, (spinDays() / 45 + clock * .0005) % 1);   // the weather drifts slowly over the ground
   const ROUND = [0, 0, 1, 0], put = (M, tex, tint, rim, emis, night, shape) => { gl.uniformMatrix4fv(pBody.u.uM, false, M); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform4fv(pBody.u.uShape, shape || ROUND);
     gl.uniform3fv(pBody.u.uTint, tint); gl.uniform3fv(pBody.u.uRim, rim); gl.uniform1f(pBody.u.uEmis, emis); gl.uniform1f(pBody.u.uNightK, night || 0); };
   const ONE = [1, 1, 1], NONE = [0, 0, 0], PHOTO = [1.12, 1.12, 1.12];
-  useMesh(HI); draws.sort((p, q) => q[0] - p[0]); const dNow = days();
+  useMesh(HI); draws.sort((p, q) => q[0] - p[0]); const dNow = days(), spinD = spinDays();
   for (const [dist, b, m] of draws) { const o = m || b; if (o.sprite || o.craft || o.r * focal / dist < .35) continue;
     const hi = TEX['b_' + o.name.toLowerCase()]; gl.uniform1f(pBody.u.uBump, hi ? 20 : 0); if (hi) { gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, hi); gl.activeTexture(gl.TEXTURE0); }
     if (m) { const g = m.sq || ONE; if (m.comet) { put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), rotY(clock * .08)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), TEX.a_eros || TEX.moon, [.62, .58, .54], NONE, 0, 0, [.12, .1, 1.2, .09]); gl.drawElements(gl.TRIANGLES, HI.n, gl.UNSIGNED_SHORT, 0); continue; }
       put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), m.M || rotY(m.p + clock * .05)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), m.tex ? TEX[m.tex] : TEX.moon, m.tex ? PHOTO : m.tint, m.rim || NONE, 0, 0, m.shape); }
     else { const q = b.sq || ONE, T = trans(b.x - ship.x, b.y - ship.y, b.z - ship.z), real = POLE[b.name], R0 = real ? orient(b.name, dNow, false) : rotX((b.tilt || 0) * DEG);
       b.M0 = mul(T, R0);            // the ring plane follows the real equator
-      put(mul(mul(T, real ? orient(b.name, dNow, true) : mul(R0, rotY(clock * b.spin))), scale(b.r * q[0], b.r * q[1], b.r * q[2])), TEX[b.tex], ONE, b.rim || NONE, b.emis || 0, b.night); }
+      put(mul(mul(T, real ? orient(b.name, spinD, true) : mul(R0, rotY(clock * b.spin))), scale(b.r * q[0], b.r * q[1], b.r * q[2])), TEX[b.tex], ONE, b.rim || NONE, b.emis || 0, b.night); }
     gl.drawElements(gl.TRIANGLES, HI.n, gl.UNSIGNED_SHORT, 0); }
   gl.uniform1f(pBody.u.uBump, 0); useMesh(LO);
   for (const k of ROCKS) { const dx = k.x - ship.x, dz = k.z - ship.z, d2 = dx * dx + dz * dz; if (d2 > 12100 || dx * f[0] + dz * f[2] < -2 || k.s * focal < .7 * Math.sqrt(d2)) continue;
