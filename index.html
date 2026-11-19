@@ -376,12 +376,16 @@ function prog(vs, fs) { const p = gl.createProgram();
   return { p, u, a }; }
 const HP = '#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n';
 const pBody = prog(
-  'attribute vec3 aPos; attribute vec2 aUV; uniform mat4 uVP, uM; uniform vec4 uShape; varying vec3 vN, vW; varying vec2 vUV;' +
+  'attribute vec3 aPos; attribute vec2 aUV; uniform mat4 uVP, uM; uniform vec4 uShape; varying vec3 vN, vW, vTu, vTv; varying vec2 vUV; varying float vS;' +
   'void main(){ vec3 p = aPos; p.yz *= 1. - uShape.x * exp(-p.x * p.x * uShape.z * 3.); p.y += uShape.y * (p.x * p.x - .35);' +
   ' p *= 1. + uShape.w * (sin(p.x * 5. + 1.) * sin(p.y * 4. + 2.) + sin(p.z * 6. + p.x * 3.) * .7);' +
-  ' vec4 w = uM * vec4(p, 1.); vW = w.xyz; vN = mat3(uM) * normalize(mix(aPos, p, .5)); vUV = aUV; gl_Position = uVP * w; }',
-  HP + 'uniform sampler2D uTex, uNight, uCloud; uniform vec3 uSun, uTint, uRim; uniform float uEmis, uNightK, uCloudU; varying vec3 vN, vW; varying vec2 vUV;' +
+  ' vec4 w = uM * vec4(p, 1.); vW = w.xyz; vN = mat3(uM) * normalize(mix(aPos, p, .5)); vUV = aUV; gl_Position = uVP * w;' +
+  ' vS = length(aPos.xz); vTu = mat3(uM) * vec3(aPos.z, 0., -aPos.x); vTv = mat3(uM) * vec3(aPos.x * aPos.y, -vS * vS, aPos.z * aPos.y); }',       // east and south along the surface, for the relief
+  HP + 'uniform sampler2D uTex, uNight, uCloud, uHigh; uniform vec3 uSun, uTint, uRim; uniform float uEmis, uNightK, uCloudU, uBump; varying vec3 vN, vW, vTu, vTv; varying vec2 vUV; varying float vS;' +
   'void main(){ vec3 N = normalize(vN), L = normalize(uSun - vW), V = normalize(-vW);' +
+  // relief: where a body has a height map, the surface is tilted by its slopes, so crater walls catch the light or fall into shadow
+  ' if (uBump > 0.) { vec2 e = vec2(1. / 2048., 0.); float hu = texture2D(uHigh, vUV + e).r - texture2D(uHigh, vUV - e).r, hv = texture2D(uHigh, vUV + e.yx * 2.).r - texture2D(uHigh, vUV - e.yx * 2.).r;' +
+  '   N = normalize(N - uBump * (hu / (2. * max(vS, .2)) * normalize(vTu) + hv * .5 * normalize(vTv))); }' +
   ' vec3 c = texture2D(uTex, vUV).rgb * uTint; float d = max(dot(N, L), 0.), nv = max(dot(N, V), 0.);' +
   ' float cl = uNightK * smoothstep(.04, .8, texture2D(uCloud, vUV + vec2(uCloudU, 0.)).r); c = mix(c, vec3(1.), cl * (.9 + .1 * (1. - nv)));' +
   ' vec3 lit = c * (.02 + .98 * pow(d, .8)) + uRim * pow(1. - nv, 3.) * smoothstep(-.2, .5, dot(N, L));' +
@@ -582,6 +586,7 @@ const BODIES = [
 const uring = document.createElement('canvas'); uring.width = 256; uring.height = 4;
 { const c = uring.getContext('2d'); for (const [x, w, a] of [[30, 3, .35], [70, 2, .3], [118, 3, .3], [160, 2, .35], [226, 9, .8]]) { c.fillStyle = `rgba(190,205,215,${a})`; c.fillRect(x, 0, w, 4); } }
 const TEX = { sky: texture('tex/sky.jpg', [3, 5, 9]), night: texture('tex/earth_night.jpg', [0, 0, 0]), clouds: texture('tex/earth_clouds.jpg', [0, 0, 0]), moon: texture('tex/moon.jpg', [130, 128, 124]), ring: texture('tex/saturn_ring.png', [0, 0, 0, 0]), uring: texture(uring, [0, 0, 0, 0]) };
+TEX.b_oberon = texture('tex/b_oberon.jpg', [128, 128, 128]);       // height map: gives Oberon's craters real light and shadow
 // real surfaces for the spacecraft, cut from NASA photographs: New Horizons's gold foil and Dawn's solar cells. They repeat across the models.
 TEX.c_foil = texture('tex/c_foil.jpg', [190, 160, 60]); TEX.c_foil.rep = 1; TEX.c_cells = texture('tex/c_cells.jpg', [20, 25, 50]); TEX.c_cells.rep = 1;
 // Earth gets sharper maps the first time the viewer goes to Earth, the Moon or the space station, on computers that can hold them.
@@ -1234,18 +1239,19 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   gl.uniformMatrix4fv(pBody.u.uVP, false, VP); gl.uniform3fv(pBody.u.uSun, sunRel); gl.uniform1i(pBody.u.uTex, 0);
   gl.uniform1i(pBody.u.uNight, 1); gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, TEX.night);
   gl.uniform1i(pBody.u.uCloud, 2); gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, TEX.clouds); gl.activeTexture(gl.TEXTURE0);
-  gl.uniform1f(pBody.u.uCloudU, (days() / 45 + clock * .0005) % 1);   // the weather drifts slowly over the ground
+  gl.uniform1i(pBody.u.uHigh, 4); gl.uniform1f(pBody.u.uBump, 0); gl.uniform1f(pBody.u.uCloudU, (days() / 45 + clock * .0005) % 1);   // the weather drifts slowly over the ground
   const ROUND = [0, 0, 1, 0], put = (M, tex, tint, rim, emis, night, shape) => { gl.uniformMatrix4fv(pBody.u.uM, false, M); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform4fv(pBody.u.uShape, shape || ROUND);
     gl.uniform3fv(pBody.u.uTint, tint); gl.uniform3fv(pBody.u.uRim, rim); gl.uniform1f(pBody.u.uEmis, emis); gl.uniform1f(pBody.u.uNightK, night || 0); };
   const ONE = [1, 1, 1], NONE = [0, 0, 0], PHOTO = [1.12, 1.12, 1.12];
   useMesh(HI); draws.sort((p, q) => q[0] - p[0]); const dNow = days();
   for (const [dist, b, m] of draws) { const o = m || b; if (o.sprite || o.craft || o.r * focal / dist < .35) continue;
+    const hi = TEX['b_' + o.name.toLowerCase()]; gl.uniform1f(pBody.u.uBump, hi ? 20 : 0); if (hi) { gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, hi); gl.activeTexture(gl.TEXTURE0); }
     if (m) { const g = m.sq || ONE; put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), m.M || rotY(m.p + clock * .05)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), m.tex ? TEX[m.tex] : TEX.moon, m.tex ? PHOTO : m.tint, m.rim || NONE, 0, 0, m.shape); }
     else { const q = b.sq || ONE, T = trans(b.x - ship.x, b.y - ship.y, b.z - ship.z), real = POLE[b.name], R0 = real ? orient(b.name, dNow, false) : rotX((b.tilt || 0) * DEG);
       b.M0 = mul(T, R0);            // the ring plane follows the real equator
       put(mul(mul(T, real ? orient(b.name, dNow, true) : mul(R0, rotY(clock * b.spin))), scale(b.r * q[0], b.r * q[1], b.r * q[2])), TEX[b.tex], ONE, b.rim || NONE, b.emis || 0, b.night); }
     gl.drawElements(gl.TRIANGLES, HI.n, gl.UNSIGNED_SHORT, 0); }
-  useMesh(LO);
+  gl.uniform1f(pBody.u.uBump, 0); useMesh(LO);
   for (const k of ROCKS) { const dx = k.x - ship.x, dz = k.z - ship.z, d2 = dx * dx + dz * dz; if (d2 > 12100 || dx * f[0] + dz * f[2] < -2 || k.s * focal < .7 * Math.sqrt(d2)) continue;
     put(mul(mul(mul(trans(dx, k.y - ship.y, dz), rotY(k.ry + clock * .1)), rotX(k.rx)), scale(k.s, k.s * k.sy, k.s * k.sz)), TEX.moon, [k.t, k.t * .93, k.t * .86], NONE, 0);
     gl.drawElements(gl.TRIANGLES, LO.n, gl.UNSIGNED_SHORT, 0); }
