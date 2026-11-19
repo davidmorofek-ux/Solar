@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-111052"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-125134"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -195,6 +195,7 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
       <button id="tour" type="button" aria-pressed="false" hidden>Start tour</button>
       <button id="roam" type="button" aria-pressed="false" hidden>Random trip</button>
       <button id="pause" type="button" hidden>Pause</button>
+      <button id="speed" type="button" hidden>Speed 1×</button>
       <button id="time" type="button">Time: live</button>
       <button id="scale" type="button" aria-pressed="false" hidden style="display:none">True scale</button>
       <button id="about" type="button" data-t="info">Info</button>
@@ -236,7 +237,7 @@ const UI = {
     now: 'Right now', worth: 'Worth knowing', go: 'Go there', src: 'Figures: NASA fact sheets', size: 'Size', day: 'One day', year: 'One year', orbit1: 'One orbit', temp: 'Temperature', grav: 'Gravity', gravOf: '{n}% of Earth’s', weighs: '70 kg person weighs', moons: 'Known moons',
     fromSun: 'From the Sun', fromEarth: 'From Earth', from: 'From {n}', lightTakes: 'Light or radio takes', sunLight: 'Light from the Sun takes', fromE: '{n} from Earth',
     km: 'km', mkm: 'million km', bkm: 'billion km', au: 'AU', sec: 'seconds', min: 'minutes', hr: 'hours', kg: 'kg', g: 'grams',
-    kStar: 'star', kPlanet: 'planet', kDwarf: 'dwarf planet', kAst: 'asteroid', kMoon: 'moon of {n}', trips: 'Trips', tripEnd: 'End of the trip. You are now circling {n}.', stops: 'stops', tT: 'Grand tour', tTs: '1 minute', tR: 'Random trip', tRs: 'never ends', tM: 'All the moons', tV1: 'Voyager 1', tV2: 'Voyager 2', tC: 'Cassini', tG: 'Galileo', tN: 'New Horizons', tD: 'Dawn', tA: 'Apollo 11', tP: 'Planets, one by one', kStation: 'space station', kCraft: 'spacecraft', alt: 'Height above the ground', issPos: 'Position', issLive: 'live, from tracking data', issApprox: 'approximate (no live data)', title1: 'Solar System', title2: 'Voyage', sub: 'Real positions · true scale · right now', images: 'Images', other: 'and other sources' },
+    kStar: 'star', kPlanet: 'planet', kDwarf: 'dwarf planet', kAst: 'asteroid', kMoon: 'moon of {n}', trips: 'Trips', tripEnd: 'End of the trip. You are now circling {n}.', stops: 'stops', tT: 'Grand tour', tTs: '1 minute', tR: 'Random trip', tRs: 'never ends', tM: 'All the moons', tV1: 'Voyager 1', tV2: 'Voyager 2', tC: 'Cassini', tG: 'Galileo', tN: 'New Horizons', tD: 'Dawn', tA: 'Apollo 11', tP: 'Planets, one by one', kStation: 'space station', kCraft: 'spacecraft', kComet: 'comet', cTrip: 'Comet {n}', sIn: 'coming in', sPeri: 'closest to the Sun', sNow: 'today', speed: 'Speed', alt: 'Height above the ground', issPos: 'Position', issLive: 'live, from tracking data', issApprox: 'approximate (no live data)', title1: 'Solar System', title2: 'Voyage', sub: 'Real positions · true scale · right now', images: 'Images', other: 'and other sources' },
   he: { updating: 'גרסה חדשה של הדף מוכנה. טוען מחדש…', share: 'העתקת קישור', copied: 'הקישור הועתק. מי שיפתח אותו יתחיל כאן: {n}', linkIs: 'העתיקו את הקישור: {n}', find: 'חיפוש כוכב לכת, ירח או אסטרואיד', orbitOf: 'הקפת {n}', stopOrbit: 'עצירת הקפה', startTour: 'התחלת סיור', stopTour: 'עצירת סיור', roam: 'מסע אקראי', stopRoam: 'עצירת מסע', pause: 'השהיה', play: 'המשך', info: 'מידע', home: 'חזרה לכדור הארץ',
     time: ['זמן: אמת', 'זמן: שעה בשנייה', 'זמן: יום בשנייה', 'זמן: 10 ימים בשנייה'], date: 'תאריך (UTC)', nearest: 'הקרוב ביותר', speed: 'מהירות', xlight: '× מהירות האור', nav: 'ניווט · המפה אינה בקנה מידה', belt: 'חגורת האסטרואידים',
     hintClick: 'לחצו על התצוגה כדי להשתמש במקשי החצים', hintKeys: 'בחרו יעד בתיבת החיפוש, או לחצו עליו פעמיים במפה, כדי לטוס אליו. לחיצה כפולה על כל גוף מציגה עובדות עליו. במקלדת, החזיקו <kbd>←</kbd> <kbd>→</kbd> כדי להקיף מהר יותר, לכל כיוון. החצים שעל המסך מסובבים את המבט.',
@@ -245,7 +246,7 @@ const UI = {
     now: 'ברגע זה', worth: 'כדאי לדעת', go: 'קפיצה לשם', src: 'נתונים: דפי הנתונים של נאס"א', size: 'גודל', day: 'יממה', year: 'שנה', orbit1: 'הקפה אחת', temp: 'טמפרטורה', grav: 'כוח המשיכה', gravOf: '{n}% מזה של כדור הארץ', weighs: 'אדם של 70 ק"ג שוקל', moons: 'ירחים ידועים',
     fromSun: 'מרחק מהשמש', fromEarth: 'מרחק מכדור הארץ', from: 'מרחק מ{n}', lightTakes: 'אור או אות רדיו מגיעים תוך', sunLight: 'אור השמש מגיע תוך', fromE: '{n} מכדור הארץ',
     km: 'ק"מ', mkm: 'מיליון ק"מ', bkm: 'מיליארד ק"מ', au: 'יחידות אסטרונומיות', sec: 'שניות', min: 'דקות', hr: 'שעות', kg: 'ק"ג', g: 'גרם',
-    kStar: 'כוכב', kPlanet: 'כוכב לכת', kDwarf: 'כוכב לכת ננסי', kAst: 'אסטרואיד', kMoon: 'ירח של {n}', trips: 'מסעות', tripEnd: 'סוף המסע. כעת מקיפים את {n}.', stops: 'תחנות', tT: 'הסיור הגדול', tTs: 'דקה אחת', tR: 'מסע אקראי', tRs: 'ללא סוף', tM: 'כל הירחים', tV1: 'וויאג׳ר 1', tV2: 'וויאג׳ר 2', tC: 'קסיני', tG: 'גלילאו', tN: 'ניו הורייזונס', tD: 'החללית Dawn', tA: 'אפולו 11', tP: 'כוכבי הלכת, אחד אחד', kStation: 'תחנת חלל', kCraft: 'חללית', alt: 'גובה מעל פני הקרקע', issPos: 'מיקום', issLive: 'חי, מנתוני מעקב', issApprox: 'משוער (אין נתונים חיים)', title1: 'מסע במערכת', title2: 'השמש', sub: 'מיקומים אמיתיים · קנה מידה אמיתי · ברגע זה', images: 'תמונות', other: 'ומקורות נוספים' },
+    kStar: 'כוכב', kPlanet: 'כוכב לכת', kDwarf: 'כוכב לכת ננסי', kAst: 'אסטרואיד', kMoon: 'ירח של {n}', trips: 'מסעות', tripEnd: 'סוף המסע. כעת מקיפים את {n}.', stops: 'תחנות', tT: 'הסיור הגדול', tTs: 'דקה אחת', tR: 'מסע אקראי', tRs: 'ללא סוף', tM: 'כל הירחים', tV1: 'וויאג׳ר 1', tV2: 'וויאג׳ר 2', tC: 'קסיני', tG: 'גלילאו', tN: 'ניו הורייזונס', tD: 'החללית Dawn', tA: 'אפולו 11', tP: 'כוכבי הלכת, אחד אחד', kStation: 'תחנת חלל', kCraft: 'חללית', kComet: 'כוכב שביט', cTrip: 'השביט {n}', sIn: 'מתקרב לשמש', sPeri: 'הכי קרוב לשמש', sNow: 'היום', speed: 'מהירות', alt: 'גובה מעל פני הקרקע', issPos: 'מיקום', issLive: 'חי, מנתוני מעקב', issApprox: 'משוער (אין נתונים חיים)', title1: 'מסע במערכת', title2: 'השמש', sub: 'מיקומים אמיתיים · קנה מידה אמיתי · ברגע זה', images: 'תמונות', other: 'ומקורות נוספים' },
   ar: { updating: 'نسخة أحدث من الصفحة جاهزة. جارٍ إعادة التحميل…', share: 'نسخ الرابط', copied: 'تم نسخ الرابط. من يفتحه يبدأ من هنا: {n}', linkIs: 'انسخ هذا الرابط: {n}', find: 'ابحث عن كوكب أو قمر أو كويكب', orbitOf: 'الدوران حول {n}', stopOrbit: 'إيقاف الدوران', startTour: 'بدء الجولة', stopTour: 'إيقاف الجولة', roam: 'رحلة عشوائية', stopRoam: 'إيقاف الرحلة', pause: 'إيقاف مؤقت', play: 'متابعة', info: 'معلومات', home: 'العودة إلى الأرض',
     time: ['الزمن: مباشر', 'الزمن: ساعة في الثانية', 'الزمن: يوم في الثانية', 'الزمن: 10 أيام في الثانية'], date: 'التاريخ (UTC)', nearest: 'الأقرب', speed: 'السرعة', xlight: '× سرعة الضوء', nav: 'الملاحة · الخريطة ليست بمقياس حقيقي', belt: 'حزام الكويكبات',
     hintClick: 'انقر على العرض لاستخدام مفاتيح الأسهم', hintKeys: 'اختر وجهة من مربع البحث، أو انقر عليها نقرًا مزدوجًا في الخريطة، للطيران إليها. انقر نقرًا مزدوجًا على أي جرم لعرض حقائق عنه. على لوحة المفاتيح، اضغط مطولًا على <kbd>←</kbd> <kbd>→</kbd> للدوران أسرع في أي اتجاه. الأسهم على الشاشة تدير المنظر.',
@@ -254,13 +255,19 @@ const UI = {
     now: 'الآن', worth: 'معلومات تستحق المعرفة', go: 'انتقل إلى هناك', src: 'الأرقام: صحائف بيانات ناسا', size: 'الحجم', day: 'اليوم', year: 'السنة', orbit1: 'دورة واحدة', temp: 'درجة الحرارة', grav: 'الجاذبية', gravOf: '{n}% من جاذبية الأرض', weighs: 'وزن شخص كتلته 70 كغ', moons: 'الأقمار المعروفة',
     fromSun: 'البعد عن الشمس', fromEarth: 'البعد عن الأرض', from: 'البعد عن {n}', lightTakes: 'يصل الضوء أو الإشارة خلال', sunLight: 'يصل ضوء الشمس خلال', fromE: '{n} من الأرض',
     km: 'كم', mkm: 'مليون كم', bkm: 'مليار كم', au: 'وحدة فلكية', sec: 'ثانية', min: 'دقيقة', hr: 'ساعة', kg: 'كغ', g: 'غرام',
-    kStar: 'نجم', kPlanet: 'كوكب', kDwarf: 'كوكب قزم', kAst: 'كويكب', kMoon: 'قمر {n}', trips: 'رحلات', tripEnd: 'نهاية الرحلة. ندور الآن حول {n}.', stops: 'محطات', tT: 'الجولة الكبرى', tTs: 'دقيقة واحدة', tR: 'رحلة عشوائية', tRs: 'بلا نهاية', tM: 'كل الأقمار', tV1: 'فوياجر 1', tV2: 'فوياجر 2', tC: 'كاسيني', tG: 'غاليليو', tN: 'نيو هورايزنز', tD: 'المركبة «دون»', tA: 'أبولو 11', tP: 'الكواكب واحدًا واحدًا', kStation: 'محطة فضاء', kCraft: 'مركبة فضائية', alt: 'الارتفاع فوق سطح الأرض', issPos: 'الموقع', issLive: 'مباشر، من بيانات التتبع', issApprox: 'تقريبي (لا توجد بيانات مباشرة)', title1: 'رحلة في النظام', title2: 'الشمسي', sub: 'مواقع حقيقية · مقياس حقيقي · الآن', images: 'الصور', other: 'ومصادر أخرى' } };
+    kStar: 'نجم', kPlanet: 'كوكب', kDwarf: 'كوكب قزم', kAst: 'كويكب', kMoon: 'قمر {n}', trips: 'رحلات', tripEnd: 'نهاية الرحلة. ندور الآن حول {n}.', stops: 'محطات', tT: 'الجولة الكبرى', tTs: 'دقيقة واحدة', tR: 'رحلة عشوائية', tRs: 'بلا نهاية', tM: 'كل الأقمار', tV1: 'فوياجر 1', tV2: 'فوياجر 2', tC: 'كاسيني', tG: 'غاليليو', tN: 'نيو هورايزنز', tD: 'المركبة «دون»', tA: 'أبولو 11', tP: 'الكواكب واحدًا واحدًا', kStation: 'محطة فضاء', kCraft: 'مركبة فضائية', kComet: 'مذنّب', cTrip: 'المذنّب {n}', sIn: 'يقترب من الشمس', sPeri: 'الأقرب إلى الشمس', sNow: 'اليوم', speed: 'السرعة', alt: 'الارتفاع فوق سطح الأرض', issPos: 'الموقع', issLive: 'مباشر، من بيانات التتبع', issApprox: 'تقريبي (لا توجد بيانات مباشرة)', title1: 'رحلة في النظام', title2: 'الشمسي', sub: 'مواقع حقيقية · مقياس حقيقي · الآن', images: 'الصور', other: 'ومصادر أخرى' } };
 // each object: [name, lead, size, day, year or orbit, temperature, [facts]]
 const LOC = { he: {
   Sun: ['השמש', 'הכוכב שבמרכז: כדור של מימן והליום שמכיל 99.8% מכל המסה במערכת השמש.', '1,391,400 ק"מ (פי 109 מכדור הארץ)', 'כ-25 ימים בקו המשווה, 35 ליד הקטבים', '', '5,500°C על פני השטח, 15.7 מיליון בליבה', ['בתוכה היו נכנסים כ-1.3 מיליון כדורי ארץ.', 'האור שלה מגיע לכדור הארץ אחרי 8 דקות ו-20 שניות, כך שתמיד רואים אותה כפי שהייתה לפני 8 דקות.', 'בכל שנייה היא הופכת כ-4 מיליון טונות של חומר לאנרגיה, ויש לה דלק לעוד כ-5 מיליארד שנים.']],
   Mercury: ['כוכב חמה', 'כוכב הלכת הקטן ביותר והקרוב ביותר לשמש, רק מעט רחב יותר מהירח שלנו.', '4,879 ק"מ', '59 ימי ארץ לסיבוב; מזריחה לזריחה 176 ימים', '88 ימי ארץ', '430°C ביום, מינוס 180°C בלילה', ['היממה כאן ארוכה מהשנה: השמש זורחת רק פעם בשתי שנות כוכב חמה.', 'כמעט אין לו אטמוספרה שתשמור חום, ולכן ההפרש בין יום ללילה הוא הגדול ביותר בין כוכבי הלכת, כ-600 מעלות.', 'במכתשים ליד הקטבים שלו, שאור השמש לא מגיע אליהם לעולם, יש קרח מים.']],
   Venus: ['נוגה', 'כמעט תאומה של כדור הארץ בגודלה, עטופה בעננים סמיכים של חומצה גופרתית.', '12,104 ק"מ', '243 ימי ארץ לסיבוב, בכיוון הפוך', '225 ימי ארץ', '464°C, ביום ובלילה', ['זהו כוכב הלכת החם ביותר, חם אפילו מכוכב חמה, כי האטמוספרה של פחמן דו-חמצני לוכדת את החום. עופרת הייתה נמסה על הקרקע.', 'לחץ האוויר על פני השטח גדול פי 92 מזה שבכדור הארץ, כמו בעומק 900 מטר מתחת לים.', 'נוגה מסתובבת הפוך מרוב כוכבי הלכת, כך שהשמש זורחת במערב, וסיבוב אחד ארוך מהשנה שלה.']],
   Earth: ['כדור הארץ', 'הבית שלנו: העולם היחיד שידוע שיש בו מים נוזליים על פני השטח, וחיים.', '12,756 ק"מ', '23 שעות ו-56 דקות', '365.25 ימים', '15°C בממוצע', ['אתם בתנועה ברגע זה: כדור הארץ מקיף את השמש במהירות של כ-107,000 קמ"ש.', 'מכאן רואים את צד היום וצד הלילה האמיתיים של היום, עם אורות הערים בחצי החשוך.', 'הנטייה שלו, 23.4 מעלות, היא שיוצרת את עונות השנה.']],
+  'Halley': ["האלי", "השביט המפורסם ביותר: הוא חוזר בערך כל 76 שנה, ותיעודים שלו קיימים כבר יותר מאלפיים שנה.", "גרעין בגודל של כ-15 על 8 ק״מ", "", "כ-76 שנה", "", ["הוא חלף ליד השמש לאחרונה ב-9 בפברואר 1986 ויחזור ביולי 2061; כרגע הוא רחוק מאוד, ליד הנקודה הרחוקה ביותר במסלולו.", "אדמונד האלי הבין שהשביטים שנראו ב-1531, ב-1607 וב-1682 הם אותו שביט, וחזה את שובו ב-1758.", "ב-1986 חלפה החללית האירופית ג׳וטו 596 ק״מ מהגרעין שלו, והתברר שהוא אחד המשטחים הכהים ביותר במערכת השמש.", "האבק שהוא משיר יוצר בכל שנה שני מטרי מטאורים: האטא-אקווארידים במאי והאוריונידים באוקטובר.", "הוא מקיף את השמש בכיוון ההפוך לכיוון התנועה של כוכבי הלכת.", "המסלול שלו לקוח ממאגר הגופים הקטנים של מעבדת JPL של נאס״א; הזנב המצויר כאן הוא קירוב."]],
+  'Hale-Bopp': ["הייל-בופ", "אחד השביטים הבהירים ביותר במאה העשרים, שנראה בעין בלתי מזוינת במשך שיא של שמונה-עשר חודשים.", "גרעין בקוטר של כ-60 ק״מ", "", "כ-2,500 שנה", "", ["הוא התגלה באותו לילה, 23 ביולי 1995, על ידי אלן הייל ותומס בופ, כל אחד בנפרד.", "הגרעין שלו גדול במיוחד, אולי 60 ק״מ, פי כמה מזה של האלי.", "הוא חלף ליד השמש ב-1 באפריל 1997, ומאות מיליוני אנשים ראו אותו.", "מעבר ליד צדק ב-1996 קיצר את מסלולו מכ-4,200 שנה לכ-2,500.", "המסלול שלו לקוח ממאגר הגופים הקטנים של מעבדת JPL של נאס״א; הזנב המצויר כאן הוא קירוב."]],
+  'Encke': ["אנקה", "השביט בעל המסלול הקצר ביותר מבין השביטים הגדולים: הוא חוזר כל 3.3 שנים.", "גרעין בקוטר של כ-5 ק״מ", "", "3.3 שנים", "", ["יוהאן אנקה חישב את מסלולו ב-1819, והוא היה השביט השני שידוע שהוא חוזר, אחרי האלי.", "הוא אף פעם לא מתרחק יותר מחגורת האסטרואידים.", "האבק שלו יוצר את מטר המטאורים טאורידים בכל סתיו.", "המסלול שלו לקוח ממאגר הגופים הקטנים של מעבדת JPL של נאס״א; הזנב המצויר כאן הוא קירוב."]],
+  '67P': ["67P צ׳וריומוב-גרסימנקו", "השביט הראשון שחללית הקיפה ונחתה עליו.", "אורך של כ-4 ק״מ, בשתי אונות", "", "6.4 שנים", "", ["החללית האירופית רוזטה הקיפה אותו מאוגוסט 2014 עד ספטמבר 2016, ואז נחתה עליו כדי לסיים את המשימה.", "ב-12 בנובמבר 2014 נחת עליו הנחתת הקטן פילה: הנחיתה הראשונה אי פעם על שביט.", "שתי האונות שלו נותנות לו צורה של ברווז גומי.", "רוזטה גילתה שהמים שלו שונים בהרכבם מהמים באוקיינוסים של כדור הארץ.", "המסלול שלו לקוח ממאגר הגופים הקטנים של מעבדת JPL של נאס״א; הזנב המצויר כאן הוא קירוב."]],
+  'NEOWISE': ["ניאוווייז", "השביט הבהיר ביותר שנראה מחצי הכדור הצפוני מאז הייל-בופ, אחד המראות של קיץ 2020.", "גרעין בקוטר של כ-5 ק״מ", "", "כ-6,800 שנה", "", ["הוא התגלה ב-27 במרץ 2020 על ידי טלסקופ החלל NEOWISE של נאס״א, שעל שמו הוא נקרא.", "הוא חלף ליד השמש ב-3 ביולי 2020 ונראה בקלות בעין בלתי מזוינת ביולי.", "הוא לא יחזור לפני כמה אלפי שנים.", "המסלול שלו לקוח ממאגר הגופים הקטנים של מעבדת JPL של נאס״א; הזנב המצויר כאן הוא קירוב."]],
+  'Tsuchinshan-ATLAS': ["צ׳ושינשאן-אטלס", "שביט בהיר של סתיו 2024, שהתגלה על ידי שני מצפים בשני צדי העולם.", "גרעין בקוטר של כמה ק״מ", "", "מעבר יחיד: ייתכן שלא יחזור לעולם", "", ["הוא התגלה בתחילת 2023 על ידי מצפה ההר הסגול בסין (צ׳ושינשאן) ועל ידי טלסקופי הסקר ATLAS.", "הוא חלף ליד השמש ב-27 בספטמבר 2024 והאיר בשמי הערב באוקטובר.", "מסלולו פתוח כל כך שייתכן שהוא יעזוב את מערכת השמש לתמיד.", "המסלול שלו לקוח ממאגר הגופים הקטנים של מעבדת JPL של נאס״א; הזנב המצויר כאן הוא קירוב."]],
   'Voyager 1': ['וויאג׳ר 1', 'העצם הרחוק ביותר שבני אדם יצרו אי פעם. שוגרה ב-1977 ונמצאת כעת בחלל שבין הכוכבים.', 'צלחת בקוטר 3.7 מ׳, זרוע באורך 13 מ׳, 722 ק"ג', '', '', '', ['ב-18 בנובמבר 2026 הגיעה למרחק של יום אור אחד מכדור הארץ: אות רדיו ממנה מגיע אלינו רק אחרי 24 שעות.', 'חלפה על פני צדק ב-1979 ועל פני שבתאי ב-1980, ואז עזבה את מישור כוכבי הלכת צפונה.', 'באוגוסט 2012 הייתה לחללית הראשונה שחצתה אל החלל הבין-כוכבי.', 'היא מתרחקת במהירות של כ-17 ק"מ בשנייה, פי 3.6 ממרחק הארץ מהשמש בכל שנה.', 'היא נושאת את תקליט הזהב: קולות, מוזיקה ותמונות מכדור הארץ, למי שימצא אותה.', 'מוצגת כאן גדולה פי אלפים מגודלה האמיתי, ומוארת הרבה יותר מאור השמש הקלוש ששורר שם. המודל בנוי מצורות פשוטות ואינו סריקה של החללית האמיתית.']],
   'Voyager 2': ['וויאג׳ר 2', 'החללית היחידה שביקרה באורנוס ובנפטון. היא עזבה את מערכת השמש דרומה.', 'צלחת בקוטר 3.7 מ׳, זרוע באורך 13 מ׳, 722 ק"ג', '', '', '', ['שוגרה ב-20 באוגוסט 1977, שישה-עשר ימים לפני תאומתה וויאג׳ר 1.', 'ביקרה בכל ארבעת כוכבי הלכת הענקיים: צדק ב-1979, שבתאי ב-1981, אורנוס ב-1986 ונפטון ב-1989.', 'חצתה אל החלל הבין-כוכבי בנובמבר 2018.', 'היא מתרחקת במהירות של כ-15 ק"מ בשנייה, ועדיין משדרת נתונים במשדר שעוצמתו כשל נורת מקרר.', 'מוצגת כאן גדולה פי אלפים מגודלה האמיתי, ומוארת הרבה יותר מאור השמש הקלוש ששורר שם. המודל בנוי מצורות פשוטות ואינו סריקה של החללית האמיתית.']],
   'New Horizons': ['ניו הורייזונס', 'החללית הראשונה שביקרה בפלוטו. כעת היא חוצה את חגורת קויפר בדרכה אל מחוץ למערכת השמש.', 'צלחת בקוטר 2.1 מ׳, 478 ק"ג, בערך בגודל פסנתר כנף', '', '', '', ['עזבה את כדור הארץ בינואר 2006 מהר יותר מכל חללית לפניה, וחצתה את מסלול הירח בתוך תשע שעות.', 'ב-14 ביולי 2015 חלפה 12,500 ק"מ מעל פלוטו ושלחה את התמונות הקרובות הראשונות שלו.', 'ב-1 בינואר 2019 חלפה ליד ארוקות׳, העצם הרחוק ביותר שחללית ביקרה בו.', 'היא מתרחקת במהירות של כ-14 ק"מ בשנייה, ומקבלת את האנרגיה שלה מחום של פלוטוניום.', 'מוצגת כאן גדולה פי אלפים מגודלה האמיתי, ומוארת הרבה יותר מאור השמש הקלוש ששורר שם. המודל בנוי מצורות פשוטות ואינו סריקה של החללית האמיתית.']],
@@ -302,6 +309,12 @@ const LOC = { he: {
   Mercury: ['عطارد', 'أصغر الكواكب وأقربها إلى الشمس، وهو أعرض قليلًا من قمرنا.', '4,879 كم', '59 يومًا أرضيًا للدورة؛ ومن شروق إلى شروق 176 يومًا', '88 يومًا أرضيًا', '430 درجة مئوية نهارًا وناقص 180 ليلًا', ['اليوم هنا أطول من السنة: تشرق الشمس مرة واحدة كل سنتين من سنوات عطارد.', 'لا يكاد يملك غلافًا جويًا يحفظ الحرارة، ولذلك فالفرق بين حرارة النهار والليل هو الأكبر بين الكواكب، نحو 600 درجة.', 'في فوهات قرب قطبيه لا يصلها ضوء الشمس أبدًا يوجد جليد مائي.']],
   Venus: ['الزهرة', 'توأم الأرض تقريبًا في الحجم، تغطيها سحب كثيفة من حمض الكبريتيك.', '12,104 كم', '243 يومًا أرضيًا للدورة، بالاتجاه المعاكس', '225 يومًا أرضيًا', '464 درجة مئوية ليلًا ونهارًا', ['هي أسخن الكواكب، أسخن حتى من عطارد، لأن غلافها من ثاني أكسيد الكربون يحبس الحرارة. الرصاص يذوب على سطحها.', 'الضغط الجوي على السطح يعادل 92 ضعف ضغط الأرض، كأنك على عمق 900 متر تحت البحر.', 'تدور عكس معظم الكواكب، فتشرق الشمس فيها من الغرب، ودورتها حول نفسها أطول من سنتها.']],
   Earth: ['الأرض', 'بيتنا: العالم الوحيد المعروف بوجود ماء سائل على سطحه، وبوجود الحياة.', '12,756 كم', '23 ساعة و56 دقيقة', '365.25 يومًا', '15 درجة مئوية في المتوسط', ['أنت تتحرك الآن: تدور الأرض حول الشمس بسرعة نحو 107,000 كم في الساعة.', 'من هنا ترى جانبي النهار والليل الحقيقيين اليوم، مع أضواء المدن في النصف المظلم.', 'ميل محورها، 23.4 درجة، هو سبب الفصول الأربعة.']],
+  'Halley': ["هالي", "أشهر المذنبات: يعود كل 76 سنة تقريبًا، وقد سُجّل منذ أكثر من ألفي سنة.", "نواة بحجم 15 × 8 كم تقريبًا", "", "نحو 76 سنة", "", ["مرّ قرب الشمس آخر مرة في 9 فبراير 1986 وسيعود في يوليو 2061؛ وهو الآن بعيد جدًا، قرب أبعد نقطة في مداره.", "أدرك إدموند هالي أن المذنبات التي شوهدت في 1531 و1607 و1682 هي المذنب نفسه، وتنبأ بعودته في 1758.", "في 1986 مرّ المسبار الأوروبي جيوتو على بعد 596 كم من نواته، وتبيّن أنها من أشد الأسطح ظلمة في النظام الشمسي.", "يسبب الغبار الذي يخلّفه زخّتين من الشهب كل عام: إيتا الدلويات في مايو والجباريات في أكتوبر.", "يدور حول الشمس في اتجاه معاكس لاتجاه الكواكب.", "مداره مأخوذ من قاعدة بيانات الأجرام الصغيرة لمختبر JPL التابع لناسا؛ والذيل المرسوم هنا تقريبي."]],
+  'Hale-Bopp': ["هيل-بوب", "من ألمع مذنبات القرن العشرين، وظلّ مرئيًا بالعين المجردة مدة قياسية بلغت ثمانية عشر شهرًا.", "نواة قطرها نحو 60 كم", "", "نحو 2,500 سنة", "", ["اكتشفه آلان هيل وتوماس بوب في الليلة نفسها، 23 يوليو 1995، كلٌّ على حدة.", "نواته كبيرة على نحو غير معتاد، ربما 60 كم، أي أضعاف نواة هالي.", "مرّ قرب الشمس في 1 أبريل 1997 ورآه مئات الملايين من الناس.", "قصّر مروره قرب المشتري في 1996 مداره من نحو 4,200 سنة إلى نحو 2,500.", "مداره مأخوذ من قاعدة بيانات الأجرام الصغيرة لمختبر JPL التابع لناسا؛ والذيل المرسوم هنا تقريبي."]],
+  'Encke': ["إنكه", "المذنب ذو المدار الأقصر بين المذنبات الكبيرة: يعود كل 3.3 سنوات.", "نواة قطرها نحو 5 كم", "", "3.3 سنوات", "", ["حسب يوهان إنكه مداره في 1819، فكان ثاني مذنب يُعرف أنه يعود بعد هالي.", "لا يبتعد أبدًا أكثر من حزام الكويكبات.", "يسبب غباره زخّات شهب الثوريات كل خريف.", "مداره مأخوذ من قاعدة بيانات الأجرام الصغيرة لمختبر JPL التابع لناسا؛ والذيل المرسوم هنا تقريبي."]],
+  '67P': ["67P تشوريوموف-غيراسيمنكو", "أول مذنب دارت حوله مركبة فضائية وهبطت عليه.", "طوله نحو 4 كم، بفصّين", "", "6.4 سنوات", "", ["دارت حوله المركبة الأوروبية روزيتا من أغسطس 2014 إلى سبتمبر 2016، ثم هبطت عليه لتنهي المهمة.", "في 12 نوفمبر 2014 هبط عليه المسبار الصغير فيلة: أول هبوط على مذنب على الإطلاق.", "يمنحه فصّاه شكل بطة مطاطية.", "وجدت روزيتا أن ماءه يختلف في تركيبه عن ماء محيطات الأرض.", "مداره مأخوذ من قاعدة بيانات الأجرام الصغيرة لمختبر JPL التابع لناسا؛ والذيل المرسوم هنا تقريبي."]],
+  'NEOWISE': ["نيووايز", "ألمع مذنب شوهد من نصف الكرة الشمالي منذ هيل-بوب، ومن أبرز مشاهد صيف 2020.", "نواة قطرها نحو 5 كم", "", "نحو 6,800 سنة", "", ["اكتشفه تلسكوب الفضاء NEOWISE التابع لناسا في 27 مارس 2020، وسُمّي باسمه.", "مرّ قرب الشمس في 3 يوليو 2020 وكان يُرى بسهولة بالعين المجردة في يوليو.", "لن يعود قبل عدة آلاف من السنين.", "مداره مأخوذ من قاعدة بيانات الأجرام الصغيرة لمختبر JPL التابع لناسا؛ والذيل المرسوم هنا تقريبي."]],
+  'Tsuchinshan-ATLAS': ["تسوشينشان-أطلس", "مذنب لامع في خريف 2024، اكتشفه مرصدان على جانبين متقابلين من العالم.", "نواة قطرها بضعة كيلومترات", "", "مرور واحد: ربما لا يعود أبدًا", "", ["اكتُشف مطلع 2023 في مرصد الجبل الأرجواني في الصين (تسوشينشان) وبتلسكوبات المسح ATLAS.", "مرّ قرب الشمس في 27 سبتمبر 2024 وتألق في سماء المساء في أكتوبر.", "مداره مفتوح إلى حد أنه قد يغادر النظام الشمسي إلى الأبد.", "مداره مأخوذ من قاعدة بيانات الأجرام الصغيرة لمختبر JPL التابع لناسا؛ والذيل المرسوم هنا تقريبي."]],
   'Voyager 1': ['فوياجر 1', 'أبعد شيء صنعه البشر على الإطلاق. أُطلقت عام 1977 وهي الآن في الفضاء بين النجوم.', 'طبق قطره 3.7 م، ذراع طولها 13 م، 722 كغ', '', '', '', ['في 18 نوفمبر 2026 بلغت مسافة يوم ضوئي واحد من الأرض: إشارة الراديو منها تحتاج الآن 24 ساعة كاملة لتصل.', 'مرّت بالمشتري عام 1979 وبزحل عام 1980، ثم غادرت مستوى الكواكب متجهة شمالًا.', 'في أغسطس 2012 أصبحت أول مركبة تعبر إلى الفضاء بين النجوم.', 'تبتعد بسرعة نحو 17 كم في الثانية، أي 3.6 أضعاف المسافة بين الأرض والشمس كل عام.', 'تحمل الأسطوانة الذهبية: أصواتًا وموسيقى وصورًا من الأرض لمن يعثر عليها.', 'تُعرض هنا أكبر بآلاف المرات من حجمها الحقيقي، ومضاءة أكثر بكثير من ضوء الشمس الخافت هناك. النموذج مبني من أشكال بسيطة وليس مسحًا للمركبة الحقيقية.']],
   'Voyager 2': ['فوياجر 2', 'المركبة الوحيدة التي زارت أورانوس ونبتون. غادرت النظام الشمسي متجهة جنوبًا.', 'طبق قطره 3.7 م، ذراع طولها 13 م، 722 كغ', '', '', '', ['أُطلقت في 20 أغسطس 1977، قبل توأمها فوياجر 1 بستة عشر يومًا.', 'زارت الكواكب العملاقة الأربعة: المشتري عام 1979، وزحل عام 1981، وأورانوس عام 1986، ونبتون عام 1989.', 'عبرت إلى الفضاء بين النجوم في نوفمبر 2018.', 'تبتعد بسرعة نحو 15 كم في الثانية، وما زالت ترسل بياناتها بمرسل قوته كقوة مصباح الثلاجة.', 'تُعرض هنا أكبر بآلاف المرات من حجمها الحقيقي، ومضاءة أكثر بكثير من ضوء الشمس الخافت هناك. النموذج مبني من أشكال بسيطة وليس مسحًا للمركبة الحقيقية.']],
   'New Horizons': ['نيو هورايزنز', 'أول مركبة تزور بلوتو. تعبر الآن حزام كايبر في طريقها إلى خارج النظام الشمسي.', 'طبق قطره 2.1 م، 478 كغ، بحجم بيانو كبير تقريبًا', '', '', '', ['غادرت الأرض في يناير 2006 أسرع من أي مركبة قبلها، وعبرت مدار القمر في تسع ساعات.', 'في 14 يوليو 2015 حلّقت على ارتفاع 12,500 كم فوق بلوتو وأرسلت أول صور قريبة له.', 'في 1 يناير 2019 مرّت بأروكوث، أبعد جرم زارته مركبة على الإطلاق.', 'تبتعد بسرعة نحو 14 كم في الثانية، وتستمد طاقتها من حرارة البلوتونيوم.', 'تُعرض هنا أكبر بآلاف المرات من حجمها الحقيقي، ومضاءة أكثر بكثير من ضوء الشمس الخافت هناك. النموذج مبني من أشكال بسيطة وليس مسحًا للمركبة الحقيقية.']],
@@ -624,6 +637,67 @@ for (const k of ASTEROIDS) k.shape = SHAPE[k.name];
 const CRAFT_T0 = Date.UTC(2026, 10, 18), CRAFT = [['Voyager 1', 'voyager', 256.2, 35.0, 172.4, 3.57], ['Voyager 2', 'voyager', 289.0, -37.5, 145.5, 3.23], ['New Horizons', 'nh', 288.5, 2.0, 66.0, 2.9], ['Dawn', 'dawn']]
   .map(([name, model, lon, lat, au, v]) => ({ name, model, lon, lat, au, v, craft: 1, km: 20, x: 0, y: 0, z: 0, r: 20 / KM }));       // drawn about 20 km across, thousands of times larger than life, like the space station
 CRAFT[3].host = ASTEROIDS.find(k => k.name === 'Ceres');
+// ---------------------------------------------------------------- spacecraft courses: real arcs around the Sun
+// Between two encounters a spacecraft coasts on an orbit around the Sun. Knowing where it was on two dates fixes that orbit (Lambert's problem);
+// it is then followed step by step. Units: game units and days; +y is the ecliptic north, so prograde arcs turn anticlockwise seen from +y.
+const MU_SUN = 1.32712440018e11 * 86400 * 86400 / (KM * KM * KM);
+const stumpC = z => z > 1e-8 ? (1 - Math.cos(Math.sqrt(z))) / z : z < -1e-8 ? (Math.cosh(Math.sqrt(-z)) - 1) / -z : 1 / 2 - z / 24;
+const stumpS = z => { if (z > 1e-8) { const s = Math.sqrt(z); return (s - Math.sin(s)) / (s * s * s); } if (z < -1e-8) { const s = Math.sqrt(-z); return (Math.sinh(s) - s) / (s * s * s); } return 1 / 6 - z / 120; };
+function lambert(r1, r2, tof) {       // velocity at r1 that reaches r2 after tof days, going the same way round as the planets
+  { const c0 = cross(r1, r2), k = (r1[0] * r2[0] + r1[1] * r2[1] + r1[2] * r2[2]) / (Math.hypot(...r1) * Math.hypot(...r2)); if (k < -.99999999 && Math.hypot(...c0) < 1e-6 * Math.hypot(...r1) * Math.hypot(...r2)) r2 = [r2[0], r2[1] + 1e-4 * Math.hypot(...r2), r2[2]]; }       // exactly opposite points leave the plane undecided
+  const n1 = Math.hypot(...r1), n2 = Math.hypot(...r2), c = cross(r1, r2); let cs = (r1[0] * r2[0] + r1[1] * r2[1] + r1[2] * r2[2]) / (n1 * n2); cs = Math.max(-1, Math.min(1, cs));
+  let th = Math.acos(cs); if (c[1] < 0) th = 2 * Math.PI - th;
+  const A = Math.sin(th) * Math.sqrt(n1 * n2 / (1 - Math.cos(th))), sq = Math.sqrt(MU_SUN);
+  const yv = z => n1 + n2 + A * (z * stumpS(z) - 1) / Math.sqrt(stumpC(z)), F = z => { const y = yv(z); return y < 0 ? -1e30 : Math.pow(y / stumpC(z), 1.5) * stumpS(z) + A * Math.sqrt(y) - sq * tof; };
+  let lo = -4 * Math.PI * Math.PI, hi = 4 * Math.PI * Math.PI * .999999; for (let k = 0; k < 60 && F(lo) > 0; k++) lo *= 2;
+  if (F(hi) < 0) return null;
+  for (let k = 0; k < 200; k++) { const m = (lo + hi) / 2; if (F(m) > 0) hi = m; else lo = m; }
+  const z = (lo + hi) / 2, y = yv(z), f = 1 - y / n1, g = A * Math.sqrt(y / MU_SUN);
+  return [(r2[0] - f * r1[0]) / g, (r2[1] - f * r1[1]) / g, (r2[2] - f * r1[2]) / g]; }
+// follow the arc with small steps (fourth-order Runge-Kutta) and close the last tiny gap smoothly, so the course meets both encounters exactly
+function arc(r1, r2, t1, t2) { const tof = (t2 - t1) / 86400000; if (!(tof > 0)) return null; const v = lambert(r1, r2, tof); if (!v) return null;
+  const N = 3000, h = tof / N, acc = p => { const r = Math.hypot(p[0], p[1], p[2]), k = -MU_SUN / (r * r * r); return [p[0] * k, p[1] * k, p[2] * k]; };
+  let p = r1.slice(), q = v.slice(); const pts = [p.slice()];
+  for (let i = 0; i < N; i++) { const a1 = acc(p), p2 = p.map((x, j) => x + q[j] * h / 2), q2 = q.map((x, j) => x + a1[j] * h / 2), a2 = acc(p2), p3 = p.map((x, j) => x + q2[j] * h / 2), q3 = q.map((x, j) => x + a2[j] * h / 2), a3 = acc(p3),
+      p4 = p.map((x, j) => x + q3[j] * h), q4 = q.map((x, j) => x + a3[j] * h), a4 = acc(p4);
+    p = p.map((x, j) => x + h / 6 * (q[j] + 2 * q2[j] + 2 * q3[j] + q4[j])); q = q.map((x, j) => x + h / 6 * (a1[j] + 2 * a2[j] + 2 * a3[j] + a4[j])); pts.push(p.slice()); }
+  const e = pts[N].map((x, j) => r2[j] - x), out = new Float64Array((N + 1) * 3); for (let i = 0; i <= N; i++) for (let j = 0; j < 3; j++) out[i * 3 + j] = pts[i][j] + e[j] * i / N;
+  return { t1, t2, n: N, pts: out, err: Math.hypot(...e) / Math.hypot(...r2), v0: Math.hypot(...v) }; }
+function arcAt(L, ms) { const u = clamp((ms - L.t1) / (L.t2 - L.t1), 0, 1) * L.n, i = Math.min(Math.floor(u), L.n - 1), f = u - i, P = L.pts;
+  return [P[i * 3] + (P[i * 3 + 3] - P[i * 3]) * f, P[i * 3 + 1] + (P[i * 3 + 4] - P[i * 3 + 1]) * f, P[i * 3 + 2] + (P[i * 3 + 5] - P[i * 3 + 2]) * f]; }
+
+// ---------------------------------------------------------------- comets: orbits from NASA JPL's small-body database (e, q in AU, i, node, perihelion argument in degrees, perihelion time as a Julian date)
+// Each comet is placed by solving its orbit for the date (universal Kepler equation, good for ellipses, parabolas and hyperbolas alike).
+// [name, e, q, i, node, peri, tp, nucleus radius km, shape [x, y, z], tail length km near the Sun, coma radius km, stops: [when it comes in, label]]
+const COMETS = [['Halley', .9679359956953211, .5748638313743413, 162.1905300439129, 59.09894720612437, 112.2414314637764, 2446469.973616146677, 5.5, [1.4, .75, .75], 1.5e7, 1e5, '1985-06-01'],
+  ['Hale-Bopp', .9949810027633206, .890537663547794, 89.28759424740302, 282.7334213961641, 130.4146670659176, 2450537.134907143944, 30, [1.1, .9, .95], 5e7, 4e5, '1995-07-23'],
+  ['Encke', .846979230409067, .3394588840071771, 11.33886832759377, 334.01423065, 187.2845404331129, 2460240.032679871434, 2.4, [1.2, .85, .9], 2e6, 3e4, '2023-07-01'],
+  ['67P', .6409081306555051, 1.243265641416762, 7.040294906760007, 50.13557380441372, 12.79824973415729, 2457247.588657863465, 2, [1.25, .8, .85], 1e6, 2e4, '2014-08-06'],
+  ['NEOWISE', .9991780262531292, .2946512493809196, 128.9375027594809, 61.01042818536988, 37.2786584481257, 2459034.178898044365, 2.5, [1.2, .9, .9], 2e7, 1e5, '2020-03-27'],
+  ['Tsuchinshan-ATLAS', 1.000095368540586, .3914300748355564, 139.112109080566, 21.55947897244586, 308.4917649633916, 2460581.240845175775, 3, [1.15, .9, .9], 3e7, 1.5e5, '2023-01-09']]
+  .map(([name, e, q, i, node, w, tp, km, sq, tail, coma, inb]) => { const I = i * DEG, O = node * DEG, W = w * DEG, co = Math.cos, si = Math.sin;
+    const P = [co(W) * co(O) - si(W) * si(O) * co(I), co(W) * si(O) + si(W) * co(O) * co(I), si(W) * si(I)], Q = [-si(W) * co(O) - co(W) * si(O) * co(I), -si(W) * si(O) + co(W) * co(O) * co(I), co(W) * si(I)];
+    const g = v => [v[0], v[2], -v[1]];       // ecliptic to the page's axes
+    return { name, e, q: q * AUU, P: g(P), Q: g(Q), tp: (tp - 2440587.5) * 864e5, km, sq, tail: tail / KM, coma: coma / KM, inb, comet: 1, r: km / KM, x: 0, y: 0, z: 0, p: 0, tint: [.5, .47, .44] }; });
+function cometAt(c, ms) { const mu = MU_SUN, q = c.q, a0 = (1 - c.e) / q, dt = (ms - c.tp) / 864e5, v0 = Math.sqrt(mu * (1 + c.e) / q), sq = Math.sqrt(mu);
+  const F = x => { const z = a0 * x * x; return (1 - a0 * q) * x * x * x * stumpS(z) + q * x - sq * dt; };       // the universal Kepler equation, starting at perihelion
+  let lo = -1, hi = 1; while (F(hi) < 0) hi *= 2; while (F(lo) > 0) lo *= 2;
+  for (let k = 0; k < 90; k++) { const m = (lo + hi) / 2; if (F(m) > 0) hi = m; else lo = m; }
+  const x = (lo + hi) / 2, z = a0 * x * x, f = 1 - x * x / q * stumpC(z), gg = dt - x * x * x * stumpS(z) / sq;
+  return [c.P[0] * q * f + c.Q[0] * v0 * gg, c.P[1] * q * f + c.Q[1] * v0 * gg, c.P[2] * q * f + c.Q[2] * v0 * gg]; }
+function cometPlace(c, ms) { const p = cometAt(c, ms), p2 = cometAt(c, ms + 864e5), r = Math.hypot(...p) / AUU; c.x = p[0]; c.y = p[1]; c.z = p[2];
+  c.vel = [p2[0] - p[0], p2[1] - p[1], p2[2] - p[2]]; c.act = Math.pow(clamp((5 - r) / 4, 0, 1), 2) / Math.sqrt(Math.max(r, .3)); c.au = r; }
+function cometArc(c, t1, t2) { const N = 1500, out = new Float64Array((N + 1) * 3); for (let i = 0; i <= N; i++) { const p = cometAt(c, t1 + (t2 - t1) * i / N); out[i * 3] = p[0]; out[i * 3 + 1] = p[1]; out[i * 3 + 2] = p[2]; } return { t1, t2, n: N, pts: out }; }
+// tail and glow: drawn added onto the picture, so they never hide anything behind them
+const pTail = prog(
+  'attribute vec2 aQ; uniform mat4 uVP; uniform vec3 uC, uD, uS; uniform float uL, uW, uW0; varying vec2 vQ;' +
+  'void main(){ float s = aQ.x * .5 + .5; vQ = vec2(s, aQ.y); gl_Position = uVP * vec4(uC + uD * s * uL + uS * aQ.y * (uW0 + uW * s), 1.); }',
+  HP + 'uniform vec3 uCol; uniform float uF; varying vec2 vQ; void main(){ float a = exp(-3.2 * vQ.x) * smoothstep(0., uF, vQ.x) * (1. - smoothstep(0., 1., abs(vQ.y))) * (1. - smoothstep(.75, 1., vQ.x)); gl_FragColor = vec4(uCol * a, 1.); }');
+const pComa = prog(
+  'attribute vec2 aQ; uniform mat4 uVP; uniform vec3 uR, uU, uC; uniform float uSize; varying vec2 vQ;' +
+  'void main(){ vQ = aQ; gl_Position = uVP * vec4(uC + (uR * aQ.x + uU * aQ.y) * uSize, 1.); }',
+  HP + 'uniform vec3 uCol; varying vec2 vQ; void main(){ float r = length(vQ); float a = exp(-r * r * 5.) * (1. - smoothstep(.8, 1., r)) + .5 * exp(-r * r * 60.); gl_FragColor = vec4(uCol * a, 1.); }');
+
 // each asteroid wears a surface map made from its telescope picture, with craters added
 for (const k of ASTEROIDS) { k.tex = 'a_' + (k.name === '52 Europa' ? 'europa52' : k.name.toLowerCase()); TEX[k.tex] = texture('tex/' + k.tex + '.jpg', k.tint.map(v => Math.min(255, v * 110))); }
 let seed = 20261115; const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
@@ -737,7 +811,10 @@ function place() { const d = days();
   for (const k of ASTEROIDS) { k.y = 0;
     if (EL[k.name]) { const h = helio(EL[k.name], d); k.a = -h.lon; k.dist = TRUE ? h.rho * AUU : 243 + 46 * (clamp(h.rho, 2.2, 3.2) - 2.2); k.y = k.dist * h.z / h.rho; }
     k.x = k.dist * Math.cos(k.a * DEG); k.z = k.dist * Math.sin(k.a * DEG); }
-  for (const k of CRAFT) { if (k.host) { const h = k.host, a = d * 2 * Math.PI / 1.125, R = 3.2 * h.r; k.x = h.x + R * Math.cos(a); k.y = h.y + R * Math.sin(a); k.z = h.z; continue; }       // Dawn: a slow lap over Ceres's poles
+  for (const c of COMETS) if (!(c.onCourse && course && course.craft === c && roam)) { c.onCourse = false; cometPlace(c, simMs); }
+  if (typeof roam !== 'undefined' && course && course.craft && roam && roam.clock !== undefined) { const k = course.craft, L = course.legs.find(q => q && simMs >= q.t1 && simMs <= q.t2);       // on its own trip the spacecraft is on its real course
+    if (L) { const P = arcAt(L, simMs); k.x = P[0]; k.y = P[1]; k.z = P[2]; k.early = false; k.onCourse = !k.comet; } else k.onCourse = false; }
+  for (const k of CRAFT) { if (k.onCourse && course && course.craft === k && roam) continue; k.onCourse = false; if (k.host) { const h = k.host, a = d * 2 * Math.PI / 1.125, R = 3.2 * h.r; k.x = h.x + R * Math.cos(a); k.y = h.y + R * Math.sin(a); k.z = h.z; continue; }       // Dawn: a slow lap over Ceres's poles
     const au = k.au + k.v * (EPOCH + d * 86400000 - CRAFT_T0) / 31557600000, R = Math.max(1, au) * AUU; k.early = au < 6;       // on a date before it had left the planets, it is kept off the map
     const la = k.lat * DEG, lo = -k.lon * DEG; k.x = R * Math.cos(la) * Math.cos(lo); k.y = R * Math.sin(la); k.z = R * Math.cos(la) * Math.sin(lo); } }
 // The ship steers on the map, and its height follows whatever it is near, so flying at a planet's dot arrives at the planet.
@@ -819,18 +896,20 @@ function drawMap() { mc.clearRect(0, 0, MS, MS); mc.lineWidth = 1.5;
   mc.strokeStyle = C.dim; mc.setLineDash([2, 6]); mc.beginPath(); mc.arc(MS / 2, MS / 2, (b0 + b1) / 2, 0, 6.2832); mc.stroke(); mc.setLineDash([]);
   mc.font = '500 15px "Space Grotesk", system-ui, sans-serif'; mc.textBaseline = 'middle'; mc.textAlign = 'right'; mc.fillStyle = C.dim;
   mc.fillText(tr('belt'), MS / 2 + (b0 - 6) * Math.cos(218 * DEG), MS / 2 + (b0 - 6) * Math.sin(218 * DEG));
-  if (course) { const P = course.pts.map(([x, z]) => { const [mx, my] = mapXY(x, z); return [Math.hypot(mx - MS / 2, my - MS / 2), Math.atan2(my - MS / 2, mx - MS / 2)]; });       // a mission's course: flown part solid, the rest dashed
-    const leg = i => { const [r0, a0] = P[i - 1], [r1, a1] = P[i]; let da = wrap(a1 - a0); if (da > .5) da -= 2 * Math.PI;       // spacecraft travel the same way round the Sun as the planets
-      for (let k = 1; k <= 14; k++) { const u = k / 14, r = r0 + (r1 - r0) * u, a = a0 + da * u; mc.lineTo(MS / 2 + r * Math.cos(a), MS / 2 + r * Math.sin(a)); } };
-    for (let pass = 0; pass < 2; pass++) { const n = pass ? Math.min(P.length, course.done + 1) : P.length; mc.beginPath(); mc.lineWidth = pass ? 2.5 : 1.5; mc.strokeStyle = pass ? 'rgba(255,182,72,.95)' : 'rgba(255,182,72,.5)'; mc.setLineDash(pass ? [] : [4, 5]);
-      mc.moveTo(MS / 2 + P[0][0] * Math.cos(P[0][1]), MS / 2 + P[0][0] * Math.sin(P[0][1])); for (let i = 1; i < n; i++) leg(i); mc.stroke(); }
-    mc.setLineDash([]); mc.fillStyle = 'rgba(255,182,72,.95)'; for (const [r, a] of P) { mc.beginPath(); mc.arc(MS / 2 + r * Math.cos(a), MS / 2 + r * Math.sin(a), 3, 0, 6.2832); mc.fill(); } mc.lineWidth = 1.5; }
+  if (course) { const now = roam && roam.clock !== undefined ? roam.clock : Infinity, MP = (x, z) => mapXY(x, z);       // a mission's course: its real arcs, flown part solid, the rest dashed
+    for (let pass = 0; pass < 2; pass++) { mc.beginPath(); mc.lineWidth = pass ? 2.5 : 1.5; mc.strokeStyle = pass ? 'rgba(255,182,72,.95)' : 'rgba(255,182,72,.5)'; mc.setLineDash(pass ? [] : [4, 5]);
+      for (const L of course.legs) { if (!L) continue; let first = true; for (let i = 0; i <= L.n; i += 25) { const t = L.t1 + (L.t2 - L.t1) * i / L.n; if (pass && t > now) break;
+          const [x, y] = MP(L.pts[i * 3], L.pts[i * 3 + 2]); if (first) { mc.moveTo(x, y); first = false; } else mc.lineTo(x, y); }
+        if (pass && now > L.t1 && now < L.t2) { const P = arcAt(L, now), [x, y] = MP(P[0], P[2]); mc.lineTo(x, y); } else if (!pass || now >= L.t2) { const [x, y] = MP(L.pts[L.n * 3], L.pts[L.n * 3 + 2]); mc.lineTo(x, y); } }
+      mc.stroke(); }
+    mc.setLineDash([]); mc.fillStyle = 'rgba(255,182,72,.95)'; for (const [px0, pz0] of course.pts) { const [x, y] = MP(px0, pz0); mc.beginPath(); mc.arc(x, y, 3, 0, 6.2832); mc.fill(); } mc.lineWidth = 1.5; }
   const [sx, sy] = mapXY(ship.x, ship.z);
   mc.strokeStyle = 'rgba(255,182,72,.4)'; mc.lineWidth = 1.5; mc.beginPath(); mc.moveTo(sx, sy);
   if (target) { const [tx, ty] = mapXY(target.x, target.z); mc.lineTo(tx, ty); } else mc.lineTo(sx + 46 * Math.cos(ship.th), sy + 46 * Math.sin(ship.th));
   mc.stroke();
   mc.fillStyle = C.dim; for (const k of ASTEROIDS) { const [x, y] = mapXY(k.x, k.z); mc.beginPath(); mc.arc(x, y, 2.5, 0, 6.2832); mc.fill(); }
   mc.font = '500 13px "Space Grotesk", system-ui, sans-serif'; mc.textAlign = 'center';       // spacecraft: small amber diamonds
+  for (const c of COMETS) { const [x, y] = mapXY(c.x, c.z); mc.fillStyle = 'rgba(180,225,255,.85)'; mc.beginPath(); mc.arc(x, y, 2.6, 0, 6.2832); mc.fill(); if (course && course.craft === c) { mc.fillStyle = C.dim; mc.fillText(nm(c), clamp(x, 44, MS - 44), y > MS / 2 ? y - 13 : y + 14); } }
   for (const k of CRAFT) { if (k.host || k.early) continue; const [x, y] = mapXY(k.x, k.z); mc.fillStyle = 'rgba(255,182,72,.9)'; mc.beginPath(); mc.moveTo(x, y - 5); mc.lineTo(x + 5, y); mc.lineTo(x, y + 5); mc.lineTo(x - 5, y); mc.fill();
     mc.fillStyle = C.dim; mc.fillText(nm(k), clamp(x, 44, MS - 44), y > MS / 2 ? y - 13 : y + 14); }
   mc.font = '500 19px "Space Grotesk", system-ui, sans-serif';
@@ -882,7 +961,7 @@ function tourAt(tt) { const T = tour, n = T.stops.length;
   const l = s < .5 ? da * (Math.exp(Math.log(1 + L / (2 * da)) * slow(2 * s)) - 1) : L - db * (Math.exp(Math.log(1 + L / (2 * db)) * (k === n - 2 ? Math.pow(x1, 1.8) : slow(x1))) - 1);
   const u = l / L, u2 = u * u, u3 = u2 * u, m = .9 * L, h00 = 2 * u3 - 3 * u2 + 1, h10 = u3 - 2 * u2 + u, h01 = 3 * u2 - 2 * u3, h11 = u3 - u2;
   return [h00 * A[0] + h10 * m * T.D[k][0] + h01 * B[0] + h11 * m * T.D[k + 1][0], h00 * A[1] + h10 * m * T.D[k][1] + h01 * B[1] + h11 * m * T.D[k + 1][1], h00 * A[2] + h01 * B[2]]; }
-function tourStep(dt) { const T = tour, n = T.stops.length; T.t += dt; const tt = Math.min(T.t, T.end);
+function tourStep(dt) { const T = tour, n = T.stops.length; T.t += dt * tripSpeed(); const tt = Math.min(T.t, T.end);
   const p = tourAt(tt), p1 = tourAt(Math.max(0, tt - .02)), p2 = tourAt(Math.min(T.end, tt + .02));
   if (Math.hypot(p2[0] - p1[0], p2[1] - p1[1]) > 1e-9) ship.th = Math.atan2(p2[1] - p1[1], p2[0] - p1[0]);
   ship.v = T.first || dt <= 0 ? 0 : Math.hypot(p[0] - ship.x, p[1] - ship.z) / dt; T.first = false; ship.x = p[0]; ship.z = p[1]; ship.y = p[2];
@@ -914,7 +993,7 @@ function orbitStep(dt) { const O = orbit, b = O.body; O.t += dt;
   gaze.yaw = wrap(Math.atan2(b.z - z, b.x - x) - ship.th + peek.yaw); gaze.pitch = clamp(Math.atan2(-O.dy, O.r) + peek.pitch, -1.5, 1.5); bank *= .9; target = null; near = b; clearance = 1e12;
   for (const p of BODIES) for (const o of [p].concat(p.moons || [])) clearance = Math.min(clearance, sep(o) - o.r);
   for (const k of ASTEROIDS) clearance = Math.min(clearance, sep(k) - k.r);
-  for (const k of CRAFT) clearance = Math.min(clearance, sep(k) - k.r);
+  for (const k of CRAFT.concat(COMETS)) clearance = Math.min(clearance, sep(k) - k.r);
   clearance = Math.max(clearance, 1e-4); }
 orbitBtn.addEventListener('click', () => { stopRoam(); if (orbit) stopOrbit(); else startOrbit(); cv.focus(); });
 
@@ -924,6 +1003,7 @@ const offer = (o, kind) => { o.kind = kind; OBJ.push(o); };
 for (const b of BODIES) { offer(b, b === sun ? 'kStar' : b.name === 'Vesta' ? 'kAst' : b.name === 'Pluto' ? 'kDwarf' : 'kPlanet'); for (const m of b.moons || []) { m.parent = b; offer(m, 'kMoon'); } }
 for (const k of ASTEROIDS) offer(k, k.name === 'Ceres' ? 'kDwarf' : 'kAst');
 for (const k of CRAFT) offer(k, 'kCraft');
+for (const k of COMETS) offer(k, 'kComet');
 let shown = [], pickIx = -1;
 const slider = document.getElementById('slider'), thumb = slider.firstChild;
 // a slider beside the list: drag it, or click the track, to move through the names
@@ -964,7 +1044,7 @@ find.addEventListener('keydown', e => {
 
 
 // ---------------------------------------------------------------- random trip: pick any object, fly to it, circle it for 30 seconds, pick another
-let course = null, roam = null, hop = null, fovNow = 58, paused = false; const roamBtn = document.getElementById('roam'), HOP_TURN = 1.6, HOP_FLY = 7, STAY = 30;
+var course = null, roam = null, hop = null; let fovNow = 58, paused = false; const roamBtn = document.getElementById('roam'), HOP_TURN = 1.6, HOP_FLY = 7, STAY = 30;
 const the = o => (o === sun ? 'the Sun' : o.name === 'Moon' ? 'the Moon' : o.name);
 // Journeys to choose from. A mission's stops are [object, the date the real spacecraft was there]: the clock is set to that date, so the
 // planets stand where they stood then, and it races forward during each flight to the next stop.
@@ -975,37 +1055,65 @@ const TRIPS = [{ id: 'tour', name: 'tT' }, { id: 'random', name: 'tR' }, null,
   { name: 'tV1', stay: 16, stops: [['Earth', '1977-09-05'], ['Jupiter', '1979-03-05'], ['Io', '1979-03-05'], ['Ganymede', '1979-03-05'], ['Callisto', '1979-03-06'], ['Titan', '1980-11-12'], ['Saturn', '1980-11-12'], ['Voyager 1', 'now']] },
   { name: 'tV2', stay: 16, stops: [['Earth', '1977-08-20'], ['Jupiter', '1979-07-09'], ['Europa', '1979-07-09'], ['Ganymede', '1979-07-09'], ['Saturn', '1981-08-26'], ['Enceladus', '1981-08-26'], ['Tethys', '1981-08-26'],
     ['Uranus', '1986-01-24'], ['Miranda', '1986-01-24'], ['Neptune', '1989-08-25'], ['Triton', '1989-08-25'], ['Voyager 2', 'now']] },
-  { name: 'tG', stay: 16, stops: [['Earth', '1989-10-18'], ['Venus', '1990-02-10'], ['Earth', '1990-12-08'], ['Jupiter', '1995-12-07'], ['Io', '1995-12-07'], ['Ganymede', '1996-06-27'], ['Callisto', '1996-11-04'], ['Europa', '1996-12-19'], ['Jupiter', '2003-09-21']] },
-  { name: 'tC', stay: 16, stops: [['Earth', '1997-10-15'], ['Venus', '1998-04-26'], ['Earth', '1999-08-18'], ['Jupiter', '2000-12-30'], ['Saturn', '2004-07-01'], ['Titan', '2005-01-14'], ['Enceladus', '2005-07-14'], ['Dione', '2005-10-11'],
+  { name: 'tG', stay: 16, stops: [['Earth', '1989-10-18'], ['Venus', '1990-02-10'], ['Earth', '1990-12-08'], ['Earth', '1992-12-08'], ['Jupiter', '1995-12-07'], ['Io', '1995-12-07'], ['Ganymede', '1996-06-27'], ['Callisto', '1996-11-04'], ['Europa', '1996-12-19'], ['Jupiter', '2003-09-21']] },
+  { name: 'tC', stay: 16, stops: [['Earth', '1997-10-15'], ['Venus', '1998-04-26'], ['Venus', '1999-06-24'], ['Earth', '1999-08-18'], ['Jupiter', '2000-12-30'], ['Saturn', '2004-07-01'], ['Titan', '2005-01-14'], ['Enceladus', '2005-07-14'], ['Dione', '2005-10-11'],
     ['Rhea', '2005-11-26'], ['Iapetus', '2007-09-10'], ['Mimas', '2010-02-13'], ['Saturn', '2017-09-15']] },
   { name: 'tN', stay: 18, stops: [['Earth', '2006-01-19'], ['Jupiter', '2007-02-28'], ['Pluto', '2015-07-14'], ['Charon', '2015-07-14'], ['New Horizons', 'now']] },
-  { name: 'tD', stay: 18, stops: [['Earth', '2007-09-27'], ['Mars', '2009-02-17'], ['Vesta', '2011-07-16'], ['Ceres', '2015-03-06'], ['Dawn', 'now']] }];
+  { name: 'tD', stay: 18, stops: [['Earth', '2007-09-27'], ['Mars', '2009-02-17'], ['Vesta', '2011-07-16'], ['Ceres', '2015-03-06'], ['Dawn', 'now']] },
+  null, ...COMETS.map(c => ({ name: 'c_' + c.name, comet: c, stay: 14, fly: 30, stops: [[c.name, c.inb, 'sIn'], [c.name, new Date(c.tp).toISOString().slice(0, 10), 'sPeri'], [c.name, 'now', 'sNow']] }))];
 const tripStops = T => T.stops || OBJ.filter(o => o.parent && !o.iss).map(o => [o.name]);
-const tripNote = o => { const T = roam.trip, n = tripStops(T).length; return tr(T.name) + ' · ' + (n - roam.deck.length) + '/' + n + ' · ' + nm(o) + (roam.when ? ' · ' + roam.when : ''); };
+const tripName = T => T.comet ? tr('cTrip', nm(T.comet)) : tr(T.name);
+const tripNote = o => { const T = roam.trip, n = tripStops(T).length; return tripName(T) + ' · ' + (n - roam.deck.length) + '/' + n + ' · ' + (roam.lab ? tr(roam.lab) : nm(o)) + (roam.when ? ' · ' + roam.when : ''); };
 function startTrip(T) { stopTour(); stopRoam(); course = null; if (T.id === 'tour') { startTour(); return; }
   roam = { at: orbit ? orbit.body : near, timer: 0, trip: T.id === 'random' ? null : T }; setRate(0);
   if (roam.trip && T.stops && T.stops[0][1]) { roam.clock = Date.parse(T.stops[0][1] + 'T12:00:00Z'); simMs = roam.clock; place(); }
-  if (roam.trip) roam.deck = tripStops(T).map(([n, y]) => [OBJ.find(o => o.name === n), y]).reverse();
+  if (roam.trip) roam.deck = tripStops(T).map(([n, y, lab]) => [OBJ.find(o => o.name === n), y, lab]).reverse();
   // the mission's course for the map: where each stop stood on the day the spacecraft was there
-  if (roam.trip && T.stops && T.stops[0][1]) { const pts = []; for (const [n, w] of T.stops) { const o = OBJ.find(q => q.name === n); simMs = w === 'now' ? Date.now() : Date.parse(w + 'T12:00:00Z'); place(); pts.push([o.x, o.z]); }
-    simMs = roam.clock; place(); course = { pts, done: 0 }; }
+  if (roam.trip && T.stops && T.stops[0][1]) { const pts = [], H = [], tt = [], fam = [], helioOf = o => { const b = o.parent || o.host || o; return [b.x, b.y, b.z]; };
+    for (const [n, w] of T.stops) { const o = OBJ.find(q => q.name === n), t = w === 'now' ? Date.now() : Date.parse(w + 'T12:00:00Z'); simMs = t; place(); pts.push([o.x, o.z]); H.push(helioOf(o)); tt.push(t); fam.push(o.parent || o.host || o); }
+    const legs = [null]; for (let i = 1; i < H.length; i++) legs.push(T.comet ? (tt[i] > tt[i - 1] ? cometArc(T.comet, tt[i - 1], tt[i]) : null) : fam[i] !== fam[i - 1] && tt[i] > tt[i - 1] ? arc(H[i - 1], H[i], tt[i - 1], tt[i]) : null);       // a comet follows its own orbit       // within one planet's family there is no arc to fly
+    const CN = { tV1: 'Voyager 1', tV2: 'Voyager 2', tN: 'New Horizons', tD: 'Dawn' };
+    simMs = roam.clock; course = { pts, legs, done: 0, craft: T.comet || CRAFT.find(k => k.name === CN[T.name]) || null }; place(); }
   roamBtn.setAttribute('aria-pressed', true); begin(); nextHop(); }
-function stopRoam() { if (!roam) { hop = null; return; } roam = null; hop = null; roamBtn.textContent = 'Random trip'; roamBtn.setAttribute('aria-pressed', false); }
+function stopRoam() { if (course) { course.craft = null; course.legs = []; } if (!roam) { hop = null; return; } roam = null; hop = null; roamBtn.textContent = 'Random trip'; roamBtn.setAttribute('aria-pressed', false); }
 function nextHop() { const T = roam.trip;
   if (!roam.deck || !roam.deck.length) { if (T) { const at = roam.at; stopRoam(); note = tr('tripEnd', inS(at)); noteUntil = performance.now() + 7000; if (!orbit) startOrbit(at); return; }       // an itinerary ends at its last stop
     const d = OBJ.slice();       // the random trip deals a fresh shuffled deck: every object once before any repeats
     for (let i = d.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [d[i], d[j]] = [d[j], d[i]]; }
     if (d[d.length - 1] === roam.at) [d[0], d[d.length - 1]] = [d[d.length - 1], d[0]]; roam.deck = d.map(o => [o]); }
-  const [o, w0] = roam.deck.pop(), when = w0 === 'now' ? new Date().toISOString().slice(0, 10) : w0; roam.when = when; if (course) course.done = course.pts.length - roam.deck.length - 1;       // 'now': the spacecraft where it is today
+  const [o, w0, lab] = roam.deck.pop(), when = w0 === 'now' ? new Date().toISOString().slice(0, 10) : w0; roam.when = when; roam.lab = lab; if (course) course.done = course.pts.length - roam.deck.length - 1;       // 'now': the spacecraft where it is today
   let c1 = when ? Math.max(roam.clock, Date.parse(when + 'T12:00:00Z')) : 0; const sys = b => b.parent || b.host || b;
   // Within one planet's family the calendar steps to the new date at once: sweeping weeks past in seconds would whirl a moon round its planet dozens of times.
-  if (c1 && roam.at && sys(roam.at) === sys(o) && !(orbit && orbit.body === o)) { roam.clock = c1; simMs = c1; place(); c1 = 0; }
-  if (orbit && orbit.body === o) { if (when) roam.clock = c1; roam.at = o; roam.timer = 0; note = tripNote(o); noteUntil = performance.now() + 7000; return; }       // already there
+  if (c1 && !(T && T.comet) && roam.at && sys(roam.at) === sys(o) && !(orbit && orbit.body === o)) { roam.clock = c1; simMs = c1; place(); c1 = 0; }
+  if (orbit && orbit.body === o && !(T && T.comet && c1 > roam.clock)) { if (when) roam.clock = c1; roam.at = o; roam.timer = 0; note = tripNote(o); noteUntil = performance.now() + 7000; return; }       // already there
   stopOrbit(); roam.at = o; roam.timer = 0; const th0 = ship.th + gaze.yaw, turn = Math.abs(wrap(Math.atan2(o.z - ship.z, o.x - ship.x) - th0));
-  hop = { to: o, t: 0, c0: roam.clock, c1, sx: ship.x, sy: ship.y, sz: ship.z, vy: th0, vp: gaze.pitch, ship, turn: 1.2 + 2.2 * turn / Math.PI, da: Math.max(clearance, 1e-4) };       // a wider turn takes longer
+  const leg = course && course.legs && c1 ? course.legs.find(q => q && Math.abs(q.t2 - c1) < 1 && Math.abs(q.t1 - roam.clock) < 864e5 * 2) : null;
+  hop = { to: o, t: 0, c0: roam.clock, c1, sx: ship.x, sy: ship.y, sz: ship.z, vy: th0, vp: gaze.pitch, ship, turn: 1.2 + 2.2 * turn / Math.PI, da: Math.max(clearance, 1e-4), leg };       // a wider turn takes longer
   note = T ? tripNote(o) : tr('next', inS(o)) + (o !== sun ? ' (' + kindOf(o) + ')' : ''); noteUntil = performance.now() + (T ? 9000 : 6000); }
-function hopStep(dt) { const h = hop, o = h.to; h.t += dt;
-  if (h.c1) roam.clock = h.c0 + (h.c1 - h.c0) * sm((h.t - h.turn) / (HOP_FLY * .62));       // the calendar runs forward during the cruise and has settled before the ship closes in
+const ARC_FLY = 12, SPEEDS = [.25, .5, 1, 2, 4], SPEED_TXT = ['¼×', '½×', '1×', '2×', '4×']; let speedIx = 2; try { const t = localStorage.getItem('ssv-speed'), v = +t; if (t !== null && t !== '' && v >= 0 && v < 5) speedIx = v; } catch (e) {}
+const tripSpeed = () => SPEEDS[speedIx];
+function arcStep(dt) { const h = hop, o = h.to, L = h.leg, FLY = roam.trip && roam.trip.fly || ARC_FLY; h.t += dt * tripSpeed(); const u = clamp((h.t - h.turn) / FLY, 0, 1), e = sm(u);
+  roam.clock = h.c0 + (h.c1 - h.c0) * e; simMs = roam.clock; place(); const tNow = roam.clock, P = arcAt(L, tNow), Q = arcAt(L, Math.min(L.t2, tNow + (L.t2 - L.t1) * .002 + 864e5)), dv = [Q[0] - P[0], Q[1] - P[1], Q[2] - P[2]], dl = Math.hypot(...dv) || 1;
+  const cr = course && course.craft ? course.craft.r : 20 / KM, side = cross(dv.map(x => x / dl), [0, 1, 0]), sl = Math.hypot(...side) || 1;
+  if (!h.o0) { const P0 = arcAt(L, h.c0); h.o0 = [h.sx - P0[0], h.sy - P0[1], h.sz - P0[2]]; }
+  const isC = course && course.craft && course.craft.comet, pl = Math.hypot(...P) || 1;
+  const mid = isC ? P.map((x, j) => { const back = 26 * cr + Math.min(1, course.craft.act) * course.craft.coma * 4; return -x / pl * back * .35 + side[j] / sl * back + (j === 1 ? back * .25 : 0); })       // near the Sun it backs off to show the whole head and tail       // a comet is watched from its sunlit side, its tail streaming away beyond it
+    : dv.map((x, j) => -x / dl * 7 * cr + side[j] / sl * 2.5 * cr + (j === 1 ? 1.6 * cr : 0));       // just behind and beside the spacecraft
+  const tgt = [o.x, o.y, o.z], Pend = arcAt(L, L.t2), toT = [tgt[0] - Pend[0], tgt[1] - Pend[1], tgt[2] - Pend[2]], end = [tgt[0] - (o.x - h.sx) / (Math.hypot(o.x - h.sx, o.y - h.sy, o.z - h.sz) || 1) * 4.8 * o.r - P[0], 0, 0];
+  end[1] = tgt[1] - (o.y - h.sy) / (Math.hypot(o.x - h.sx, o.y - h.sy, o.z - h.sz) || 1) * 4.8 * o.r - P[1]; end[2] = tgt[2] - (o.z - h.sz) / (Math.hypot(o.x - h.sx, o.y - h.sy, o.z - h.sz) || 1) * 4.8 * o.r - P[2];
+  const a = sm(clamp(u / .18, 0, 1)), b = sm(clamp((u - .82) / .18, 0, 1)), O = [0, 1, 2].map(j => h.o0[j] * (1 - a) + mid[j] * a * (1 - b) + end[j] * b);
+  if (course && course.craft) { const kc = course.craft; kc.x = P[0]; kc.y = P[1]; kc.z = P[2]; kc.early = false; }       // same instant as the camera, or at these speeds it would be left far behind
+  const x = P[0] + O[0], y = P[1] + O[1], z = P[2] + O[2]; ship.v = dt > 0 ? Math.hypot(x - ship.x, y - ship.y, z - ship.z) / dt : 0; ship.x = x; ship.y = y; ship.z = z;
+  // look ahead along the course with the spacecraft in view, then turn to the arriving world
+  const ahead = isC ? P.slice() : [P[0] + dv[0] / dl * 60 * cr, P[1] + dv[1] / dl * 60 * cr, P[2] + dv[2] / dl * 60 * cr], w = u <= 0 ? 1 : b, lk = [0, 1, 2].map(j => (u <= 0 ? tgt[j] : ahead[j]) * (1 - w) + tgt[j] * w);
+  const ya = Math.atan2(lk[2] - z, lk[0] - x), pi = Math.atan2(lk[1] - y, Math.hypot(lk[0] - x, lk[2] - z)), k = 1 - Math.exp(-dt * 3.2 * sm(h.t / h.turn));
+  h.vy += wrap(ya - h.vy) * k; h.vp += (pi - h.vp) * k; ship.th = ya; gaze.yaw = wrap(h.vy - ya); gaze.pitch = h.vp; bank *= .9; target = null;
+  let best = 1e300; clearance = 1e300;
+  for (const bb of BODIES) for (const c of [bb].concat(bb.moons || [])) { const dc = sep(c) - c.r; clearance = Math.min(clearance, dc); if (c === bb && dc < best) { best = dc; near = bb; } }
+  for (const c of ASTEROIDS.concat(CRAFT, COMETS)) clearance = Math.min(clearance, sep(c) - c.r); clearance = Math.max(clearance, 1e-5);
+  if (h.t >= h.turn + FLY) { hop = null; startOrbit(o); if (!roam) return; note = tripNote(o); noteUntil = performance.now() + 6000; } }
+function hopStep(dt) { if (hop.leg) { arcStep(dt); return; } const h = hop, o = h.to; h.t += dt * (roam && roam.trip ? tripSpeed() : 1);
+  if (h.c1) { roam.clock = h.c0 + (h.c1 - h.c0) * sm((h.t - h.turn) / HOP_FLY); simMs = roam.clock; place(); }       // the calendar and the flight move together
   let dx = h.sx - o.x, dy = h.sy - o.y, dz = h.sz - o.z; const D0 = Math.hypot(dx, dy, dz) || 1e-9; dx /= D0; dy /= D0; dz /= D0;
   // After the turn the ship pulls away slowly, measured against the body it is leaving, keeps gathering speed to the half-way
   // point, then sheds it the same way, measured against the body it is arriving at.
@@ -1024,7 +1132,7 @@ function hopStep(dt) { const h = hop, o = h.to; h.t += dt;
   ship.th = ya; gaze.yaw = wrap(h.vy - ya); gaze.pitch = h.vp; bank *= .9; target = null;
   let best = 1e300; clearance = 1e300;
   for (const b of BODIES) for (const c of [b].concat(b.moons || [])) { const dc = sep(c) - c.r; clearance = Math.min(clearance, dc); if (c === b && dc < best) { best = dc; near = b; } }
-  for (const c of ASTEROIDS.concat(CRAFT)) clearance = Math.min(clearance, sep(c) - c.r);
+  for (const c of ASTEROIDS.concat(CRAFT, COMETS)) clearance = Math.min(clearance, sep(c) - c.r);
   clearance = Math.max(clearance, 1e-4);
   if (h.t >= h.turn + HOP_FLY) { hop = null; startOrbit(o); if (!roam) return; note = roam.trip ? tripNote(o) : tr('stay', inS(o)); noteUntil = performance.now() + 6000; } }
 roamBtn.addEventListener('click', () => { if (roam) { const at = hop ? null : roam.at; stopRoam(); if (!orbit) startOrbit(near); }
@@ -1042,6 +1150,12 @@ const INFO = {
     f: ['It is the hottest planet, hotter than Mercury, because its carbon dioxide air traps heat. Lead would melt on the ground.', 'The air pressure at the surface is 92 times Earth’s, like being 900 metres under the sea.', 'It spins the opposite way to most planets, so the Sun rises in the west, and one spin takes longer than its year.'] },
   Earth: { lead: 'Our home: the only world known to have liquid water on its surface, and life.', d: '12,756 km', day: '23 hours 56 minutes', yr: '365.25 days', g: 9.8, t: '15 °C on average', moons: 1,
     f: ['You are moving right now: Earth circles the Sun at about 107,000 km/h.', 'Seen from here it shows today’s real day and night sides, with city lights on the dark half.', 'Its tilt of 23.4° is what gives us seasons.'] },
+  'Halley': { lead: "The most famous comet: it returns about every 76 years and has been recorded for more than two thousand years.", d: "Nucleus about 15 × 8 km", yr: "about 76 years", f: ["It last passed the Sun on 9 February 1986 and will be back in July 2061; right now it is far out, near the farthest point of its orbit.", "Edmond Halley worked out that comets seen in 1531, 1607 and 1682 were the same one, and predicted its return in 1758.", "In 1986 the European probe Giotto flew 596 km from its nucleus, which turned out to be one of the darkest surfaces in the solar system.", "Dust it has shed causes two meteor showers every year: the Eta Aquariids in May and the Orionids in October.", "It goes round the Sun backwards, against the direction of the planets.", "Its orbit comes from NASA JPL’s small-body database; the tail drawn here is an approximation."] },
+  'Hale-Bopp': { lead: "One of the brightest comets of the twentieth century, visible to the naked eye for a record eighteen months.", d: "Nucleus about 60 km across", yr: "about 2,500 years", f: ["It was discovered on the same night, 23 July 1995, by Alan Hale and Thomas Bopp, independently.", "Its nucleus is unusually large, perhaps 60 km across, several times the size of Halley’s.", "It passed the Sun on 1 April 1997, when hundreds of millions of people saw it.", "A pass near Jupiter in 1996 shortened its orbit from about 4,200 years to about 2,500.", "Its orbit comes from NASA JPL’s small-body database; the tail drawn here is an approximation."] },
+  'Encke': { lead: "The comet with the shortest known orbit among the large ones: it comes back every 3.3 years.", d: "Nucleus about 5 km across", yr: "3.3 years", f: ["Johann Encke worked out its orbit in 1819, making it only the second comet known to return, after Halley’s.", "It never goes farther out than the asteroid belt.", "Its dust causes the Taurid meteor showers each autumn.", "Its orbit comes from NASA JPL’s small-body database; the tail drawn here is an approximation."] },
+  '67P': { lead: "Comet Churyumov–Gerasimenko, the first comet a spacecraft orbited and landed on.", d: "About 4 km long, in two lobes", yr: "6.4 years", f: ["Europe’s Rosetta spacecraft orbited it from August 2014 to September 2016, then landed on it to end the mission.", "On 12 November 2014 the small Philae lander touched down on it: the first landing ever on a comet.", "Its two lobes give it the shape of a rubber duck.", "Rosetta found that its water has a different make-up from the water in Earth’s oceans.", "Its orbit comes from NASA JPL’s small-body database; the tail drawn here is an approximation."] },
+  'NEOWISE': { lead: "The brightest comet seen from the northern hemisphere since Hale-Bopp, a highlight of the summer of 2020.", d: "Nucleus about 5 km across", yr: "about 6,800 years", f: ["It was discovered on 27 March 2020 by NASA’s NEOWISE space telescope, which it is named after.", "It passed the Sun on 3 July 2020 and was easy to see with the naked eye in July.", "It will not be back for several thousand years.", "Its orbit comes from NASA JPL’s small-body database; the tail drawn here is an approximation."] },
+  'Tsuchinshan-ATLAS': { lead: "A bright comet of autumn 2024, discovered by two observatories on opposite sides of the world.", d: "Nucleus a few km across", yr: "a single pass: it may never return", f: ["It was found in early 2023 by China’s Purple Mountain Observatory (Tsuchinshan) and by the ATLAS survey telescopes.", "It passed the Sun on 27 September 2024 and shone in the evening sky in October.", "Its orbit is so open that it may leave the solar system for good.", "Its orbit comes from NASA JPL’s small-body database; the tail drawn here is an approximation."] },
   'Voyager 1': { lead: 'The most distant thing people have ever made. Launched in 1977, it is now in the space between the stars.', d: '3.7 m dish, 13 m boom, 722 kg',
     f: ['On 18 November 2026 it reached one light-day from Earth: a radio signal now takes a full 24 hours to arrive.', 'It flew past Jupiter in 1979 and Saturn in 1980, then left the plane of the planets heading north.', 'In August 2012 it became the first spacecraft to cross into interstellar space.', 'It is leaving at about 17 km/s, 3.6 times the Earth–Sun distance every year.', 'It carries the Golden Record: sounds, music and pictures of Earth, for anyone who finds it.', 'Drawn here thousands of times larger than life, and lit far more brightly than the faint sunlight out there. The model is built from simple shapes, not scanned from the real thing.'] },
   'Voyager 2': { lead: 'The only spacecraft to have visited Uranus and Neptune. It left the solar system heading south.', d: '3.7 m dish, 13 m boom, 722 kg',
@@ -1145,11 +1259,11 @@ infoEl.addEventListener('mousedown', e => e.stopPropagation());
 
 if (!saved.ship) { goTo(earth); started = false; noteUntil = 0; }      // open circling Earth
 // ---------------------------------------------------------------- links: the address ends in #go=mars or #trip=voyager1, so a link can open on one object or start one trip
-const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), TRIP_SLUG = { tT: 'tour', tR: 'random', tP: 'planets', tM: 'moons', tA: 'apollo11', tV1: 'voyager1', tV2: 'voyager2', tG: 'galileo', tC: 'cassini', tN: 'newhorizons', tD: 'dawn' };
+const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), TRIP_SLUG = { c_Halley: 'halley', 'c_Hale-Bopp': 'hale-bopp', c_Encke: 'encke', c_67P: '67p', c_NEOWISE: 'neowise', 'c_Tsuchinshan-ATLAS': 'tsuchinshan-atlas', tT: 'tour', tR: 'random', tP: 'planets', tM: 'moons', tA: 'apollo11', tV1: 'voyager1', tV2: 'voyager2', tG: 'galileo', tC: 'cassini', tN: 'newhorizons', tD: 'dawn' };
 let linkNow = '', linkSeen = '';
 function openLink() { let h = ''; try { h = decodeURIComponent((location.hash || '').slice(1) || (location.search || '').slice(1)); } catch (e) {} if (!h || h === linkNow) return false;
   const m = /(?:^|&)(go|trip)=([^&]+)/.exec(h); if (!m) return false; const key = slug(m[2]);
-  if (m[1] === 'trip') { const T = TRIPS.find(t => t && TRIP_SLUG[t.name] === key.replace(/-/g, '')); if (!T) return false; if (!orbit) goTo(earth); startTrip(T); }
+  if (m[1] === 'trip') { const T = TRIPS.find(t => t && (TRIP_SLUG[t.name] || '').replace(/-/g, '') === key.replace(/-/g, '')); if (!T) return false; if (!orbit) goTo(earth); startTrip(T); }
   else { const o = OBJ.find(q => slug(q.name) === key) || OBJ.find(q => slug(q.name).replace(/-/g, '') === key.replace(/-/g, '')); if (!o) return false; goTo(o); }
   started = true; return true; }
 // the address follows the viewer, so copying it at any moment gives a link to this place or this trip
@@ -1203,7 +1317,7 @@ function step(dt) { clock += dt;
     cap = Math.min(cap, Math.max(.25 * o.r, 1.5 * (dc - 4 * o.r))); clearance = Math.min(clearance, dc - o.r);
     if (o === b && dc - b.r < best) { best = dc - b.r; near = b; } }
   for (const k of ASTEROIDS) clearance = Math.min(clearance, sep(k) - k.r);
-  for (const k of CRAFT) clearance = Math.min(clearance, sep(k) - k.r);
+  for (const k of CRAFT.concat(COMETS)) clearance = Math.min(clearance, sep(k) - k.r);
   if (TRUE) ship.v = Math.min(ship.v, cap);
   ship.x += Math.cos(ship.th) * ship.v * dt; ship.z += Math.sin(ship.th) * ship.v * dt;
   for (const b of BODIES) for (const o of [b].concat(b.moons || [])) { const dx = ship.x - o.x, dz = ship.z - o.z, d = Math.hypot(dx, dz), lim = o.r * 1.2 + (TRUE ? 0 : .4);
@@ -1238,6 +1352,7 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
     draws.push([dist, b, null]); for (const m of b.moons || []) draws.push([sep(m), b, m]); }
   for (const k of ASTEROIDS) draws.push([sep(k), null, k]);
   for (const k of CRAFT) draws.push([sep(k), null, k]);
+  for (const k of COMETS) draws.push([sep(k), null, k]);
   { const dN = days(), w0 = TRUE ? 0 : 243, w1 = TRUE ? AUU : 46, ref = TRUE ? .25 * AUU : 14; let o = 0;
     for (const k of DUSTS) { const dist = w0 + w1 * (TRUE ? k.au : k.au - 2.2), a = k.a0 - k.rate * dN, x = dist * Math.cos(a) - ship.x, y = dist * k.inc * Math.sin(a - k.node) - ship.y, z = dist * Math.sin(a) - ship.z;
       const d = Math.hypot(x, y, z) || 1e-9, far = d / (2 * AUU), c = k.b * clamp(ref / d, .55, 1.6) * (far > 1 ? Math.pow(far, -1.6) : 1);      // from far away the specks crowd together, so each one dims
@@ -1257,7 +1372,8 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   useMesh(HI); draws.sort((p, q) => q[0] - p[0]); const dNow = days();
   for (const [dist, b, m] of draws) { const o = m || b; if (o.sprite || o.craft || o.r * focal / dist < .35) continue;
     const hi = TEX['b_' + o.name.toLowerCase()]; gl.uniform1f(pBody.u.uBump, hi ? 20 : 0); if (hi) { gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, hi); gl.activeTexture(gl.TEXTURE0); }
-    if (m) { const g = m.sq || ONE; put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), m.M || rotY(m.p + clock * .05)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), m.tex ? TEX[m.tex] : TEX.moon, m.tex ? PHOTO : m.tint, m.rim || NONE, 0, 0, m.shape); }
+    if (m) { const g = m.sq || ONE; if (m.comet) { put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), rotY(clock * .08)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), TEX.a_eros || TEX.moon, [.62, .58, .54], NONE, 0, 0, [.12, .1, 1.2, .09]); gl.drawElements(gl.TRIANGLES, HI.n, gl.UNSIGNED_SHORT, 0); continue; }
+      put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), m.M || rotY(m.p + clock * .05)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), m.tex ? TEX[m.tex] : TEX.moon, m.tex ? PHOTO : m.tint, m.rim || NONE, 0, 0, m.shape); }
     else { const q = b.sq || ONE, T = trans(b.x - ship.x, b.y - ship.y, b.z - ship.z), real = POLE[b.name], R0 = real ? orient(b.name, dNow, false) : rotX((b.tilt || 0) * DEG);
       b.M0 = mul(T, R0);            // the ring plane follows the real equator
       put(mul(mul(T, real ? orient(b.name, dNow, true) : mul(R0, rotY(clock * b.spin))), scale(b.r * q[0], b.r * q[1], b.r * q[2])), TEX[b.tex], ONE, b.rim || NONE, b.emis || 0, b.night); }
@@ -1292,6 +1408,15 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   gl.enableVertexAttribArray(pGlow.a.aQ); gl.vertexAttribPointer(pGlow.a.aQ, 2, gl.FLOAT, false, 0, 0);
   gl.uniformMatrix4fv(pGlow.u.uVP, false, VP); gl.uniform3fv(pGlow.u.uR, right); gl.uniform3fv(pGlow.u.uU, up); gl.uniform3fv(pGlow.u.uC, sunRel);
   gl.uniform1f(pGlow.u.uSize, sun.r * 4.2); gl.drawArrays(gl.TRIANGLES, 0, 6);
+  // comet tails: a straight blue ion tail blown directly away from the Sun, and a broader yellowish dust tail curving behind the comet's path
+  for (const c of COMETS) { if (!(c.act > .002)) continue; const C = [c.x - ship.x, c.y - ship.y, c.z - ship.z], cd = Math.hypot(...C) || 1e-9, out = [c.x, c.y, c.z], ol = Math.hypot(...out) || 1, aS = out.map(v => v / ol);
+    const vl = Math.hypot(...c.vel) || 1, dust = aS.map((v, j) => v * .75 - c.vel[j] / vl * .35), dl = Math.hypot(...dust), L = c.tail * c.act, w0 = Math.min(1, cd / (L * .05 + 1e-9));
+    gl.useProgram(pTail.p); gl.bindBuffer(gl.ARRAY_BUFFER, quad); gl.enableVertexAttribArray(pTail.a.aQ); gl.vertexAttribPointer(pTail.a.aQ, 2, gl.FLOAT, false, 0, 0); gl.uniformMatrix4fv(pTail.u.uVP, false, VP); gl.uniform3fv(pTail.u.uC, C);
+    for (const [D, len, wid, col] of [[dust.map(v => v / dl), L * .7, L * .1, [.5, .42, .3]], [aS, L, L * .035, [.25, .45, .8]]]) { const S = cross(D, C.map(v => v / cd)), sl = Math.hypot(...S) || 1;
+      gl.uniform3fv(pTail.u.uD, D); gl.uniform3f(pTail.u.uS, S[0] / sl, S[1] / sl, S[2] / sl); gl.uniform1f(pTail.u.uL, len); gl.uniform1f(pTail.u.uW, wid); gl.uniform1f(pTail.u.uW0, c.coma * Math.min(1, c.act) * .5); gl.uniform1f(pTail.u.uF, Math.min(.03, c.coma / (len + 1e-9))); gl.uniform3f(pTail.u.uCol, col[0] * Math.min(1, c.act * 2), col[1] * Math.min(1, c.act * 2), col[2] * Math.min(1, c.act * 2)); gl.drawArrays(gl.TRIANGLES, 0, 6); }
+    gl.useProgram(pComa.p); gl.enableVertexAttribArray(pComa.a.aQ); gl.vertexAttribPointer(pComa.a.aQ, 2, gl.FLOAT, false, 0, 0); gl.uniformMatrix4fv(pComa.u.uVP, false, VP); gl.uniform3fv(pComa.u.uR, right); gl.uniform3fv(pComa.u.uU, up); gl.uniform3fv(pComa.u.uC, C);
+    gl.uniform1f(pComa.u.uSize, Math.min(c.coma * Math.min(1, c.act * 1.5), cd * .7)); gl.uniform3f(pComa.u.uCol, .45 * Math.min(1, c.act * 2), .6 * Math.min(1, c.act * 2), .55 * Math.min(1, c.act * 2)); gl.drawArrays(gl.TRIANGLES, 0, 6); }
+  gl.useProgram(pGlow.p);
   gl.disable(gl.DEPTH_TEST); gl.useProgram(pDust.p); gl.bindBuffer(gl.ARRAY_BUFFER, dustBuf); gl.enableVertexAttribArray(pDust.a.aP); gl.vertexAttribPointer(pDust.a.aP, 3, gl.FLOAT, false, 0, 0);
   gl.uniformMatrix4fv(pDust.u.uVP, false, VP); gl.uniform3f(pDust.u.uOff, (ship.x / 130) % 1, 0, (ship.z / 130) % 1); gl.uniform3f(pDust.u.uBox, 130, 44, 130); gl.uniform1f(pDust.u.uPx, px);
   gl.uniform1f(pDust.u.uK, Math.min(1, ship.v / 45) * .75 * clamp((700 - ship.v) / 500, 0, 1) * clamp((clearance - 2) / 6, 0, 1)); gl.drawArrays(gl.POINTS, 0, 420);
@@ -1323,19 +1448,20 @@ const tripsBtn = document.getElementById('trips'), tripMenu = document.getElemen
 const closeTrips = () => { tripMenu.hidden = true; tripsBtn.setAttribute('aria-expanded', false); };
 function openTrips() { tripMenu.textContent = '';
   for (const T of TRIPS) { if (!T) { tripMenu.appendChild(document.createElement('hr')); continue; }
-    const b = document.createElement('button'), k = document.createElement('span'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.textContent = tr(T.name);
+    const b = document.createElement('button'), k = document.createElement('span'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.textContent = tripName(T);
     k.textContent = T.id === 'tour' ? tr('tTs') : T.id === 'random' ? tr('tRs') : tripStops(T).length + ' ' + tr('stops'); b.appendChild(k);
     b.addEventListener('click', () => { closeTrips(); startTrip(T); cv.focus(); }); tripMenu.appendChild(b); }
   tripMenu.hidden = false; tripsBtn.setAttribute('aria-expanded', true); }
 tripsBtn.addEventListener('click', () => { if (roam || tour) { stopRoam(); if (tour) stopTour(); if (!orbit) startOrbit(near); closeTrips(); cv.focus(); } else if (tripMenu.hidden) openTrips(); else closeTrips(); });
 addEventListener('pointerdown', e => { if (!tripMenu.hidden && !e.target.closest('.trips')) closeTrips(); }, true);
 addEventListener('keydown', e => { if (e.key === 'Escape' && !tripMenu.hidden) { closeTrips(); cv.focus(); } });
+const speedBtn = document.getElementById('speed'); speedBtn.addEventListener('click', () => { speedIx = (speedIx + 1) % SPEEDS.length; try { localStorage.setItem('ssv-speed', speedIx); } catch (e) {} cv.focus(); });
 const pauseBtn = document.getElementById('pause'), setText = (el, v) => { if (el.textContent !== v) el.textContent = v; };
 // every label that depends on what is going on, in the current language
 function relabel() { if (!(roam || tour)) paused = false;
   setText(orbitBtn, orbit ? tr('stopOrbit') : tr('orbitOf', inS(near))); setText(tourBtn, tr(tour ? 'stopTour' : 'startTour')); setText(roamBtn, tr(roam ? 'stopRoam' : 'roam')); setText(timeBtn, tr('time')[rateIx]); setText(nearEl, nm(near));
   setText(tripsBtn, tr(roam || tour ? 'stopRoam' : 'trips')); tripsBtn.setAttribute('aria-pressed', !!(roam || tour));
-  setText(pauseBtn, tr(paused ? 'play' : 'pause')); pauseBtn.hidden = !(roam || tour); pauseBtn.classList.toggle('on', paused); pauseBtn.setAttribute('aria-pressed', paused); }
+  setText(pauseBtn, tr(paused ? 'play' : 'pause')); pauseBtn.hidden = !(roam || tour); speedBtn.hidden = !((roam && roam.trip) || tour); setText(speedBtn, tr('speed') + ' ' + SPEED_TXT[speedIx]); pauseBtn.classList.toggle('on', paused); pauseBtn.setAttribute('aria-pressed', paused); }
 const togglePause = () => { if (!(roam || tour)) return; paused = !paused; note = paused ? tr('paused') : ''; noteUntil = paused ? performance.now() + 4000 : 0; };
 pauseBtn.addEventListener('click', () => { togglePause(); cv.focus(); });
 addEventListener('keydown', e => { if (e.code === 'Space' && !typing(e) && !(e.target && e.target.tagName === 'BUTTON') && (roam || tour)) { togglePause(); e.preventDefault(); } });
