@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-131853"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-131938"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -1387,7 +1387,8 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
     put(mul(mul(mul(trans(dx, k.y - ship.y, dz), rotY(k.ry + clock * .1)), rotX(k.rx)), scale(k.s, k.s * k.sy, k.s * k.sz)), TEX.moon, [k.t, k.t * .93, k.t * .86], NONE, 0);
     gl.drawElements(gl.TRIANGLES, LO.n, gl.UNSIGNED_SHORT, 0); }
   // spacecraft: the dish (the model's +z) is kept pointing at Earth, as the real ones do
-  { let on = false; for (const [dist, b, m] of draws) if (m && m.craft && m.r * focal / dist > .35) { const mesh = MODELS[m.model];
+  const hideCraft = m => roam && course && course.craft === m && !(roam.at === m && !hop);       // on its own trip the spacecraft is not drawn until you reach it
+  { let on = false; for (const [dist, b, m] of draws) if (m && m.craft && !hideCraft(m) && m.r * focal / dist > .35) { const mesh = MODELS[m.model];
       if (!on) { on = true; gl.disable(gl.CULL_FACE); gl.useProgram(pCraft.p); gl.uniformMatrix4fv(pCraft.u.uVP, false, VP); gl.uniform1i(pCraft.u.uCells, 3); gl.activeTexture(gl.TEXTURE3); gl.bindTexture(gl.TEXTURE_2D, TEX.c_cells);
         gl.uniform1i(pCraft.u.uFoil, 0); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, TEX.c_foil); }
       gl.uniform1f(pCraft.u.uTile, mesh.tile);
