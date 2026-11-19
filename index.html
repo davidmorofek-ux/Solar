@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-125134"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-130805"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -678,7 +678,8 @@ const COMETS = [['Halley', .9679359956953211, .5748638313743413, 162.19053004391
   .map(([name, e, q, i, node, w, tp, km, sq, tail, coma, inb]) => { const I = i * DEG, O = node * DEG, W = w * DEG, co = Math.cos, si = Math.sin;
     const P = [co(W) * co(O) - si(W) * si(O) * co(I), co(W) * si(O) + si(W) * co(O) * co(I), si(W) * si(I)], Q = [-si(W) * co(O) - co(W) * si(O) * co(I), -si(W) * si(O) + co(W) * co(O) * co(I), co(W) * si(I)];
     const g = v => [v[0], v[2], -v[1]];       // ecliptic to the page's axes
-    return { name, e, q: q * AUU, P: g(P), Q: g(Q), tp: (tp - 2440587.5) * 864e5, km, sq, tail: tail / KM, coma: coma / KM, inb, comet: 1, r: km / KM, x: 0, y: 0, z: 0, p: 0, tint: [.5, .47, .44] }; });
+    return { name, e, q: q * AUU, P: g(P), Q: g(Q), tp: (tp - 2440587.5) * 864e5, km, sq, tail: tail / KM, coma: coma / KM, inb, comet: 1, r: km / KM, x: 0, y: 0, z: 0, p: 0, tint: [.5, .47, .44] }; })
+  .filter(() => false);       // comets are switched off for now: remove this line to bring them back
 function cometAt(c, ms) { const mu = MU_SUN, q = c.q, a0 = (1 - c.e) / q, dt = (ms - c.tp) / 864e5, v0 = Math.sqrt(mu * (1 + c.e) / q), sq = Math.sqrt(mu);
   const F = x => { const z = a0 * x * x; return (1 - a0 * q) * x * x * x * stumpS(z) + q * x - sq * dt; };       // the universal Kepler equation, starting at perihelion
   let lo = -1, hi = 1; while (F(hi) < 0) hi *= 2; while (F(lo) > 0) lo *= 2;
@@ -1060,7 +1061,7 @@ const TRIPS = [{ id: 'tour', name: 'tT' }, { id: 'random', name: 'tR' }, null,
     ['Rhea', '2005-11-26'], ['Iapetus', '2007-09-10'], ['Mimas', '2010-02-13'], ['Saturn', '2017-09-15']] },
   { name: 'tN', stay: 18, stops: [['Earth', '2006-01-19'], ['Jupiter', '2007-02-28'], ['Pluto', '2015-07-14'], ['Charon', '2015-07-14'], ['New Horizons', 'now']] },
   { name: 'tD', stay: 18, stops: [['Earth', '2007-09-27'], ['Mars', '2009-02-17'], ['Vesta', '2011-07-16'], ['Ceres', '2015-03-06'], ['Dawn', 'now']] },
-  null, ...COMETS.map(c => ({ name: 'c_' + c.name, comet: c, stay: 14, fly: 30, stops: [[c.name, c.inb, 'sIn'], [c.name, new Date(c.tp).toISOString().slice(0, 10), 'sPeri'], [c.name, 'now', 'sNow']] }))];
+  ...(COMETS.length ? [null] : []), ...COMETS.map(c => ({ name: 'c_' + c.name, comet: c, stay: 14, fly: 30, stops: [[c.name, c.inb, 'sIn'], [c.name, new Date(c.tp).toISOString().slice(0, 10), 'sPeri'], [c.name, 'now', 'sNow']] }))];
 const tripStops = T => T.stops || OBJ.filter(o => o.parent && !o.iss).map(o => [o.name]);
 const tripName = T => T.comet ? tr('cTrip', nm(T.comet)) : tr(T.name);
 const tripNote = o => { const T = roam.trip, n = tripStops(T).length; return tripName(T) + ' · ' + (n - roam.deck.length) + '/' + n + ' · ' + (roam.lab ? tr(roam.lab) : nm(o)) + (roam.when ? ' · ' + roam.when : ''); };
