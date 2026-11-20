@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261119-132330"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261120-144053"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -400,7 +400,7 @@ const pBody = prog(
   HP + 'uniform sampler2D uTex, uNight, uCloud, uHigh; uniform vec3 uSun, uTint, uRim; uniform float uEmis, uNightK, uCloudU, uBump; varying vec3 vN, vW, vTu, vTv; varying vec2 vUV; varying float vS;' +
   'void main(){ vec3 N = normalize(vN), L = normalize(uSun - vW), V = normalize(-vW);' +
   // relief: where a body has a height map, the surface is tilted by its slopes, so crater walls catch the light or fall into shadow
-  ' if (uBump > 0.) { vec2 e = vec2(1. / 2048., 0.); float hu = texture2D(uHigh, vUV + e).r - texture2D(uHigh, vUV - e).r, hv = texture2D(uHigh, vUV + e.yx * 2.).r - texture2D(uHigh, vUV - e.yx * 2.).r;' +
+  ' if (uBump > 0.) { vec2 e = vec2(1. / 1024., 0.); float hu = texture2D(uHigh, vUV + e).r - texture2D(uHigh, vUV - e).r, hv = texture2D(uHigh, vUV + e.yx * 2.).r - texture2D(uHigh, vUV - e.yx * 2.).r;' +
   '   N = normalize(N - uBump * (hu / (2. * max(vS, .2)) * normalize(vTu) + hv * .5 * normalize(vTv))); }' +
   ' vec3 c = texture2D(uTex, vUV).rgb * uTint; float d = max(dot(N, L), 0.), nv = max(dot(N, V), 0.);' +
   ' float cl = uNightK * smoothstep(.04, .8, texture2D(uCloud, vUV + vec2(uCloudU, 0.)).r); c = mix(c, vec3(1.), cl * (.9 + .1 * (1. - nv)));' +
@@ -559,7 +559,7 @@ function texture(src, col) { if (LITE && typeof src === 'string' && src.indexOf(
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([col[0], col[1], col[2], col[3] === undefined ? 255 : col[3]]));
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   if (!src) return t;
-  const put = im => { gl.bindTexture(gl.TEXTURE_2D, t); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, im);
+  const put = im => { const fm = t.lum ? gl.LUMINANCE : gl.RGBA; gl.bindTexture(gl.TEXTURE_2D, t); gl.texImage2D(gl.TEXTURE_2D, 0, fm, fm, gl.UNSIGNED_BYTE, im);       // a height map needs one channel, a quarter of the memory
     if (!t.rep) gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     if (pot(im.width) && pot(im.height)) { gl.generateMipmap(gl.TEXTURE_2D); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
       if (aniso) gl.texParameterf(gl.TEXTURE_2D, aniso.TEXTURE_MAX_ANISOTROPY_EXT, 4); }
@@ -602,7 +602,10 @@ const BODIES = [
 const uring = document.createElement('canvas'); uring.width = 256; uring.height = 4;
 { const c = uring.getContext('2d'); for (const [x, w, a] of [[30, 3, .35], [70, 2, .3], [118, 3, .3], [160, 2, .35], [226, 9, .8]]) { c.fillStyle = `rgba(190,205,215,${a})`; c.fillRect(x, 0, w, 4); } }
 const TEX = { sky: texture('tex/sky.jpg', [3, 5, 9]), night: texture('tex/earth_night.jpg', [0, 0, 0]), clouds: texture('tex/earth_clouds.jpg', [0, 0, 0]), moon: texture('tex/moon.jpg', [130, 128, 124]), ring: texture('tex/saturn_ring.png', [0, 0, 0, 0]), uring: texture(uring, [0, 0, 0, 0]) };
-TEX.b_oberon = texture('tex/b_oberon.jpg', [128, 128, 128]);       // height map: gives Oberon's craters real light and shadow
+// Height maps for every moon and asteroid, each made only from that body's own picture (moons/relief.py): fine light-and-dark detail read as relief,
+// the same recipe and the same steepness for all (about 6 degrees typical). Titan has none: its picture shows haze, not ground. Vesta has none yet: its picture has gaps.
+for (const n of ['moon', 'phobos', 'deimos', 'io', 'europa', 'ganymede', 'callisto', 'mimas', 'enceladus', 'tethys', 'dione', 'rhea', 'iapetus', 'miranda', 'ariel', 'titania', 'oberon', 'triton', 'charon', 'ceres', 'interamnia', 'lutetia', 'eros']) {
+  TEX['b_' + n] = texture('tex/b_' + n + '.jpg', [128, 128, 128]); TEX['b_' + n].lum = 1; }
 // real surfaces for the spacecraft, cut from NASA photographs: New Horizons's gold foil and Dawn's solar cells. They repeat across the models.
 TEX.c_foil = texture('tex/c_foil.jpg', [190, 160, 60]); TEX.c_foil.rep = 1; TEX.c_cells = texture('tex/c_cells.jpg', [20, 25, 50]); TEX.c_cells.rep = 1;
 // Earth gets sharper maps the first time the viewer goes to Earth, the Moon or the space station, on computers that can hold them.
@@ -1372,12 +1375,12 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   gl.uniform1i(pBody.u.uNight, 1); gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, TEX.night);
   gl.uniform1i(pBody.u.uCloud, 2); gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, TEX.clouds); gl.activeTexture(gl.TEXTURE0);
   gl.uniform1i(pBody.u.uHigh, 4); gl.uniform1f(pBody.u.uBump, 0); gl.uniform1f(pBody.u.uCloudU, (spinDays() / 45 + clock * .0005) % 1);   // the weather drifts slowly over the ground
-  const ROUND = [0, 0, 1, 0], put = (M, tex, tint, rim, emis, night, shape) => { gl.uniformMatrix4fv(pBody.u.uM, false, M); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform4fv(pBody.u.uShape, shape || ROUND);
+  const BUMP = 2, ROUND = [0, 0, 1, 0], put = (M, tex, tint, rim, emis, night, shape) => { gl.uniformMatrix4fv(pBody.u.uM, false, M); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform4fv(pBody.u.uShape, shape || ROUND);
     gl.uniform3fv(pBody.u.uTint, tint); gl.uniform3fv(pBody.u.uRim, rim); gl.uniform1f(pBody.u.uEmis, emis); gl.uniform1f(pBody.u.uNightK, night || 0); };
   const ONE = [1, 1, 1], NONE = [0, 0, 0], PHOTO = [1.12, 1.12, 1.12];
   useMesh(HI); draws.sort((p, q) => q[0] - p[0]); const dNow = days(), spinD = spinDays();
   for (const [dist, b, m] of draws) { const o = m || b; if (o.sprite || o.craft || o.r * focal / dist < .35) continue;
-    const hi = TEX['b_' + o.name.toLowerCase()]; gl.uniform1f(pBody.u.uBump, hi ? 20 : 0); if (hi) { gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, hi); gl.activeTexture(gl.TEXTURE0); }
+    const hi = TEX['b_' + o.name.toLowerCase()]; gl.uniform1f(pBody.u.uBump, hi ? BUMP : 0); if (hi) { gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, hi); gl.activeTexture(gl.TEXTURE0); }
     if (m) { const g = m.sq || ONE; if (m.comet) { put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), rotY(clock * .08)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), TEX.a_eros || TEX.moon, [.62, .58, .54], NONE, 0, 0, [.12, .1, 1.2, .09]); gl.drawElements(gl.TRIANGLES, HI.n, gl.UNSIGNED_SHORT, 0); continue; }
       put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), m.M || rotY(m.p + clock * .05)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), m.tex ? TEX[m.tex] : TEX.moon, m.tex ? PHOTO : m.tint, m.rim || NONE, 0, 0, m.shape); }
     else { const q = b.sq || ONE, T = trans(b.x - ship.x, b.y - ship.y, b.z - ship.z), real = POLE[b.name], R0 = real ? orient(b.name, dNow, false) : rotX((b.tilt || 0) * DEG);
