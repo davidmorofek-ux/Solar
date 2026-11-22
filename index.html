@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261122-144043"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image"><script>window.goatcounter = { path: function () { return location.pathname.replace(/\/+$/, "") || "/"; } };</script>
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261122-145024"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image"><script>window.goatcounter = { path: function () { return location.pathname.replace(/\/+$/, "") || "/"; } };</script>
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -1019,7 +1019,8 @@ function startOrbit(b) { stopTour(); if (hop && !roam) hop = null; b = b || near
   begin(); orbitBtn.textContent = 'Stop orbit'; orbitBtn.setAttribute('aria-pressed', true);
   note = tr('circling', inS(b)); noteUntil = performance.now() + 6000; }
 function orbitStep(dt) { const O = orbit, b = O.body; O.t += dt;
-  O.r = O.r1 + (O.r - O.r1) * Math.exp(-1.5 * dt); 
+  const far = O.r1 * Math.max(1, .69 * Hd / Math.max(Wd, 1));       // on a tall, narrow screen the lap is wider, so the body fits the width instead of spilling off both sides
+  O.r = far + (O.r - far) * Math.exp(-1.5 * dt); 
   // left and right swing the viewer round the body, fast, for as long as they are held; let go and the lap settles back to its gentle pace, in the direction last pressed
   { const k = (lookKeys.right ? 1 : 0) - (lookKeys.left ? 1 : 0), w0 = 2 * Math.PI / 40; if (k) O.dir = -k;
     O.w += ((k ? O.dir * w0 * 7 : O.dir * w0 * sm(O.t / 2)) - O.w) * (1 - Math.exp(-(k ? 3 : 5) * dt)); O.ang += O.w * dt; }
