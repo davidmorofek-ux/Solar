@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261122-101544"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image"><script>window.goatcounter = { path: function () { return location.pathname.replace(/\/+$/, "") || "/"; } };</script>
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261122-144043"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image"><script>window.goatcounter = { path: function () { return location.pathname.replace(/\/+$/, "") || "/"; } };</script>
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -144,7 +144,12 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
   .readout { grid-area: 1 / 1 / 2 / -1; justify-self: stretch; display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; min-width: 0; padding: 10px 14px 11px; }
   .brand, .readout > div:last-child { display: none; } .readout #near { font-size: 18px; } .readout strong.small { font-size: 13px; }
   .tools { grid-area: 2 / 1 / 3 / -1; justify-self: stretch; justify-content: center; } .tools button { padding: 8px 9px 8px 8px; gap: 5px; font-size: 11.5px; } #find { width: 100%; } .find { flex: 1 1 100%; }
-  #objects { left: 0; right: 0; width: auto; } #info h2 { font-size: 25px; } }
+  #objects { left: 0; right: 0; width: auto; } #info h2 { font-size: 25px; }
+  /* the toolbar stays short so the view is not covered: search and language share the first line, and on a trip only the trip's own buttons are shown */
+  .tools > .find:not(.trips) { flex: 1 1 60%; min-width: 0; order: -2; } .tools .langs { order: -1; } .tools { gap: 3px; padding: 5px; }
+  .app.trip #orbit, .app.trip #time, .app.trip #home { display: none; } }
+/* opened inside the X (Twitter) app on Android, the app lays its own bar over the bottom of the page: everything moves up clear of it */
+.app.xbar .hud { padding-bottom: 142px; } .app.xbar .credit { bottom: 116px; } .app.xbar #info { bottom: 142px; }
 .tools button[hidden] { display: none; }
 #trips { --i: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 19c1-7 5-12 14-14c-2 9-7 13-14 14z%22/%3E%3Ccircle cx=%2214%22 cy=%2210%22 r=%221.6%22 fill=%22black%22/%3E%3Cpath d=%22M5 19l3-3%22/%3E%3C/svg%3E"); } .trips { flex: none; }
 #tripmenu { position: absolute; top: calc(100% + 10px); left: 0; z-index: 7; min-width: 230px; max-height: min(420px, 62vh); overflow-y: auto; padding: 5px; background: rgba(10, 14, 26, .97); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--lift); pointer-events: auto; }
@@ -1291,6 +1296,8 @@ if (!saved.ship) { goTo(earth); started = false; noteUntil = 0; }      // open c
 // ---------------------------------------------------------------- links: the address ends in #go=mars or #trip=voyager1, so a link can open on one object or start one trip
 const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), TRIP_SLUG = { c_Halley: 'halley', 'c_Hale-Bopp': 'hale-bopp', c_Encke: 'encke', c_67P: '67p', c_NEOWISE: 'neowise', 'c_Tsuchinshan-ATLAS': 'tsuchinshan-atlas', tT: 'tour', tR: 'random', tP: 'planets', tM: 'moons', tA: 'apollo11', tV1: 'voyager1', tV2: 'voyager2', tG: 'galileo', tC: 'cassini', tN: 'newhorizons', tD: 'dawn' };
 let linkNow = '', linkSeen = '';
+const appEl = document.querySelector('.app'), TOUCH = (() => { try { return matchMedia('(pointer: coarse)').matches && !matchMedia('(pointer: fine)').matches; } catch (e) { return false; } })();
+if (/TwitterAndroid/i.test(navigator.userAgent)) appEl.classList.add('xbar');
 // ---------------------------------------------------------------- anonymous counts of what visitors do. Only on the public site, through GoatCounter (no cookies, no names):
 // trips started and finished, places flown to, shared links opened, fact sheets opened, language. Each is counted once per page load.
 // The public page announces the counter by setting window.goatcounter before anything else; the counter itself loads later, so early counts wait for it (up to half a minute).
@@ -1480,7 +1487,8 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   const hn = target ? target.name : 'Open space'; if (headEl.textContent !== hn) headEl.textContent = hn;
   const c = ship.v / LIGHT, sv = !TRUE ? String(Math.round(ship.v)) : (c < 10 ? c.toFixed(1) : Math.round(c).toLocaleString('en-US')) + ' ' + tr('xlight');
   if (spdEl.textContent !== sv) { spdEl.textContent = sv; barEl.style.width = (pace * 100).toFixed(1) + '%'; }
-  const hm = now < noteUntil && (bare || document.hasFocus()) ? 'note' : bare ? 'hide' : !document.hasFocus() ? 'click' : started ? 'hide' : 'keys', hk = hm + lang + (hm === 'note' ? note : '');
+  const foc = TOUCH || document.hasFocus(); appEl.classList.toggle('trip', !!(roam || tour));       // on a touch screen there is no keyboard to click for, and apps that embed the page never report focus
+  const hm = now < noteUntil && (bare || foc) ? 'note' : bare ? 'hide' : TOUCH ? 'hide' : !foc ? 'click' : started ? 'hide' : 'keys', hk = hm + lang + (hm === 'note' ? note : '');
   if (hk !== hintMode) { hintMode = hk; if (hm === 'note') hint.textContent = note; else if (hm !== 'hide') hint.innerHTML = tr(hm === 'click' ? 'hintClick' : 'hintKeys'); hint.style.opacity = hm === 'hide' ? 0 : 1; }
   if (infoObj && now - infoT > 500) { infoT = now; rows(iEl('inow'), nowRows(infoObj)); }      // the distances keep up with the clock
   drawMap(); requestAnimationFrame(frame); }
