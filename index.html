@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261121-205940"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261122-094726"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -56,10 +56,10 @@ button:hover, #find:hover { border-color: var(--ink); }
 #info ul { margin: 0 0 12px; padding-left: 18px; font: 400 13px/1.45 var(--font-b); color: var(--ink); } #info li { margin-bottom: 6px; } #info li::marker { color: var(--amber); }
 #infox { position: sticky; float: right; top: 0; margin: -6px -8px 0 8px; width: 30px; height: 30px; padding: 0; font-size: 18px; line-height: 1; }
 .irow { display: flex; align-items: center; justify-content: space-between; gap: 10px; } .isrc { font: 400 10.5px/1.2 var(--font-b); color: var(--dim); }
-@media (max-width: 520px) { #info { left: 8px; right: 8px; top: auto; bottom: 18px; width: auto; max-height: 62%; } }
+@media (max-width: 520px) { #info { left: 8px; right: 8px; top: auto; bottom: 28px; width: auto; max-height: 62%; } }
 .credit { position: absolute; left: 0; right: 0; bottom: 2px; text-align: center; font: 400 10px/1.2 var(--font-b); letter-spacing: .04em; color: var(--dim); opacity: .75; pointer-events: none; padding-inline: 8px; }
 .credit a { color: inherit; pointer-events: auto; text-decoration: underline; text-underline-offset: 2px; } .credit a:hover { color: var(--ink); }
-@media (max-width: 520px) { .credit { font-size: 8.5px; letter-spacing: 0; white-space: nowrap; } }
+@media (max-width: 520px) { .credit { font-size: 8.5px; letter-spacing: 0; white-space: nowrap; } .credit .c1, .credit .c2 { display: block; } .credit .cdot { display: none; } .hud { padding-bottom: 27px; } }       /* on a phone the credit takes two lines, so the controls move up a little */
 .hud > * { transition: opacity .35s; }
 .app.bare .hud > *:not(#hint) { opacity: 0; visibility: hidden; transition: opacity .35s, visibility 0s .35s; }
 .find { position: relative; }
@@ -180,7 +180,7 @@ button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
     <div class="label" data-t="worth">Worth knowing</div><ul id="ifacts"></ul>
     <div class="irow"><button id="igo" type="button" data-t="go">Go there</button><span class="isrc" data-t="src">Figures: NASA fact sheets</span></div>
   </div>
-  <div class="credit">© 2026 David Mor Ofek · <span data-t="images">Images</span>: NASA/JPL, ESA, <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a> <span data-t="other">and other sources</span></div>
+  <div class="credit"><span class="c1" dir="ltr">© 2026 David Mor Ofek · <a href="mailto:dmorofek@gmail.com">dmorofek@gmail.com</a></span><span class="cdot"> · </span><span class="c2"><span data-t="images">Images</span>: NASA/JPL, ESA, <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a> <span data-t="other">and other sources</span></span></div>
   <div class="hud">
     <div class="readout panel">
       <div class="brand" data-brand></div>
@@ -910,7 +910,7 @@ cv.addEventListener('pointerleave', () => { mouse.on = false; });
 // double-click (or double-tap) the view to clear every panel and button off the screen; again to bring them back
 let bare = false, cvT = 0, cvX = 0, cvY = 0;
 cv.addEventListener('pointerdown', e => { const t = performance.now(), twice = t - cvT < (e.pointerType === 'mouse' ? 450 : 650) && Math.hypot(e.clientX - cvX, e.clientY - cvY) < 30; cvT = twice ? 0 : t; cvX = e.clientX; cvY = e.clientY; if (!twice) { hideInfo(); return; }
-  const rc = cv.getBoundingClientRect(), picked = hitAt(e.clientX - rc.left, e.clientY - rc.top); if (picked) { showInfo(picked); return; }      // on an object: its fact sheet; on empty sky: hide or show the controls
+  const rc = cv.getBoundingClientRect(), picked = hitAt(e.clientX - rc.left, e.clientY - rc.top); if (picked) { showInfo(picked); tally('info', slug(picked.name)); return; }      // on an object: its fact sheet; on empty sky: hide or show the controls
   bare = !bare; app.classList.toggle('bare', bare); if (bare) find.blur();
   note = tr(bare ? 'hidden' : 'shown'); noteUntil = t + (bare ? 5000 : 3000); });
 cv.addEventListener('dblclick', e => e.preventDefault());
@@ -1048,7 +1048,7 @@ slider.addEventListener('pointermove', e => { if (dragOff !== null) slideTo(e.cl
 for (const ev of ['pointerup', 'pointercancel']) slider.addEventListener(ev, () => { dragOff = null; slider.classList.remove('drag'); });
 const closeList = () => { list.hidden = true; slider.hidden = true; find.setAttribute('aria-expanded', false); pickIx = -1; };
 // A chosen object is flown to the way a trip does it: turn towards it, gather speed, slow down, then circle it.
-function flyTo(o) { find.value = ''; closeList(); cv.focus(); if (!o) return; if (orbit && orbit.body === o && !roam && !tour) return; course = null;
+function flyTo(o) { find.value = ''; closeList(); cv.focus(); if (!o) return; if (orbit && orbit.body === o && !roam && !tour) return; course = null; tally('go', slug(o.name));
   if (ship.y === undefined || !isFinite(sep(o))) { goTo(o); return; }
   stopRoam(); stopTour(); stopOrbit(); const th0 = ship.th + gaze.yaw, turn = Math.abs(wrap(Math.atan2(o.z - ship.z, o.x - ship.x) - th0));
   hop = { to: o, t: 0, c0: 0, c1: 0, sx: ship.x, sy: ship.y, sz: ship.z, vy: th0, vp: gaze.pitch, ship, turn: 1.2 + 2.2 * turn / Math.PI, da: Math.max(clearance, 1e-4) };
@@ -1094,7 +1094,7 @@ const TRIPS = [{ id: 'tour', name: 'tT' }, { id: 'random', name: 'tR' }, null,
 const tripStops = T => T.stops || OBJ.filter(o => o.parent && !o.iss).map(o => [o.name]);
 const tripName = T => T.comet ? tr('cTrip', nm(T.comet)) : tr(T.name);
 const tripNote = o => { const T = roam.trip, n = tripStops(T).length; return tripName(T) + ' · ' + (n - roam.deck.length) + '/' + n + ' · ' + (roam.lab ? tr(roam.lab) : nm(o)) + (roam.when ? ' · ' + roam.when : ''); };
-function startTrip(T) { stopTour(); stopRoam(); course = null; if (T.id === 'tour') { startTour(); return; }
+function startTrip(T) { tally('trip', TRIP_SLUG[T.name] || T.id || 'other'); stopTour(); stopRoam(); course = null; if (T.id === 'tour') { startTour(); return; }
   roam = { at: orbit ? orbit.body : near, timer: 0, trip: T.id === 'random' ? null : T }; setRate(0);
   if (roam.trip && T.stops && T.stops[0][1]) { roam.clock = Date.parse(T.stops[0][1] + 'T12:00:00Z'); simMs = roam.clock; place(); }
   if (roam.trip) roam.deck = tripStops(T).map(([n, y, lab]) => [OBJ.find(o => o.name === n), y, lab]).reverse();
@@ -1107,7 +1107,7 @@ function startTrip(T) { stopTour(); stopRoam(); course = null; if (T.id === 'tou
   roamBtn.setAttribute('aria-pressed', true); begin(); nextHop(); }
 function stopRoam() { if (course) { course.craft = null; course.legs = []; } if (!roam) { hop = null; return; } roam = null; hop = null; roamBtn.textContent = 'Random trip'; roamBtn.setAttribute('aria-pressed', false); }
 function nextHop() { const T = roam.trip;
-  if (!roam.deck || !roam.deck.length) { if (T) { const at = roam.at; stopRoam(); note = tr('tripEnd', inS(at)); noteUntil = performance.now() + 7000; if (!orbit) startOrbit(at); return; }       // an itinerary ends at its last stop
+  if (!roam.deck || !roam.deck.length) { if (T) { const at = roam.at; tally('trip-end', TRIP_SLUG[T.name] || 'other'); stopRoam(); note = tr('tripEnd', inS(at)); noteUntil = performance.now() + 7000; if (!orbit) startOrbit(at); return; }       // an itinerary ends at its last stop
     const d = OBJ.slice();       // the random trip deals a fresh shuffled deck: every object once before any repeats
     for (let i = d.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [d[i], d[j]] = [d[j], d[i]]; }
     if (d[d.length - 1] === roam.at) [d[0], d[d.length - 1]] = [d[d.length - 1], d[0]]; roam.deck = d.map(o => [o]); }
@@ -1283,7 +1283,7 @@ let infoAuto = null;
 function hideInfo() { if (infoObj) { infoObj = null; infoEl.hidden = true; } }
 iEl('infox').addEventListener('click', () => { hideInfo(); cv.focus(); });
 iEl('igo').addEventListener('click', () => { const o = infoObj; if (o) { flyTo(o); iEl('igo').hidden = true; } });
-document.getElementById('about').addEventListener('click', () => { const o = orbit ? orbit.body : near; if (infoObj === o) hideInfo(); else showInfo(o); });
+document.getElementById('about').addEventListener('click', () => { const o = orbit ? orbit.body : near; if (infoObj === o) hideInfo(); else { showInfo(o); tally('info', slug(o.name)); } });
 addEventListener('keydown', e => { if (e.key === 'Escape' && infoObj) { hideInfo(); cv.focus(); } });
 infoEl.addEventListener('mousedown', e => e.stopPropagation());
 
@@ -1291,15 +1291,24 @@ if (!saved.ship) { goTo(earth); started = false; noteUntil = 0; }      // open c
 // ---------------------------------------------------------------- links: the address ends in #go=mars or #trip=voyager1, so a link can open on one object or start one trip
 const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), TRIP_SLUG = { c_Halley: 'halley', 'c_Hale-Bopp': 'hale-bopp', c_Encke: 'encke', c_67P: '67p', c_NEOWISE: 'neowise', 'c_Tsuchinshan-ATLAS': 'tsuchinshan-atlas', tT: 'tour', tR: 'random', tP: 'planets', tM: 'moons', tA: 'apollo11', tV1: 'voyager1', tV2: 'voyager2', tG: 'galileo', tC: 'cassini', tN: 'newhorizons', tD: 'dawn' };
 let linkNow = '', linkSeen = '';
+// ---------------------------------------------------------------- anonymous counts of what visitors do. Only on the public site, through GoatCounter (no cookies, no names):
+// trips started and finished, places flown to, shared links opened, fact sheets opened, language. Each is counted once per page load.
+// Where the counter is absent (the standalone file, a blocked script) nothing happens.
+const tallied = new Set(), TALLY = { trip: 'Trip started', 'trip-end': 'Trip finished', go: 'Flew to', link: 'Opened by a shared link', info: 'Fact sheet opened', lang: 'Language' };
+function tally(kind, what, tries) { try { const path = kind + '/' + what; if (!tries) { if (tallied.has(path)) return; tallied.add(path); }
+    const g = window.goatcounter; if (g && g.count) g.count({ path, title: TALLY[kind] + ': ' + what, event: true });
+    else if ((tries || 0) < 8 && document.querySelector('script[data-goatcounter]')) setTimeout(() => tally(kind, what, (tries || 0) + 1), 2500); } catch (e) {} }
+// a link counts as 'opened' only on the first arrival in a tab: the address follows the viewer, so a reload would otherwise look like a new link every time
+let linkFresh = true; try { if (sessionStorage.getItem('ssv-here')) linkFresh = false; else sessionStorage.setItem('ssv-here', '1'); } catch (e) {}
 function openLink() { let h = ''; try { h = decodeURIComponent((location.hash || '').slice(1) || (location.search || '').slice(1)); } catch (e) {} if (!h || h === linkNow) return false;
   const m = /(?:^|&)(go|trip)=([^&]+)/.exec(h); if (!m) return false; const key = slug(m[2]);
-  if (m[1] === 'trip') { const T = TRIPS.find(t => t && (TRIP_SLUG[t.name] || '').replace(/-/g, '') === key.replace(/-/g, '')); if (!T) return false; if (!orbit) goTo(earth); startTrip(T); }
-  else { const o = OBJ.find(q => slug(q.name) === key) || OBJ.find(q => slug(q.name).replace(/-/g, '') === key.replace(/-/g, '')); if (!o) return false; goTo(o); }
+  if (m[1] === 'trip') { const T = TRIPS.find(t => t && (TRIP_SLUG[t.name] || '').replace(/-/g, '') === key.replace(/-/g, '')); if (!T) return false; if (linkFresh) tally('link', 'trip-' + TRIP_SLUG[T.name]); if (!orbit) goTo(earth); startTrip(T); }
+  else { const o = OBJ.find(q => slug(q.name) === key) || OBJ.find(q => slug(q.name).replace(/-/g, '') === key.replace(/-/g, '')); if (!o) return false; if (linkFresh) { tally('link', 'go-' + slug(o.name)); tally('go', slug(o.name)); } goTo(o); }
   started = true; return true; }
 // the address follows the viewer, so copying it at any moment gives a link to this place or this trip
 function linkStep() { const T = roam && roam.trip, o = orbit ? orbit.body : hop ? hop.to : null, want = tour ? 'trip=tour' : T ? 'trip=' + TRIP_SLUG[T.name] : roam ? 'trip=random' : o ? 'go=' + slug(o.name) : linkNow;
   if (want !== linkNow) { linkNow = want; try { history.replaceState(null, '', '#' + want); } catch (e) {} } }
-openLink(); addEventListener('hashchange', openLink);
+openLink(); linkFresh = false; tally('lang', lang); addEventListener('hashchange', openLink);
 // ---------------------------------------------------------------- updates: the page looks every few minutes for a newer copy of itself on the server and reloads into it.
 // The address already says where the viewer is, so the reload comes back to the same object. A trip is never interrupted: the reload waits until it ends or the tab is put away.
 { const meta = document.querySelector('meta[name="build"]'), mine = meta && meta.content; let fresh = '', due = 0;
@@ -1503,7 +1512,7 @@ function relabel() { if (!(roam || tour)) paused = false;
 const togglePause = () => { if (!(roam || tour)) return; paused = !paused; note = paused ? tr('paused') : ''; noteUntil = paused ? performance.now() + 4000 : 0; };
 pauseBtn.addEventListener('click', () => { togglePause(); cv.focus(); });
 addEventListener('keydown', e => { if (e.code === 'Space' && !typing(e) && !(e.target && e.target.tagName === 'BUTTON') && (roam || tour)) { togglePause(); e.preventDefault(); } });
-function applyLang(l) { if (l && UI[l]) { lang = l; try { localStorage.setItem('ssv-lang', l); } catch (e) {} }
+function applyLang(l) { if (l && UI[l]) { lang = l; try { localStorage.setItem('ssv-lang', l); } catch (e) {} tally('lang', l); }
   const rtl = lang !== 'en'; app.lang = lang; mc.direction = 'ltr';
   for (const q of ['.readout', '.tools', '#info', '#hint', '#navlabel', '.intro', '.credit']) document.querySelector(q).dir = rtl ? 'rtl' : 'ltr';
   for (const el of document.querySelectorAll('[data-t]')) el.textContent = tr(el.dataset.t);
