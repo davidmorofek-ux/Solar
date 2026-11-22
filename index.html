@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261122-094726"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261122-101544"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image"><script>window.goatcounter = { path: function () { return location.pathname.replace(/\/+$/, "") || "/"; } };</script>
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -1293,11 +1293,12 @@ const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, 
 let linkNow = '', linkSeen = '';
 // ---------------------------------------------------------------- anonymous counts of what visitors do. Only on the public site, through GoatCounter (no cookies, no names):
 // trips started and finished, places flown to, shared links opened, fact sheets opened, language. Each is counted once per page load.
-// Where the counter is absent (the standalone file, a blocked script) nothing happens.
-const tallied = new Set(), TALLY = { trip: 'Trip started', 'trip-end': 'Trip finished', go: 'Flew to', link: 'Opened by a shared link', info: 'Fact sheet opened', lang: 'Language' };
+// The public page announces the counter by setting window.goatcounter before anything else; the counter itself loads later, so early counts wait for it (up to half a minute).
+// Where it is absent (the standalone file) nothing happens.
+const tallied = new Set(), TALLY = { trip: 'Trip started', 'trip-end': 'Trip finished', go: 'Flew to', link: 'Opened by a shared link', from: 'Arrived from', info: 'Fact sheet opened', lang: 'Language' };
 function tally(kind, what, tries) { try { const path = kind + '/' + what; if (!tries) { if (tallied.has(path)) return; tallied.add(path); }
     const g = window.goatcounter; if (g && g.count) g.count({ path, title: TALLY[kind] + ': ' + what, event: true });
-    else if ((tries || 0) < 8 && document.querySelector('script[data-goatcounter]')) setTimeout(() => tally(kind, what, (tries || 0) + 1), 2500); } catch (e) {} }
+    else if (g && (tries || 0) < 15) setTimeout(() => tally(kind, what, (tries || 0) + 1), 2000); } catch (e) {} }
 // a link counts as 'opened' only on the first arrival in a tab: the address follows the viewer, so a reload would otherwise look like a new link every time
 let linkFresh = true; try { if (sessionStorage.getItem('ssv-here')) linkFresh = false; else sessionStorage.setItem('ssv-here', '1'); } catch (e) {}
 function openLink() { let h = ''; try { h = decodeURIComponent((location.hash || '').slice(1) || (location.search || '').slice(1)); } catch (e) {} if (!h || h === linkNow) return false;
@@ -1308,6 +1309,10 @@ function openLink() { let h = ''; try { h = decodeURIComponent((location.hash ||
 // the address follows the viewer, so copying it at any moment gives a link to this place or this trip
 function linkStep() { const T = roam && roam.trip, o = orbit ? orbit.body : hop ? hop.to : null, want = tour ? 'trip=tour' : T ? 'trip=' + TRIP_SLUG[T.name] : roam ? 'trip=random' : o ? 'go=' + slug(o.name) : linkNow;
   if (want !== linkNow) { linkNow = want; try { history.replaceState(null, '', '#' + want); } catch (e) {} } }
+// Visitors sent by an advertisement arrive with a click id in the address (?twclid=... from X, ?fbclid=... from Facebook). It is counted once, as where they came from,
+// and then taken out of the address, so that a link copied from here is clean and does not carry someone else's click id around.
+try { const q = location.search; if (/[?&](twclid|fbclid)=/.test(q)) { if (linkFresh) tally('from', /[?&]twclid=/.test(q) ? 'x-ad' : 'facebook-click');
+    const u = new URL(location.href); u.searchParams.delete('twclid'); u.searchParams.delete('fbclid'); history.replaceState(null, '', u.pathname + u.search + u.hash); } } catch (e) {}
 openLink(); linkFresh = false; tally('lang', lang); addEventListener('hashchange', openLink);
 // ---------------------------------------------------------------- updates: the page looks every few minutes for a newer copy of itself on the server and reloads into it.
 // The address already says where the viewer is, so the reload comes back to the same object. A trip is never interrupted: the reload waits until it ends or the tab is put away.
