@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261122-145024"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image"><script>window.goatcounter = { path: function () { return location.pathname.replace(/\/+$/, "") || "/"; } };</script>
+<html lang="en"><head><meta charset="utf-8"><meta name="build" content="20261124-222625"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Solar System Voyage</title><meta name="author" content="David Mor Ofek"><meta name="description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now. © 2026 David Mor Ofek"><meta property="og:title" content="Solar System Voyage"><meta property="og:description" content="Fly around the Sun, planets, moons and asteroids at true scale, where they are right now."><meta property="og:type" content="website"><meta property="og:url" content="https://solarvoyage.org/"><meta property="og:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:image" content="https://solarvoyage.org/preview.jpg"><meta name="twitter:card" content="summary_large_image"><script>window.goatcounter = { path: function () { return location.pathname.replace(/\/+$/, "") || "/"; } };</script>
 <style>html, body { margin: 0; height: 100%; background: #04060c; }</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>Solar System Voyage</title>
@@ -244,8 +244,8 @@ const UI = {
     flyTo: 'Flying to {n}', next: 'Next stop: {n}', stay: 'Circling {n} for 30 seconds, then on to somewhere new.', paused: 'Paused. Press Play to carry on.', none: 'Nothing by that name',
     now: 'Right now', worth: 'Worth knowing', go: 'Go there', src: 'Figures: NASA fact sheets', size: 'Size', day: 'One day', year: 'One year', orbit1: 'One orbit', temp: 'Temperature', grav: 'Gravity', gravOf: '{n}% of Earth’s', weighs: '70 kg person weighs', moons: 'Known moons',
     fromSun: 'From the Sun', fromEarth: 'From Earth', from: 'From {n}', lightTakes: 'Light or radio takes', sunLight: 'Light from the Sun takes', fromE: '{n} from Earth',
-    km: 'km', mkm: 'million km', bkm: 'billion km', au: 'AU', sec: 'seconds', min: 'minutes', hr: 'hours', kg: 'kg', g: 'grams',
-    kStar: 'star', kPlanet: 'planet', kDwarf: 'dwarf planet', kAst: 'asteroid', kMoon: 'moon of {n}', trips: 'Trips', tripEnd: 'End of the trip. You are now circling {n}.', stops: 'stops', tT: 'Grand tour', tTs: '1 minute', tR: 'Random trip', tRs: 'never ends', tM: 'All the moons', tV1: 'Voyager 1', tV2: 'Voyager 2', tC: 'Cassini', tG: 'Galileo', tN: 'New Horizons', tD: 'Dawn', tA: 'Apollo 11', tP: 'Planets, one by one', kStation: 'space station', kCraft: 'spacecraft', kComet: 'comet', skip: 'Next stop', cTrip: 'Comet {n}', sIn: 'coming in', sPeri: 'closest to the Sun', sNow: 'today', speed: 'Speed', alt: 'Height above the ground', issPos: 'Position', issLive: 'live, from tracking data', issApprox: 'approximate (no live data)', title1: 'Solar System', title2: 'Voyage', sub: 'Real positions · true scale · right now', images: 'Images', other: 'and other sources' },
+    yrs: 'years', ly: 'light-years', km: 'km', mkm: 'million km', bkm: 'billion km', au: 'AU', sec: 'seconds', min: 'minutes', hr: 'hours', kg: 'kg', g: 'grams',
+    kStar: 'star', kStarOf: 'star · Alpha Centauri system', kExo: 'planet of {n}', kPlanet: 'planet', kDwarf: 'dwarf planet', kAst: 'asteroid', kMoon: 'moon of {n}', trips: 'Trips', tripEnd: 'End of the trip. You are now circling {n}.', stops: 'stops', tT: 'Grand tour', tTs: '1 minute', tR: 'Random trip', tRs: 'never ends', tM: 'All the moons', tV1: 'Voyager 1', tV2: 'Voyager 2', tC: 'Cassini', tG: 'Galileo', tN: 'New Horizons', tD: 'Dawn', tA: 'Apollo 11', tP: 'Planets, one by one', kStation: 'space station', kCraft: 'spacecraft', kComet: 'comet', skip: 'Next stop', cTrip: 'Comet {n}', sIn: 'coming in', sPeri: 'closest to the Sun', sNow: 'today', speed: 'Speed', alt: 'Height above the ground', issPos: 'Position', issLive: 'live, from tracking data', issApprox: 'approximate (no live data)', title1: 'Solar System', title2: 'Voyage', sub: 'Real positions · true scale · right now', images: 'Images', other: 'and other sources' },
   he: { updating: 'גרסה חדשה של הדף מוכנה. טוען מחדש…', share: 'העתקת קישור', copied: 'הקישור הועתק. מי שיפתח אותו יתחיל כאן: {n}', linkIs: 'העתיקו את הקישור: {n}', find: 'חיפוש כוכב לכת, ירח או אסטרואיד', orbitOf: 'הקפת {n}', stopOrbit: 'עצירת הקפה', startTour: 'התחלת סיור', stopTour: 'עצירת סיור', roam: 'מסע אקראי', stopRoam: 'עצירת מסע', pause: 'השהיה', play: 'המשך', info: 'מידע', home: 'חזרה לכדור הארץ',
     time: ['זמן: אמת', 'זמן: שעה בשנייה', 'זמן: יום בשנייה', 'זמן: 10 ימים בשנייה'], date: 'תאריך (UTC)', nearest: 'הקרוב ביותר', speed: 'מהירות', xlight: '× מהירות האור', nav: 'ניווט · המפה אינה בקנה מידה', belt: 'חגורת האסטרואידים',
     hintClick: 'לחצו על התצוגה כדי להשתמש במקשי החצים', hintKeys: 'בחרו יעד בתיבת החיפוש, או לחצו עליו פעמיים במפה, כדי לטוס אליו. לחיצה כפולה על כל גוף מציגה עובדות עליו. במקלדת, החזיקו <kbd>←</kbd> <kbd>→</kbd> כדי להקיף מהר יותר, לכל כיוון. החצים שעל המסך מסובבים את המבט.',
@@ -253,8 +253,8 @@ const UI = {
     flyTo: 'טסים אל {n}', next: 'היעד הבא: {n}', stay: 'מקיפים את {n} במשך 30 שניות, ואז ממשיכים ליעד חדש.', paused: 'המסע מושהה. לחצו על "המשך" כדי להמשיך.', none: 'לא נמצא גוף בשם הזה',
     now: 'ברגע זה', worth: 'כדאי לדעת', go: 'קפיצה לשם', src: 'נתונים: דפי הנתונים של נאס"א', size: 'גודל', day: 'יממה', year: 'שנה', orbit1: 'הקפה אחת', temp: 'טמפרטורה', grav: 'כוח המשיכה', gravOf: '{n}% מזה של כדור הארץ', weighs: 'אדם של 70 ק"ג שוקל', moons: 'ירחים ידועים',
     fromSun: 'מרחק מהשמש', fromEarth: 'מרחק מכדור הארץ', from: 'מרחק מ{n}', lightTakes: 'אור או אות רדיו מגיעים תוך', sunLight: 'אור השמש מגיע תוך', fromE: '{n} מכדור הארץ',
-    km: 'ק"מ', mkm: 'מיליון ק"מ', bkm: 'מיליארד ק"מ', au: 'יחידות אסטרונומיות', sec: 'שניות', min: 'דקות', hr: 'שעות', kg: 'ק"ג', g: 'גרם',
-    kStar: 'כוכב', kPlanet: 'כוכב לכת', kDwarf: 'כוכב לכת ננסי', kAst: 'אסטרואיד', kMoon: 'ירח של {n}', trips: 'מסעות', tripEnd: 'סוף המסע. כעת מקיפים את {n}.', stops: 'תחנות', tT: 'הסיור הגדול', tTs: 'דקה אחת', tR: 'מסע אקראי', tRs: 'ללא סוף', tM: 'כל הירחים', tV1: 'וויאג׳ר 1', tV2: 'וויאג׳ר 2', tC: 'קסיני', tG: 'גלילאו', tN: 'ניו הורייזונס', tD: 'החללית Dawn', tA: 'אפולו 11', tP: 'כוכבי הלכת, אחד אחד', kStation: 'תחנת חלל', kCraft: 'חללית', kComet: 'כוכב שביט', skip: 'לתחנה הבאה', cTrip: 'השביט {n}', sIn: 'מתקרב לשמש', sPeri: 'הכי קרוב לשמש', sNow: 'היום', speed: 'מהירות', alt: 'גובה מעל פני הקרקע', issPos: 'מיקום', issLive: 'חי, מנתוני מעקב', issApprox: 'משוער (אין נתונים חיים)', title1: 'מסע במערכת', title2: 'השמש', sub: 'מיקומים אמיתיים · קנה מידה אמיתי · ברגע זה', images: 'תמונות', other: 'ומקורות נוספים' },
+    yrs: 'שנים', ly: 'שנות אור', km: 'ק"מ', mkm: 'מיליון ק"מ', bkm: 'מיליארד ק"מ', au: 'יחידות אסטרונומיות', sec: 'שניות', min: 'דקות', hr: 'שעות', kg: 'ק"ג', g: 'גרם',
+    kStar: 'כוכב', kStarOf: 'כוכב · מערכת אלפא קנטאורי', kExo: 'כוכב לכת של {n}', kPlanet: 'כוכב לכת', kDwarf: 'כוכב לכת ננסי', kAst: 'אסטרואיד', kMoon: 'ירח של {n}', trips: 'מסעות', tripEnd: 'סוף המסע. כעת מקיפים את {n}.', stops: 'תחנות', tT: 'הסיור הגדול', tTs: 'דקה אחת', tR: 'מסע אקראי', tRs: 'ללא סוף', tM: 'כל הירחים', tV1: 'וויאג׳ר 1', tV2: 'וויאג׳ר 2', tC: 'קסיני', tG: 'גלילאו', tN: 'ניו הורייזונס', tD: 'החללית Dawn', tA: 'אפולו 11', tP: 'כוכבי הלכת, אחד אחד', kStation: 'תחנת חלל', kCraft: 'חללית', kComet: 'כוכב שביט', skip: 'לתחנה הבאה', cTrip: 'השביט {n}', sIn: 'מתקרב לשמש', sPeri: 'הכי קרוב לשמש', sNow: 'היום', speed: 'מהירות', alt: 'גובה מעל פני הקרקע', issPos: 'מיקום', issLive: 'חי, מנתוני מעקב', issApprox: 'משוער (אין נתונים חיים)', title1: 'מסע במערכת', title2: 'השמש', sub: 'מיקומים אמיתיים · קנה מידה אמיתי · ברגע זה', images: 'תמונות', other: 'ומקורות נוספים' },
   ar: { updating: 'نسخة أحدث من الصفحة جاهزة. جارٍ إعادة التحميل…', share: 'نسخ الرابط', copied: 'تم نسخ الرابط. من يفتحه يبدأ من هنا: {n}', linkIs: 'انسخ هذا الرابط: {n}', find: 'ابحث عن كوكب أو قمر أو كويكب', orbitOf: 'الدوران حول {n}', stopOrbit: 'إيقاف الدوران', startTour: 'بدء الجولة', stopTour: 'إيقاف الجولة', roam: 'رحلة عشوائية', stopRoam: 'إيقاف الرحلة', pause: 'إيقاف مؤقت', play: 'متابعة', info: 'معلومات', home: 'العودة إلى الأرض',
     time: ['الزمن: مباشر', 'الزمن: ساعة في الثانية', 'الزمن: يوم في الثانية', 'الزمن: 10 أيام في الثانية'], date: 'التاريخ (UTC)', nearest: 'الأقرب', speed: 'السرعة', xlight: '× سرعة الضوء', nav: 'الملاحة · الخريطة ليست بمقياس حقيقي', belt: 'حزام الكويكبات',
     hintClick: 'انقر على العرض لاستخدام مفاتيح الأسهم', hintKeys: 'اختر وجهة من مربع البحث، أو انقر عليها نقرًا مزدوجًا في الخريطة، للطيران إليها. انقر نقرًا مزدوجًا على أي جرم لعرض حقائق عنه. على لوحة المفاتيح، اضغط مطولًا على <kbd>←</kbd> <kbd>→</kbd> للدوران أسرع في أي اتجاه. الأسهم على الشاشة تدير المنظر.',
@@ -262,8 +262,8 @@ const UI = {
     flyTo: 'نتجه إلى {n}', next: 'الوجهة التالية: {n}', stay: 'ندور حول {n} لمدة 30 ثانية، ثم ننتقل إلى وجهة جديدة.', paused: 'الرحلة متوقفة مؤقتًا. اضغط «متابعة» للاستمرار.', none: 'لا يوجد جرم بهذا الاسم',
     now: 'الآن', worth: 'معلومات تستحق المعرفة', go: 'انتقل إلى هناك', src: 'الأرقام: صحائف بيانات ناسا', size: 'الحجم', day: 'اليوم', year: 'السنة', orbit1: 'دورة واحدة', temp: 'درجة الحرارة', grav: 'الجاذبية', gravOf: '{n}% من جاذبية الأرض', weighs: 'وزن شخص كتلته 70 كغ', moons: 'الأقمار المعروفة',
     fromSun: 'البعد عن الشمس', fromEarth: 'البعد عن الأرض', from: 'البعد عن {n}', lightTakes: 'يصل الضوء أو الإشارة خلال', sunLight: 'يصل ضوء الشمس خلال', fromE: '{n} من الأرض',
-    km: 'كم', mkm: 'مليون كم', bkm: 'مليار كم', au: 'وحدة فلكية', sec: 'ثانية', min: 'دقيقة', hr: 'ساعة', kg: 'كغ', g: 'غرام',
-    kStar: 'نجم', kPlanet: 'كوكب', kDwarf: 'كوكب قزم', kAst: 'كويكب', kMoon: 'قمر {n}', trips: 'رحلات', tripEnd: 'نهاية الرحلة. ندور الآن حول {n}.', stops: 'محطات', tT: 'الجولة الكبرى', tTs: 'دقيقة واحدة', tR: 'رحلة عشوائية', tRs: 'بلا نهاية', tM: 'كل الأقمار', tV1: 'فوياجر 1', tV2: 'فوياجر 2', tC: 'كاسيني', tG: 'غاليليو', tN: 'نيو هورايزنز', tD: 'المركبة «دون»', tA: 'أبولو 11', tP: 'الكواكب واحدًا واحدًا', kStation: 'محطة فضاء', kCraft: 'مركبة فضائية', kComet: 'مذنّب', skip: 'المحطة التالية', cTrip: 'المذنّب {n}', sIn: 'يقترب من الشمس', sPeri: 'الأقرب إلى الشمس', sNow: 'اليوم', speed: 'السرعة', alt: 'الارتفاع فوق سطح الأرض', issPos: 'الموقع', issLive: 'مباشر، من بيانات التتبع', issApprox: 'تقريبي (لا توجد بيانات مباشرة)', title1: 'رحلة في النظام', title2: 'الشمسي', sub: 'مواقع حقيقية · مقياس حقيقي · الآن', images: 'الصور', other: 'ومصادر أخرى' } };
+    yrs: 'سنة', ly: 'سنة ضوئية', km: 'كم', mkm: 'مليون كم', bkm: 'مليار كم', au: 'وحدة فلكية', sec: 'ثانية', min: 'دقيقة', hr: 'ساعة', kg: 'كغ', g: 'غرام',
+    kStar: 'نجم', kStarOf: 'نجم · نظام ألفا قنطورس', kExo: 'كوكب يدور حول {n}', kPlanet: 'كوكب', kDwarf: 'كوكب قزم', kAst: 'كويكب', kMoon: 'قمر {n}', trips: 'رحلات', tripEnd: 'نهاية الرحلة. ندور الآن حول {n}.', stops: 'محطات', tT: 'الجولة الكبرى', tTs: 'دقيقة واحدة', tR: 'رحلة عشوائية', tRs: 'بلا نهاية', tM: 'كل الأقمار', tV1: 'فوياجر 1', tV2: 'فوياجر 2', tC: 'كاسيني', tG: 'غاليليو', tN: 'نيو هورايزنز', tD: 'المركبة «دون»', tA: 'أبولو 11', tP: 'الكواكب واحدًا واحدًا', kStation: 'محطة فضاء', kCraft: 'مركبة فضائية', kComet: 'مذنّب', skip: 'المحطة التالية', cTrip: 'المذنّب {n}', sIn: 'يقترب من الشمس', sPeri: 'الأقرب إلى الشمس', sNow: 'اليوم', speed: 'السرعة', alt: 'الارتفاع فوق سطح الأرض', issPos: 'الموقع', issLive: 'مباشر، من بيانات التتبع', issApprox: 'تقريبي (لا توجد بيانات مباشرة)', title1: 'رحلة في النظام', title2: 'الشمسي', sub: 'مواقع حقيقية · مقياس حقيقي · الآن', images: 'الصور', other: 'ومصادر أخرى' } };
 // each object: [name, lead, size, day, year or orbit, temperature, [facts]]
 const LOC = { he: {
   Sun: ['השמש', 'הכוכב שבמרכז: כדור של מימן והליום שמכיל 99.8% מכל המסה במערכת השמש.', '1,391,400 ק"מ (פי 109 מכדור הארץ)', 'כ-25 ימים בקו המשווה, 35 ליד הקטבים', '', '5,500°C על פני השטח, 15.7 מיליון בליבה', ['בתוכה היו נכנסים כ-1.3 מיליון כדורי ארץ.', 'האור שלה מגיע לכדור הארץ אחרי 8 דקות ו-20 שניות, כך שתמיד רואים אותה כפי שהייתה לפני 8 דקות.', 'בכל שנייה היא הופכת כ-4 מיליון טונות של חומר לאנרגיה, ויש לה דלק לעוד כ-5 מיליארד שנים.']],
@@ -307,6 +307,12 @@ const LOC = { he: {
   Neptune: ['נפטון', 'כוכב הלכת הרחוק ביותר: ענק קרח כחול עמוק עם הרוחות המהירות ביותר במערכת השמש.', '49,528 ק"מ (פי 4 מכדור הארץ)', '16 שעות ו-6 דקות', '165 שנות ארץ', 'מינוס 200°C', ['הרוחות מגיעות ליותר מ-2,000 קמ"ש, מהר ממהירות הקול בכדור הארץ.', 'הוא התגלה בעזרת מתמטיקה: מיקומו חושב לפי המשיכה שלו על אורנוס עוד לפני שמישהו ראה אותו, ב-1846.', 'מאז שהתגלה הוא השלים הקפה אחת בלבד, ב-2011.']],
   Triton: ['טריטון', 'הירח הגדול של נפטון, שמקיף אותו בכיוון הפוך וכנראה נלכד מחגורת קויפר.', '2,707 ק"מ', '5.9 ימי ארץ, אותו צד פונה לנפטון', '5.9 ימים סביב נפטון, בכיוון הפוך', 'מינוס 235°C, מהמשטחים הקרים ביותר שידועים', ['זהו הירח הגדול היחיד שמקיף את כוכב הלכת שלו נגד כיוון הסיבוב של כוכב הלכת.', 'וויאג׳ר 2 ראתה גייזרים של גז חנקן ואבק כהה שמתנשאים לגובה של כ-8 ק"מ.', 'המסלול שלו מתכווץ לאט, ובעוד כמה מיליארדי שנים נפטון עשוי לפרק אותו לטבעת.']],
   Pluto: ['פלוטו', 'כוכב לכת ננסי בחגורת קויפר, עם מישור ענק בצורת לב עשוי קרח חנקן.', '2,377 ק"מ (שני שלישים מהירח שלנו)', '6.4 ימי ארץ, בכיוון הפוך', '248 שנות ארץ', 'מינוס 230°C', ['הלב הבהיר, טומבו רגיו, נקרא על שם קלייד טומבו, שגילה את פלוטו ב-1930.', 'הוא נחשב לכוכב הלכת התשיעי עד 2006, ואז סווג מחדש ככוכב לכת ננסי.', 'הירח הגדול שלו, כארון, רוחבו חצי מרוחב פלוטו, והשניים מפנים תמיד אותו צד זה לזה.', 'החללית New Horizons של נאס"א חלפה לידו ביולי 2015, אחרי מסע של תשע שנים וחצי.']],
+  'Alpha Centauri A': ['אלפא קנטאורי A', 'הכוכב הגדול במערכת הכוכבים הקרובה ביותר לשמש, במרחק 4.34 שנות אור. מעט גדול ובהיר מהשמש.', '1,694,000 ק"מ (פי 1.22 מהשמש)', 'כ-28 ימים', 'מקיף את בן זוגו B פעם ב-79.8 שנים', '5,530°C על פני השטח', ['נקרא גם ריגיל קנטאורוס. מכדור הארץ A ו-B נראים כנקודה אחת, הכוכב השלישי בבהירותו בשמי הלילה, ונראים מחצי הכדור הדרומי.', 'המרחק בין A ל-B נע בין פי 11 לפי 35 ממרחק כדור הארץ מהשמש. הפעם הבאה שיהיו הכי קרובים: 2035.', 'ב-2024 ראה טלסקופ ווב סימנים לכוכב לכת במסת שבתאי ליד הכוכב הזה. הוא עדיין לא אושר.']],
+  'Alpha Centauri B': ['אלפא קנטאורי B', 'הכוכב הקטן בצמד: כתום, קר מהשמש ובהיר כמחציתה.', '1,195,000 ק"מ (פי 0.86 מהשמש)', 'כ-37 ימים', 'מקיף את בן זוגו A פעם ב-79.8 שנים', '4,930°C על פני השטח', ['נקרא גם טולימן.', 'מכוכב לכת של A הכוכב הזה היה מאיר כמו 150 עד 1,600 ירחים מלאים, לפי המקום של שני הכוכבים במסלולם.', 'כוכב לכת שהוכרז כאן ב-2012 התברר כטעות בעיבוד הנתונים, וההכרזה בוטלה ב-2015.']],
+  'Proxima Centauri': ['פרוקסימה קנטאורי', 'הכוכב הקרוב ביותר לשמש, במרחק 4.25 שנות אור: ננס אדום קטן וחיוור.', '214,600 ק"מ (0.15 מקוטר השמש; פי אחד וחצי מצדק)', 'כ-85 ימים', 'מקיף את A ו-B בכ-550,000 שנה', '2,720°C על פני השטח', ['מסתו שמינית ממסת השמש והוא פולט 0.16% מאורה. חיוור מכדי לראות אותו בלי טלסקופ.', 'הוא רחוק מ-A ומ-B בערך פי 13,000 ממרחק כדור הארץ מהשמש. מכאן הם נראים כשני כוכבים מבריקים וצמודים.', 'יש בו התפרצויות עזות, שמקשות על כוכבי הלכת שלו. שניים מאושרים, b ו-d. שלישי, c, דווח ב-2019 ועדיין שנוי במחלוקת.']],
+  'Proxima b': ['פרוקסימה b', 'כוכב הלכת הקרוב ביותר הידוע מחוץ למערכת השמש: מסתו לפחות כמסת כדור הארץ, והוא במרחק מהכוכב שלו שבו מים יכולים להיות נוזליים.', 'לא נמדד; כנראה מעט רחב מכדור הארץ', 'כנראה מפנה תמיד אותו צד לכוכב שלו', '11.2 ימי ארץ', 'כמינוס 40°C אם אין לו אוויר', ['התגלה ב-2016 לפי התנודה שהוא גורם לכוכב שלו. איש לא ראה אותו: המראה שלו כאן הוא ניחוש, עולם סלעי חשוף באור אדום.', 'הוא מקבל כשני שלישים מהאור שכדור הארץ מקבל מהשמש, אבל הרבה יותר קרינת רנטגן והתפרצויות, שאולי קילפו ממנו את האוויר.', 'לא ידוע אם יש בו אוויר או מים.']],
+  'Proxima d': ['פרוקסימה d', 'כוכב לכת קטן וקרוב מאוד לפרוקסימה, במסה של כרבע מכדור הארץ: מהקלים ביותר שהתגלו אי פעם לפי תנודת הכוכב.', 'לא נמדד; כנראה כ-0.8 מקוטר כדור הארץ', 'כנראה מפנה תמיד אותו צד לכוכב שלו', '5.1 ימי ארץ', 'כ-85°C אם אין לו אוויר', ['דווח ב-2022 ואושר ב-2025.', 'חם מדי למים נוזליים.', 'המראה שלו כאן הוא ניחוש: איש לא ראה אותו.']],
+  'Alpha Centauri Ab': ['אלפא קנטאורי Ab (מועמד)', 'כוכב לכת ענק אפשרי, בערך במסת שבתאי, שנראה פעם אחת בטלסקופ ווב ליד אלפא קנטאורי A. לא אושר.', 'לא נמדד; כנראה בערך ברוחב של צדק', 'לא ידוע', 'בערך שנתיים ארציות', 'כמינוס 50°C', ['ווב ראה אותו באוגוסט 2024 ולא מצא אותו שוב בשתי תצפיות ב-2025. זה מתאים לכוכב לכת שהתקרב מדי לכוכב מכדי להיראות.', 'אם הוא אמיתי, הוא נע בין פי 1 לפי 2 ממרחק כדור הארץ מהשמש: כוכב הלכת הקרוב ביותר באזור הישיב של כוכב דמוי שמש. לענק גז אין פני שטח לחיות עליהם.', 'הוא מצויר כענק חיוור עטוף ענני מים, כפי שהטמפרטורה שלו מרמזת. זה ניחוש, וגם המסלול שלו.']],
   Charon: ['כארון', 'הירח הגדול ביותר של פלוטו, גדול כל כך ביחס אליו שהשניים מקיפים זה את זה כמו כוכב לכת כפול.', '1,212 ק"מ (חצי מפלוטו)', '6.4 ימי ארץ, אותו צד פונה לפלוטו', '6.4 ימים סביב פלוטו', 'מינוס 220°C', ['פלוטו וכארון נעולים פנים אל פנים: מצדו האחד של פלוטו כארון תלוי תמיד באותה נקודה בשמיים ואינו שוקע לעולם.', 'הכתם האדום הכהה בקוטב הצפוני שלו, שמכונה מורדור מקולה, הוא כנראה גז שנמלט מפלוטו וקפא שם.', 'רצועת קניונים סביב מרכזו, בעומק של עד 9 ק"מ, מרמזת שאוקיינוס קדום בתוכו קפא וביקע את הירח.', 'ג׳יימס כריסטי גילה אותו ב-1978, בזכות בליטה בתצלומים של פלוטו.']],
   Ceres: ['קרס', 'הגוף הגדול ביותר בחגורת האסטרואידים, וכוכב הלכת הננסי היחיד במערכת השמש הפנימית.', '965 × 961 × 891 ק"מ', '9.1 שעות', '4.6 שנות ארץ', '', ['זה היה האסטרואיד הראשון שהתגלה, בידי ג׳וזפה פיאצי ב-1 בינואר 1801.', 'הכתם הבהיר במכתש אוקטור הוא מלח שנותר ממי מלח שעלו אל פני השטח.', 'ייתכן שכרבע ממשקלו מים, יותר מים מתוקים משיש בכדור הארץ.']],
   Interamnia: ['אינטראמניה', 'אחד האסטרואידים הגדולים בחגורה, ששום חללית לא ביקרה בו.', 'כ-330 ק"מ', '8.7 שעות', '5.4 שנות ארץ', '', ['הוא התגלה ב-1910 בידי וינצ׳נצו צ׳רולי ונקרא על שם השם הלטיני של עיר הולדתו, טראמו שבאיטליה.', 'כל מה שידוע על צורתו מגיע מטלסקופים, ולכן פני השטח כאן הם ניחוש מושכל.', 'הוא כהה, וכנראה עשיר בפחמן ובמינרלים שמכילים מים.']],
@@ -354,6 +360,12 @@ const LOC = { he: {
   Neptune: ['نبتون', 'أبعد الكواكب: عملاق جليدي أزرق داكن فيه أسرع رياح في النظام الشمسي.', '49,528 كم (4 أضعاف قطر الأرض)', '16 ساعة و6 دقائق', '165 سنة أرضية', 'ناقص 200 درجة مئوية', ['تتجاوز سرعة رياحه 2,000 كم في الساعة، أسرع من الصوت على الأرض.', 'اكتُشف بالرياضيات: حُسب موقعه من تأثير جاذبيته في أورانوس قبل أن يراه أحد، عام 1846.', 'لم يُكمل منذ اكتشافه سوى دورة واحدة، عام 2011.']],
   Triton: ['ترايتون', 'قمر نبتون الكبير، يدور بالاتجاه المعاكس ويرجَّح أنه أُسر من حزام كايبر.', '2,707 كم', '5.9 يوم أرضي، بالوجه نفسه نحو نبتون', '5.9 يوم حول نبتون، بالاتجاه المعاكس', 'ناقص 235 درجة مئوية، من أبرد السطوح المعروفة', ['هو القمر الكبير الوحيد الذي يدور حول كوكبه عكس اتجاه دوران الكوكب.', 'رصدت فوياجر 2 ينابيع من غاز النيتروجين والغبار الداكن ترتفع نحو 8 كم.', 'مداره ينكمش ببطء، وبعد بضعة مليارات من السنين قد يفتته نبتون إلى حلقة.']],
   Pluto: ['بلوتو', 'كوكب قزم في حزام كايبر، فيه سهل هائل على شكل قلب من جليد النيتروجين.', '2,377 كم (ثلثا قطر قمرنا)', '6.4 يوم أرضي، بالاتجاه المعاكس', '248 سنة أرضية', 'ناقص 230 درجة مئوية', ['القلب اللامع، تومبو ريجيو، سُمّي باسم كلايد تومبو الذي اكتشف بلوتو عام 1930.', 'كان يُعدّ الكوكب التاسع حتى عام 2006، ثم أُعيد تصنيفه كوكبًا قزمًا.', 'أكبر أقماره، شارون، عرضه نصف عرض بلوتو، ويواجه كل منهما الآخر بالوجه نفسه دائمًا.', 'حلّقت قربه مركبة «نيو هورايزنز» التابعة لناسا في يوليو 2015 بعد رحلة دامت تسع سنوات ونصفًا.']],
+  'Alpha Centauri A': ['ألفا قنطورس A', 'النجم الأكبر في أقرب نظام نجمي إلى الشمس، على بعد 4.34 سنة ضوئية. أكبر وألمع قليلًا من الشمس.', '1,694,000 كم (1.22 من قطر الشمس)', 'نحو 28 يومًا', 'يدور حول رفيقه B كل 79.8 سنة', '5,530 درجة مئوية على السطح', ['يسمى أيضًا رجل القنطور. من الأرض يبدو A و B نقطة واحدة، ثالث ألمع نجم في سماء الليل، ويُرى من نصف الكرة الجنوبي.', 'تتراوح المسافة بين A و B بين 11 و 35 ضعف بُعد الأرض عن الشمس. أقرب اقتراب قادم عام 2035.', 'في 2024 رصد تلسكوب ويب دلائل على كوكب بكتلة زحل قرب هذا النجم. لم يتأكد بعد.']],
+  'Alpha Centauri B': ['ألفا قنطورس B', 'النجم الأصغر في الثنائي: برتقالي، أبرد من الشمس وبنصف لمعانها.', '1,195,000 كم (0.86 من قطر الشمس)', 'نحو 37 يومًا', 'يدور حول رفيقه A كل 79.8 سنة', '4,930 درجة مئوية على السطح', ['يسمى أيضًا الظليمان.', 'من كوكب يدور حول A يضيء هذا النجم مثل 150 إلى 1,600 بدر، بحسب موضع النجمين في مدارهما.', 'كوكب أُعلن عنه هنا عام 2012 تبيّن أنه خطأ في معالجة البيانات، وسُحب الإعلان عام 2015.']],
+  'Proxima Centauri': ['قنطورس الأقرب', 'أقرب نجم إلى الشمس، على بعد 4.25 سنة ضوئية: قزم أحمر صغير وخافت.', '214,600 كم (0.15 من قطر الشمس؛ مرة ونصف قطر المشتري)', 'نحو 85 يومًا', 'يدور حول A و B في نحو 550,000 سنة', '2,720 درجة مئوية على السطح', ['كتلته ثُمن كتلة الشمس ويبعث 0.16% من ضوئها. أخفت من أن يُرى بلا تلسكوب.', 'يبعد عن A و B نحو 13,000 ضعف بُعد الأرض عن الشمس. من هنا يبدوان نجمين ساطعين متقاربين.', 'تصدر عنه توهجات عنيفة تقسو على كواكبه. كوكبان مؤكدان، b و d. وثالث، c، أُعلن عنه عام 2019 وما زال موضع خلاف.']],
+  'Proxima b': ['بروكسيما b', 'أقرب كوكب معروف خارج النظام الشمسي: كتلته لا تقل عن كتلة الأرض، وعلى بُعد من نجمه يسمح بوجود الماء سائلًا.', 'لم يُقس؛ على الأرجح أعرض قليلًا من الأرض', 'على الأرجح يواجه نجمه بوجه واحد دائمًا', '11.2 يومًا أرضيًا', 'نحو 40 تحت الصفر إن لم يكن له هواء', ['اكتُشف عام 2016 من الاهتزاز الذي يسببه لنجمه. لم يره أحد: شكله هنا تخمين، عالم صخري عارٍ في ضوء أحمر.', 'يتلقى نحو ثلثي الضوء الذي تتلقاه الأرض من الشمس، لكن مع أشعة سينية وتوهجات أكثر بكثير ربما جرّدته من هوائه.', 'لا يُعرف إن كان له هواء أو ماء.']],
+  'Proxima d': ['بروكسيما d', 'كوكب صغير قريب جدًا من نجمه، بنحو ربع كتلة الأرض: من أخف الكواكب التي اكتُشفت من اهتزاز نجمها.', 'لم يُقس؛ على الأرجح نحو 0.8 من قطر الأرض', 'على الأرجح يواجه نجمه بوجه واحد دائمًا', '5.1 أيام أرضية', 'نحو 85 درجة مئوية إن لم يكن له هواء', ['أُعلن عنه عام 2022 وتأكد عام 2025.', 'أسخن من أن يوجد عليه ماء سائل.', 'شكله هنا تخمين: لم يره أحد.']],
+  'Alpha Centauri Ab': ['ألفا قنطورس Ab (مرشّح)', 'كوكب عملاق محتمل بكتلة زحل تقريبًا، رصده تلسكوب ويب مرة واحدة قرب ألفا قنطورس A. لم يتأكد.', 'لم يُقس؛ على الأرجح بعرض المشتري تقريبًا', 'غير معروف', 'نحو سنتين أرضيتين', 'نحو 50 تحت الصفر', ['رصده ويب في أغسطس 2024 ولم يجده ثانية في رصدين عام 2025، وهذا يتفق مع كوكب اقترب من نجمه حتى تعذرت رؤيته.', 'إن كان حقيقيًا فهو يتحرك بين ضعف وضعفي بُعد الأرض عن الشمس: أقرب كوكب في المنطقة الصالحة للحياة حول نجم شبيه بالشمس. لكن العملاق الغازي لا سطح له.', 'رُسم عملاقًا شاحبًا تغطيه سحب الماء كما توحي حرارته. هذا تخمين، وكذلك مداره.']],
   Charon: ['شارون', 'أكبر أقمار بلوتو، وهو كبير جدًا مقارنة به حتى إنهما يدوران أحدهما حول الآخر ككوكب مزدوج.', '1,212 كم (نصف قطر بلوتو)', '6.4 يوم أرضي، بالوجه نفسه نحو بلوتو', '6.4 يوم حول بلوتو', 'ناقص 220 درجة مئوية', ['بلوتو وشارون مقيّدان وجهًا لوجه: من أحد جانبي بلوتو يبقى شارون معلقًا في الموضع نفسه من السماء ولا يغيب أبدًا.', 'البقعة الحمراء الداكنة عند قطبه الشمالي، الملقبة بموردور ماكولا، يُعتقد أنها غاز أفلت من بلوتو وتجمد هناك.', 'حزام من الأخاديد حول وسطه، يصل عمقها إلى 9 كم، يوحي بأن محيطًا قديمًا في باطنه تجمد فشقّ القمر.', 'اكتشفه جيمس كريستي عام 1978، من نتوء ظهر في صور بلوتو.']],
   Ceres: ['سيريس', 'أكبر أجرام حزام الكويكبات، والكوكب القزم الوحيد في النظام الشمسي الداخلي.', '965 × 961 × 891 كم', '9.1 ساعة', '4.6 سنة أرضية', '', ['كان أول كويكب يُكتشف، على يد جوزيبي بياتزي في 1 يناير 1801.', 'البقعة اللامعة في فوهة أوكاتور ملح خلّفه ماء مالح وصل إلى السطح.', 'ربما كان ربع وزنه ماءً، أي أكثر من الماء العذب الموجود على الأرض.']],
   Interamnia: ['إنترامنيا', 'من أكبر كويكبات الحزام، ولم تزره أي مركبة فضائية.', 'نحو 330 كم', '8.7 ساعة', '5.4 سنة أرضية', '', ['اكتشفه فينتشنزو تشيرولي عام 1910 وسمّاه بالاسم اللاتيني لمدينته تيرامو في إيطاليا.', 'كل ما نعرفه عن شكله مصدره التلسكوبات، فالسطح هنا تخمين مدروس.', 'هو داكن، ويرجَّح أنه غني بالكربون وبمعادن تحوي الماء.']],
@@ -364,7 +376,7 @@ if (!UI[lang]) lang = 'en';
 const tr = (k, v) => { const s = UI[lang][k] !== undefined ? UI[lang][k] : UI.en[k]; return v === undefined ? s : s.replace('{n}', v); };
 const nm = o => (lang !== 'en' && LOC[lang][o.name] ? LOC[lang][o.name][0] : o.name);
 const inS = o => (lang !== 'en' ? nm(o) : o.name === 'Sun' ? 'the Sun' : o.name === 'Moon' ? 'the Moon' : o.name);       // a name inside a sentence
-const kindOf = o => (o.iss ? tr('kStation') : o.parent ? tr('kMoon', nm(o.parent)) : tr(o.kind));
+const kindOf = o => (o.iss ? tr('kStation') : o.parent ? tr('kMoon', nm(o.parent)) : o.host ? tr('kExo', nm(o.host)) : o.star ? tr('kStarOf') : tr(o.kind));
 
 
 // ---------------------------------------------------------------- matrices (column-major)
@@ -402,14 +414,14 @@ const pBody = prog(
   ' p *= 1. + uShape.w * (sin(p.x * 5. + 1.) * sin(p.y * 4. + 2.) + sin(p.z * 6. + p.x * 3.) * .7);' +
   ' vec4 w = uM * vec4(p, 1.); vW = w.xyz; vN = mat3(uM) * mix(normalize(mix(aPos, p, .5)), aNor, uGeo); vUV = aUV; gl_Position = uVP * w;' +       // uGeo = 1: a measured shape, which brings its own facing
   ' vec3 d = normalize(aPos); vS = length(d.xz); vTu = mat3(uM) * vec3(d.z, 0., -d.x); vTv = mat3(uM) * vec3(d.x * d.y, -vS * vS, d.z * d.y); }',       // east and south along the surface, for the relief
-  HP + 'uniform sampler2D uTex, uNight, uCloud, uHigh; uniform vec3 uSun, uTint, uRim; uniform float uEmis, uNightK, uCloudU, uBump; varying vec3 vN, vW, vTu, vTv; varying vec2 vUV; varying float vS;' +
+  HP + 'uniform sampler2D uTex, uNight, uCloud, uHigh; uniform vec3 uSun, uTint, uRim, uLight; uniform float uEmis, uNightK, uCloudU, uBump; varying vec3 vN, vW, vTu, vTv; varying vec2 vUV; varying float vS;' +
   'void main(){ vec3 N = normalize(vN), L = normalize(uSun - vW), V = normalize(-vW);' +
   // relief: where a body has a height map, the surface is tilted by its slopes, so crater walls catch the light or fall into shadow
   ' if (uBump > 0.) { vec2 e = vec2(1. / 1024., 0.); float hu = texture2D(uHigh, vUV + e).r - texture2D(uHigh, vUV - e).r, hv = texture2D(uHigh, vUV + e.yx * 2.).r - texture2D(uHigh, vUV - e.yx * 2.).r;' +
   '   N = normalize(N - uBump * (hu / (2. * max(vS, .2)) * normalize(vTu) + hv * .5 * normalize(vTv))); }' +
   ' vec3 c = texture2D(uTex, vUV).rgb * uTint; float d = max(dot(N, L), 0.), nv = max(dot(N, V), 0.);' +
   ' float cl = uNightK * smoothstep(.04, .8, texture2D(uCloud, vUV + vec2(uCloudU, 0.)).r); c = mix(c, vec3(1.), cl * (.9 + .1 * (1. - nv)));' +
-  ' vec3 lit = c * (.02 + .98 * pow(d, .8)) + uRim * pow(1. - nv, 3.) * smoothstep(-.2, .5, dot(N, L));' +
+  ' vec3 lit = c * uLight * (.02 + .98 * pow(d, .8)) + uRim * pow(1. - nv, 3.) * smoothstep(-.2, .5, dot(N, L));' +
   ' lit += max(texture2D(uNight, vUV).rgb - vec3(.03, .03, .07), 0.) * 2.4 * uNightK * (1. - .85 * cl) * (1. - smoothstep(-.15, .2, dot(N, L)));' +
   ' vec3 em = c * 1.3 * (.5 + .5 * pow(nv, .45)) + vec3(.35, .12, 0.) * pow(1. - nv, 2.);' +
   ' gl_FragColor = vec4(mix(lit, em, uEmis), 1.); }');
@@ -437,8 +449,8 @@ const pSprite = prog(       // a photograph laid flat in space (the space statio
 const pGlow = prog(
   'attribute vec2 aQ; uniform mat4 uVP; uniform vec3 uR, uU, uC; uniform float uSize; varying vec2 vQ;' +
   'void main(){ vQ = aQ; gl_Position = uVP * vec4(uC + (uR * aQ.x + uU * aQ.y) * uSize, 1.); }',
-  HP + 'varying vec2 vQ; void main(){ float r = length(vQ); float a = pow(max(1. - r, 0.), 3.) * 1.1 + pow(max(1. - r * 3.4, 0.), 2.) * .9;' +
-  ' gl_FragColor = vec4(vec3(1., .62, .26) * a, 1.); }');
+  HP + 'uniform vec3 uCol; varying vec2 vQ; void main(){ float r = length(vQ); float a = pow(max(1. - r, 0.), 3.) * 1.1 + pow(max(1. - r * 3.4, 0.), 2.) * .9;' +
+  ' gl_FragColor = vec4(uCol * a, 1.); }');
 
 const pSky = prog(
   'attribute vec3 aPos; attribute vec2 aUV; uniform mat4 uVP; varying vec2 vUV; void main(){ vUV = aUV; gl_Position = (uVP * vec4(aPos, 0.)).xyww; }',
@@ -767,12 +779,41 @@ for (let i = 0; i < 26000; i++) { const z = 2 * rnd() - 1, ph = rnd() * 6.2832, 
   const g = toGame(e), k = .16 + .5 * rnd() ** 2.5, w = rnd(); sd.push(g[0], g[1], g[2], k * (w < .2 ? .78 : 1), k * (w < .2 ? .86 : w > .8 ? .9 : 1), k * (w > .8 ? .72 : 1), 1.1 + 1.3 * rnd() ** 3); }
 const starBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, starBuf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(sd), gl.STATIC_DRAW);
 const NSTAR = sd.length / 7;
-const beaconBuf = gl.createBuffer(), beacons = new Float32Array(BODIES.length * 7);
+let acenHidden = false, ACEN_STAR = 0, ACEN_SIZE = 0; { const g = toGame([Math.cos(-60.834 * DEG) * Math.cos(219.9 * DEG), Math.cos(-60.834 * DEG) * Math.sin(219.9 * DEG), Math.sin(-60.834 * DEG)]); let best = -2;
+  for (let i = 0; i < CAT.length; i++) { const q = sd[i * 7] * g[0] + sd[i * 7 + 1] * g[1] + sd[i * 7 + 2] * g[2]; if (q > best) { best = q; ACEN_STAR = i; ACEN_SIZE = sd[i * 7 + 6]; } } }
+const beaconBuf = gl.createBuffer(), beacons = new Float32Array((BODIES.length + 8) * 7);
 const dd = []; for (let i = 0; i < 420 * 3; i++) dd.push(rnd());
 const dustBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, dustBuf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dd), gl.STATIC_DRAW);
 
 // ---------------------------------------------------------------- ship
 const earth = BODIES[3], sun = BODIES[0];
+// ---------------------------------------------------------------- Alpha Centauri: the nearest star system, at its real place, 4.3 light-years away.
+// Three stars with their measured sizes, temperatures and orbit (A and B circle each other every 79.8 years; Proxima lies 13,000 times the Earth-Sun distance from them),
+// the two confirmed planets of Proxima (b and d), and the unconfirmed giant that the Webb telescope saw beside A in 2024. Nobody has seen these planets' faces:
+// what is drawn is a guess, and the fact sheets say so. The planets' orbit planes are not known either; they are placed in the plane of the stars' orbit.
+const LY = 63241.077 * AUU, RSUN = 695700 / KM, REARTH = 6371 / KM, skyDir = (ra, dec) => { const a = ra * 15 * DEG, d = dec * DEG; return [Math.cos(d) * Math.cos(a), Math.cos(d) * Math.sin(a), Math.sin(d)]; };
+const ACEN = { ra: 14.6599, dec: -60.8340, ly: 4.344, P: 79.762, a: 23.299, e: .51947, i: 79.243, O: 205.073, w: 231.519, T: 1955.42, mA: 1.0788, mB: .9092 };
+const FAR = [
+  { name: 'Alpha Centauri A', star: 1, r: 1.2175 * RSUN, tex: 'sun', tint: [1.06, 1.06, 1.04], light: [1, .99, .97], glow: [1, .68, .32], emis: 1, col: [255, 236, 200], M0: 4.38, p: 0 },
+  { name: 'Alpha Centauri B', star: 1, r: .8591 * RSUN, tex: 'sun', tint: [.98, .78, .55], light: [1, .9, .76], glow: [1, .5, .18], emis: 1, col: [255, 214, 160], M0: 5.71, p: 2 },
+  { name: 'Proxima Centauri', star: 1, r: .1542 * RSUN, tex: 'sun', tint: [.82, .36, .15], light: [1, .68, .4], glow: [.9, .22, .07], emis: 1, col: [255, 150, 90], M0: 15.6, p: 4 },
+  { name: 'Proxima b', hostName: 'Proxima Centauri', r: 1.07 * REARTH, tex: 'mercury', tint: [1.05, 1, .95], au: .04848, days: 11.18465, ph: 1.1 },
+  { name: 'Proxima d', hostName: 'Proxima Centauri', r: .81 * REARTH, tex: 'moon', tint: [1, .97, .92], au: .02881, days: 5.12338, ph: 3.9 },
+  { name: 'Alpha Centauri Ab', hostName: 'Alpha Centauri A', r: 71492 / KM, tex: 'venus', tint: [1, 1.04, 1.12], au: 1.5, ecc: .33, days: 365.25 * Math.sqrt(1.5 ** 3 / 1.0788), ph: .6, p: 1 }];
+for (const k of FAR) { k.far = 1; k.x = k.y = k.z = 0; if (k.hostName) k.host = FAR.find(q => q.name === k.hostName); }
+const kepler = (M, e) => { let E = M; for (let i = 0; i < 12; i++) E -= (E - e * Math.sin(E) - M) / (1 - e * Math.cos(E)); return E; };
+const acenFrame = (() => { const a = ACEN.ra * 15 * DEG, d = ACEN.dec * DEG; return { L: skyDir(ACEN.ra, ACEN.dec), E: [-Math.sin(a), Math.cos(a), 0], N: [-Math.sin(d) * Math.cos(a), -Math.sin(d) * Math.sin(a), Math.cos(d)] }; })();
+function farPlace(d) { const yr = 2000 + d / 365.25, F = acenFrame, G = toGame(F.L).map(v => v * ACEN.ly * LY), el = (au, e, Mn, i, O, w) => {       // a position on an orbit, as seen on the sky: north, east, away
+    const E = kepler(Mn, e), nu = 2 * Math.atan2(Math.sqrt(1 + e) * Math.sin(E / 2), Math.sqrt(1 - e) * Math.cos(E / 2)), r = au * (1 - e * Math.cos(E)), u = nu + w;
+    const X = r * (Math.cos(u) * Math.cos(O) - Math.sin(u) * Math.sin(O) * Math.cos(i)), Y = r * (Math.cos(u) * Math.sin(O) + Math.sin(u) * Math.cos(O) * Math.cos(i)), Z = r * Math.sin(u) * Math.sin(i);
+    return toGame([X * F.N[0] + Y * F.E[0] + Z * F.L[0], X * F.N[1] + Y * F.E[1] + Z * F.L[1], X * F.N[2] + Y * F.E[2] + Z * F.L[2]]).map(v => v * AUU); };
+  const i = ACEN.i * DEG, O = ACEN.O * DEG, rel = el(ACEN.a, ACEN.e, 2 * Math.PI * (((yr - ACEN.T) / ACEN.P) % 1), i, O, ACEN.w * DEG), fA = ACEN.mB / (ACEN.mA + ACEN.mB), [A, B, C] = FAR;
+  A.x = G[0] - rel[0] * fA; A.y = G[1] - rel[1] * fA; A.z = G[2] - rel[2] * fA; B.x = G[0] + rel[0] * (1 - fA); B.y = G[1] + rel[1] * (1 - fA); B.z = G[2] + rel[2] * (1 - fA);
+  const P = toGame(skyDir(14.4953, -62.6795)).map(v => v * 4.2465 * LY); C.x = P[0]; C.y = P[1]; C.z = P[2];
+  for (const k of FAR) if (k.host) { const q = el(k.au, k.ecc || 0, k.ph + 2 * Math.PI * ((d / k.days) % 1), i, O, 0), h = k.host; k.x = h.x + q[0]; k.y = h.y + q[1]; k.z = h.z + q[2];
+      if (!k.ecc) { const l = Math.hypot(q[0], q[1], q[2]), R = [q[0] / l, q[1] / l, q[2] / l], q2 = el(k.au, 0, k.ph + 2 * Math.PI * ((d / k.days) % 1) + .01, i, O, 0), n0 = cross(q, q2), nl = Math.hypot(n0[0], n0[1], n0[2]), n = [n0[0] / nl, n0[1] / nl, n0[2] / nl], Z = cross(R, n);
+        k.M = new Float32Array([R[0], R[1], R[2], 0, n[0], n[1], n[2], 0, Z[0], Z[1], Z[2], 0, 0, 0, 0, 1]); } } }       // so close to its star, a planet keeps one face to it
+const awayFromSun = () => Math.hypot(ship.x, ship.y || 0, ship.z) > 1e7;
 // ---------------------------------------------------------------- where everything really is, for a given date
 // Planets: JPL's approximate orbital elements (valid 1800-2050), [a AU, e, inclination, mean longitude, longitude of perihelion, node] then
 // their change per century. Vesta, Ceres and Pallas: elements for 27 April 2019 turned into the same form.
@@ -835,7 +876,7 @@ async function issFetch() { try { const t = Math.floor(Date.now() / 1000), r = a
 issFetch(); setInterval(() => { if (!document.hidden) issFetch(); }, 120000);
 function issPlace(b, m) { const a = ISS.w * (simMs / 1000 - ISS.t), c = Math.cos(a), s = Math.sin(a), q = cross(ISS.n, ISS.r), k = (m.d / (6371 + ISS.alt)) ;
   m.x = b.x + (ISS.r[0] * c + q[0] * s) * k; m.y = b.y + (ISS.r[1] * c + q[1] * s) * k; m.z = b.z + (ISS.r[2] * c + q[2] * s) * k; }
-function place() { const d = days();
+function place() { const d = days(); farPlace(d);
   for (const b of BODIES) { b.y = 0;
     if (EL[b.name]) { const h = helio(EL[b.name], d); b.a = -h.lon; b.d = TRUE ? h.rho * AUU : b.d0; b.y = b.d * h.z / h.rho; }
     b.x = b.d * Math.cos(b.a * DEG); b.z = b.d * Math.sin(b.a * DEG);
@@ -1038,6 +1079,7 @@ const find = document.getElementById('find'), list = document.getElementById('ob
 const offer = (o, kind) => { o.kind = kind; OBJ.push(o); };
 for (const b of BODIES) { offer(b, b === sun ? 'kStar' : b.name === 'Vesta' ? 'kAst' : b.name === 'Pluto' ? 'kDwarf' : 'kPlanet'); for (const m of b.moons || []) { m.parent = b; offer(m, 'kMoon'); } }
 for (const k of ASTEROIDS) offer(k, k.name === 'Ceres' ? 'kDwarf' : 'kAst');
+for (const k of FAR) offer(k, k.star ? 'kStar' : 'kExo');
 for (const k of CRAFT) offer(k, 'kCraft');
 for (const k of COMETS) offer(k, 'kComet');
 let shown = [], pickIx = -1;
@@ -1059,7 +1101,7 @@ function flyTo(o) { find.value = ''; closeList(); cv.focus(); if (!o) return; if
   stopRoam(); stopTour(); stopOrbit(); const th0 = ship.th + gaze.yaw, turn = Math.abs(wrap(Math.atan2(o.z - ship.z, o.x - ship.x) - th0));
   hop = { to: o, t: 0, c0: 0, c1: 0, sx: ship.x, sy: ship.y, sz: ship.z, vy: th0, vp: gaze.pitch, ship, turn: 1.2 + 2.2 * turn / Math.PI, da: Math.max(clearance, 1e-4) };
   note = tr('flyTo', inS(o)); noteUntil = performance.now() + 6000; begin(); }
-function goTo(o) { stopRoam(); stopTour(); stopOrbit(); const a = o === sun ? 40 * DEG + Math.PI : Math.atan2(o.z, o.x), off = 4.8 * o.r;
+function goTo(o) { stopRoam(); stopTour(); stopOrbit(); const a = o === sun ? 40 * DEG + Math.PI : o.host ? Math.atan2(o.z - o.host.z, o.x - o.host.x) : Math.atan2(o.z, o.x), off = 4.8 * o.r;
   ship = { x: o.x - off * Math.cos(a), y: o.y, z: o.z - off * Math.sin(a), th: a, v: 0 }; startOrbit(o); find.value = ''; closeList(); cv.focus(); }
 const mark = () => { [...list.children].forEach((el, i) => { el.classList.toggle('on', i === pickIx); el.setAttribute('aria-selected', i === pickIx); if (i === pickIx) el.scrollIntoView({ block: 'nearest' }); }); };
 // the full list scrolls; typing narrows it to names that start with the text, then names that contain it
@@ -1097,7 +1139,7 @@ const TRIPS = [{ id: 'tour', name: 'tT' }, { id: 'random', name: 'tR' }, null,
   { name: 'tN', stay: 18, stops: [['Earth', '2006-01-19'], ['Jupiter', '2007-02-28'], ['Pluto', '2015-07-14'], ['Charon', '2015-07-14'], ['New Horizons', 'now']] },
   { name: 'tD', stay: 18, stops: [['Earth', '2007-09-27'], ['Mars', '2009-02-17'], ['Vesta', '2011-07-16'], ['Ceres', '2015-03-06'], ['Dawn', 'now']] },
   ...(COMETS.length ? [null] : []), ...COMETS.map(c => ({ name: 'c_' + c.name, comet: c, stay: 14, fly: 30, stops: [[c.name, c.inb, 'sIn'], [c.name, new Date(c.tp).toISOString().slice(0, 10), 'sPeri'], [c.name, 'now', 'sNow']] }))];
-const tripStops = T => T.stops || OBJ.filter(o => o.parent && !o.iss).map(o => [o.name]);
+const tripStops = T => T.stops || OBJ.filter(o => o.parent && !o.iss).map(o => [o.name]);       // (the far system's planets have a host, not a parent, so the moons trip leaves them out)
 const tripName = T => T.comet ? tr('cTrip', nm(T.comet)) : tr(T.name);
 const tripNote = o => { const T = roam.trip, n = tripStops(T).length; return tripName(T) + ' · ' + (n - roam.deck.length) + '/' + n + ' · ' + (roam.lab ? tr(roam.lab) : nm(o)) + (roam.when ? ' · ' + roam.when : ''); };
 function startTrip(T) { tally('trip', TRIP_SLUG[T.name] || T.id || 'other'); stopTour(); stopRoam(); course = null; if (T.id === 'tour') { startTour(); return; }
@@ -1114,7 +1156,7 @@ function startTrip(T) { tally('trip', TRIP_SLUG[T.name] || T.id || 'other'); sto
 function stopRoam() { if (course) { course.craft = null; course.legs = []; } if (!roam) { hop = null; return; } roam = null; hop = null; roamBtn.textContent = 'Random trip'; roamBtn.setAttribute('aria-pressed', false); }
 function nextHop() { const T = roam.trip;
   if (!roam.deck || !roam.deck.length) { if (T) { const at = roam.at; tally('trip-end', TRIP_SLUG[T.name] || 'other'); stopRoam(); note = tr('tripEnd', inS(at)); noteUntil = performance.now() + 7000; if (!orbit) startOrbit(at); return; }       // an itinerary ends at its last stop
-    const d = OBJ.slice();       // the random trip deals a fresh shuffled deck: every object once before any repeats
+    const d = OBJ.filter(o => !o.far);       // the random trip deals a fresh shuffled deck: every object once before any repeats
     for (let i = d.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [d[i], d[j]] = [d[j], d[i]]; }
     if (d[d.length - 1] === roam.at) [d[0], d[d.length - 1]] = [d[d.length - 1], d[0]]; roam.deck = d.map(o => [o]); }
   const [o, w0, lab] = roam.deck.pop(), when = w0 === 'now' ? new Date().toISOString().slice(0, 10) : w0; roam.when = when; roam.lab = lab; if (course) course.done = course.pts.length - roam.deck.length - 1;       // 'now': the spacecraft where it is today
@@ -1254,6 +1296,18 @@ const INFO = {
     f: ['It is the only large moon that circles its planet against the planet’s spin.', 'Voyager 2 saw geysers of nitrogen gas and dark dust shooting about 8 km high.', 'Its orbit is slowly shrinking, and in a few billion years Neptune may pull it apart into a ring.'] },
   Pluto: { lead: 'A dwarf planet in the Kuiper Belt with a giant heart-shaped plain of nitrogen ice.', d: '2,377 km (two thirds of our Moon)', day: '6.4 Earth days, backwards', yr: '248 Earth years', g: .62, t: '−230 °C', moons: 5,
     f: ['The bright heart, Tombaugh Regio, is named after Clyde Tombaugh, who discovered Pluto in 1930.', 'It was counted as the ninth planet until 2006, when it was reclassified as a dwarf planet.', 'Its largest moon, Charon, is half Pluto’s width, and the two always keep the same faces toward each other.', 'NASA’s New Horizons flew past in July 2015 after a nine-and-a-half-year journey.'] },
+  'Alpha Centauri A': { lead: 'The larger star of the nearest star system to the Sun, 4.34 light-years away. A little bigger and brighter than the Sun.', d: '1,694,000 km (1.22 Suns across)', day: 'about 28 days', yr: 'circles its partner B every 79.8 years', g: 199, t: '5,530 °C at the surface',
+    f: ['Also called Rigil Kentaurus. From Earth, A and B merge into one point, the third brightest star in the night sky, seen from the southern hemisphere.', 'A and B swing between 11 and 35 times the Earth–Sun distance from each other. They pass closest next in 2035.', 'In 2024 the Webb telescope saw signs of a Saturn-mass planet beside this star. It has not been confirmed.'] },
+  'Alpha Centauri B': { lead: 'The smaller star of the pair: orange, cooler than the Sun, and half as bright.', d: '1,195,000 km (0.86 Suns across)', day: 'about 37 days', yr: 'circles its partner A every 79.8 years', g: 338, t: '4,930 °C at the surface',
+    f: ['Also called Toliman.', 'From a planet of A, this star would shine like 150 to 1,600 full moons, depending on where the two stars are in their orbit.', 'A planet announced here in 2012 turned out to be an artefact of the data, and was withdrawn in 2015.'] },
+  'Proxima Centauri': { lead: 'The nearest star to the Sun, 4.25 light-years away: a small, dim red dwarf.', d: '214,600 km (0.15 Suns; one and a half Jupiters across)', day: 'about 85 days', yr: 'circles A and B in roughly 550,000 years', g: 1407, t: '2,720 °C at the surface',
+    f: ['It has an eighth of the Sun’s mass and gives off 0.16% of its light. It is too faint to see without a telescope.', 'It lies about 13,000 times the Earth–Sun distance from A and B, which from here are two brilliant stars close together.', 'It flares violently, which is hard on its planets. Two planets are confirmed, b and d. A third, c, was reported in 2019 and is still disputed.'] },
+  'Proxima b': { lead: 'The nearest known planet beyond the solar system: at least as massive as Earth, at a distance from its star where water could be liquid.', d: 'not measured; probably a little wider than Earth', day: 'probably keeps one face to its star', yr: '11.2 Earth days', t: 'about −40 °C if it has no air',
+    f: ['Found in 2016 from the wobble it gives its star. Nobody has seen it: its face here is a guess, a bare rocky world in red light.', 'It receives about two thirds of the light Earth gets from the Sun, but far more X-rays and flares, which may have stripped away its air.', 'Whether it has air or water is not known.'] },
+  'Proxima d': { lead: 'A small planet very close to Proxima, with about a quarter of Earth’s mass: one of the lightest planets ever found by the wobble of its star.', d: 'not measured; probably about 0.8 Earths across', day: 'probably keeps one face to its star', yr: '5.1 Earth days', t: 'about 85 °C if it has no air',
+    f: ['Reported in 2022 and confirmed in 2025.', 'It is too hot for liquid water.', 'Its face here is a guess: nobody has seen it.'] },
+  'Alpha Centauri Ab': { lead: 'A possible giant planet about the mass of Saturn, seen once by the Webb telescope beside Alpha Centauri A. Not confirmed.', d: 'not measured; probably about as wide as Jupiter', day: 'unknown', yr: 'roughly 2 Earth years', t: 'about −50 °C',
+    f: ['Webb saw it in August 2024 and did not find it again in two looks in 2025, which fits a planet that had moved too close to the star to be seen.', 'If it is real, it moves between 1 and 2 times the Earth–Sun distance from its star: the nearest planet in the habitable zone of a Sun-like star. A gas giant has no surface to live on.', 'It is drawn as a pale giant wrapped in water clouds, which is what its temperature suggests. That is a guess, and so is its orbit.'] },
   Charon: { lead: 'Pluto’s largest moon, so big compared with Pluto that the two circle each other like a double planet.', d: '1,212 km (half of Pluto)', day: '6.4 Earth days, same face to Pluto', yr: '6.4 days around Pluto', g: .288, t: '−220 °C',
     f: ['Pluto and Charon are locked face to face: from one side of Pluto, Charon hangs in the same spot in the sky and never sets.', 'The dark red patch at its north pole, nicknamed Mordor Macula, is thought to be gas that escaped from Pluto and froze there.', 'A belt of canyons around its middle, up to 9 km deep, suggests an ancient ocean inside froze and cracked the moon open.', 'James Christy discovered it in 1978, from a bump on photographs of Pluto.'] },
   Ceres: { lead: 'The largest object in the asteroid belt, and the only dwarf planet in the inner solar system.', d: '965 × 961 × 891 km', day: '9.1 hours', yr: '4.6 Earth years', g: .28,
@@ -1268,14 +1322,14 @@ const INFO = {
 
 const infoEl = document.getElementById('info'), iEl = k => document.getElementById(k); let infoObj = null, infoT = 0;
 const nf = (v, n) => v.toLocaleString('en-US', { maximumFractionDigits: n === undefined ? 0 : n });
-const far = km => km >= 1e9 ? nf(km / 1e9, 2) + ' ' + tr('bkm') : km >= 1e6 ? nf(km / 1e6, km < 1e7 ? 2 : 1) + ' ' + tr('mkm') : nf(km) + ' ' + tr('km');
-const lightTime = km => { const t = km / 299792.458; return t < 90 ? nf(t, 1) + ' ' + tr('sec') : t < 5400 ? nf(t / 60, 1) + ' ' + tr('min') : nf(t / 3600, 2) + ' ' + tr('hr'); };
+const far = km => km >= 9.46e11 ? nf(km / 9.4607e12, 2) + ' ' + tr('ly') : km >= 1e9 ? nf(km / 1e9, 2) + ' ' + tr('bkm') : km >= 1e6 ? nf(km / 1e6, km < 1e7 ? 2 : 1) + ' ' + tr('mkm') : nf(km) + ' ' + tr('km');
+const lightTime = km => { const t = km / 299792.458; return t < 90 ? nf(t, 1) + ' ' + tr('sec') : t < 5400 ? nf(t / 60, 1) + ' ' + tr('min') : t < 2e6 ? nf(t / 3600, 2) + ' ' + tr('hr') : nf(t / 31557600, 2) + ' ' + tr('yrs'); };
 const weigh = g => { const w = 70 * g / 9.81; return w >= 10 ? nf(w) + ' ' + tr('kg') : w >= 1 ? nf(w, 1) + ' ' + tr('kg') : w >= .01 ? nf(w * 1000) + ' ' + tr('g') : nf(w * 1000, 1) + ' ' + tr('g'); };
 const rows = (dl, list) => { dl.textContent = ''; for (const [k, v] of list) { if (v === undefined || v === '') continue; const row = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = k; dd.textContent = v; row.append(dt, dd); dl.append(row); } };
 function nowRows(o) { const kmTo = q => Math.hypot(o.x - q.x, o.y - q.y, o.z - q.z) * KM, list = [];
   if (o.iss) return [[tr('alt'), far(ISS.alt)], [tr('issPos'), tr(ISS.live ? 'issLive' : 'issApprox')]];
   if (o.parent) list.push([tr('from', nm(o.parent)), far(o.km[1])]);
-  else if (o !== sun) list.push([tr('fromSun'), far(kmTo(sun)) + ' (' + nf(kmTo(sun) / 149597871, 2) + ' ' + tr('au') + ')']);
+  else if (o !== sun) list.push([tr('fromSun'), far(kmTo(sun)) + (o.far ? '' : ' (' + nf(kmTo(sun) / 149597871, 2) + ' ' + tr('au') + ')')]); if (o.host) list.push([tr('from', nm(o.host)), far(Math.hypot(o.x - o.host.x, o.y - o.host.y, o.z - o.host.z) * KM)]);
   if (o !== earth) { const e = kmTo(earth); list.push([tr('fromEarth'), far(e)], [tr('lightTakes'), tr('fromE', lightTime(e))]); }
   else list.push([tr('sunLight'), lightTime(kmTo(sun))]);
   return list; }
@@ -1374,8 +1428,8 @@ function step(dt) { clock += dt;
   ship.x += Math.cos(ship.th) * ship.v * dt; ship.z += Math.sin(ship.th) * ship.v * dt;
   for (const b of BODIES) for (const o of [b].concat(b.moons || [])) { const dx = ship.x - o.x, dz = ship.z - o.z, d = Math.hypot(dx, dz), lim = o.r * 1.2 + (TRUE ? 0 : .4);
     if (d < lim && Math.abs(ship.y - o.y) < lim) { const k = lim / (d || 1e-9); ship.x = o.x + dx * k; ship.z = o.z + dz * k; ship.v *= Math.pow(.02, dt); } }
-  const d0 = Math.hypot(ship.x, ship.z); if (d0 > EDGE) { ship.x *= EDGE / d0; ship.z *= EDGE / d0; }
-  ship.y = ground(ship.x, ship.z);
+  const d0 = Math.hypot(ship.x, ship.z); if (d0 > EDGE && d0 < 3 * EDGE) { ship.x *= EDGE / d0; ship.z *= EDGE / d0; }
+  if (d0 < 3 * EDGE) ship.y = ground(ship.x, ship.z);
   bank += ((calm ? 0 : turn * (.1 + .12 * Math.min(1, ship.v / 170))) - bank) * Math.min(1, dt * 3.5); }
 function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last = now; resize(); step(dt);
   const vy = ship.th + gaze.yaw, cp = Math.cos(gaze.pitch), f = [cp * Math.cos(vy), Math.sin(gaze.pitch), cp * Math.sin(vy)], r0 = [-Math.sin(vy), 0, Math.cos(vy)];
@@ -1400,8 +1454,12 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   gl.bindBuffer(gl.ARRAY_BUFFER, starBuf); starAttr(); gl.drawArrays(gl.POINTS, 0, NSTAR);
   let nb = 0; const draws = [];
   for (const b of BODIES) { const dx = b.x - ship.x, dy = b.y - ship.y, dz = b.z - ship.z, dist = Math.hypot(dx, dy, dz) || 1e-9; b.dist = dist;
-    if (b.r * focal / dist < 1.4) { const k = b.emis ? 1.5 : .8; beacons.set([dx / dist, dy / dist, dz / dist, k * b.col[0] / 255, k * b.col[1] / 255, k * b.col[2] / 255, b.emis ? 7 : 3.4], nb * 7); nb++; }
+    if (b.r * focal / dist < 1.4 && (dist < 2e6 || b === sun)) { const k = b.emis ? 1.5 : .8; beacons.set([dx / dist, dy / dist, dz / dist, k * b.col[0] / 255, k * b.col[1] / 255, k * b.col[2] / 255, b.emis ? 7 : 3.4], nb * 7); nb++; }
     draws.push([dist, b, null]); for (const m of b.moons || []) draws.push([sep(m), b, m]); }
+  // a far-off star is a point of light, as bright as it would really look from here; the page's own sky already shows Alpha Centauri from the solar system, so there it is left to the sky
+  { const out = awayFromSun(); if (out !== acenHidden) { acenHidden = out; gl.bindBuffer(gl.ARRAY_BUFFER, starBuf); gl.bufferSubData(gl.ARRAY_BUFFER, (ACEN_STAR * 7 + 6) * 4, new Float32Array([out ? 0 : ACEN_SIZE])); }
+    for (const k of FAR) { const dist = sep(k) || 1e-9; draws.push([dist, null, k]); if (!k.star || k.r * focal / dist >= 1.4 || !out) continue; const m = k.M0 + 5 * Math.log10(dist / AUU / 206265) - 5; if (m > 6.5) continue;
+      const b = Math.min(1.6, .5 + .13 * (4 - m)); beacons.set([(k.x - ship.x) / dist, (k.y - ship.y) / dist, (k.z - ship.z) / dist, b * k.col[0] / 255, b * k.col[1] / 255, b * k.col[2] / 255, Math.max(2.2, Math.min(9, 5.6 - 1.05 * m))], nb * 7); nb++; } }
   for (const k of ASTEROIDS) draws.push([sep(k), null, k]);
   for (const k of CRAFT) draws.push([sep(k), null, k]);
   for (const k of COMETS) draws.push([sep(k), null, k]);
@@ -1417,20 +1475,21 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   gl.uniformMatrix4fv(pBody.u.uVP, false, VP); gl.uniform3fv(pBody.u.uSun, sunRel); gl.uniform1i(pBody.u.uTex, 0);
   gl.uniform1i(pBody.u.uNight, 1); gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, TEX.night);
   gl.uniform1i(pBody.u.uCloud, 2); gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, TEX.clouds); gl.activeTexture(gl.TEXTURE0);
-  gl.uniform1i(pBody.u.uHigh, 4); gl.uniform1f(pBody.u.uBump, 0); gl.uniform1f(pBody.u.uGeo, 0); gl.uniform1f(pBody.u.uCloudU, (spinDays() / 45 + clock * .0005) % 1);   // the weather drifts slowly over the ground
+  gl.uniform3f(pBody.u.uLight, 1, 1, 1); gl.uniform1i(pBody.u.uHigh, 4); gl.uniform1f(pBody.u.uBump, 0); gl.uniform1f(pBody.u.uGeo, 0); gl.uniform1f(pBody.u.uCloudU, (spinDays() / 45 + clock * .0005) % 1);   // the weather drifts slowly over the ground
   const BUMP = 2, ROUND = [0, 0, 1, 0], put = (M, tex, tint, rim, emis, night, shape) => { gl.uniformMatrix4fv(pBody.u.uM, false, M); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform4fv(pBody.u.uShape, shape || ROUND);
     gl.uniform3fv(pBody.u.uTint, tint); gl.uniform3fv(pBody.u.uRim, rim); gl.uniform1f(pBody.u.uEmis, emis); gl.uniform1f(pBody.u.uNightK, night || 0); };
   const ONE = [1, 1, 1], NONE = [0, 0, 0], PHOTO = [1.12, 1.12, 1.12];
   useMesh(HI); draws.sort((p, q) => q[0] - p[0]); const dNow = days(), spinD = spinDays();
   for (const [dist, b, m] of draws) { const o = m || b; if (o.sprite || o.craft || o.r * focal / dist < .35) continue;
     const hi = TEX['b_' + o.name.toLowerCase()]; gl.uniform1f(pBody.u.uBump, hi ? BUMP : 0); if (hi) { gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, hi); gl.activeTexture(gl.TEXTURE0); }
+    const hs = m && m.host; if (hs) { gl.uniform3f(pBody.u.uSun, hs.x - ship.x, hs.y - ship.y, hs.z - ship.z); gl.uniform3fv(pBody.u.uLight, hs.light); }
     const sh = SHAPED[o.name]; if (sh) { useMesh(sh); gl.uniform1f(pBody.u.uGeo, 1); }       // Phobos, Deimos, Vesta: the measured shape instead of a ball
     if (m) { const g = m.sq || ONE; if (m.comet) { put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), rotY(clock * .08)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), TEX.a_eros || TEX.moon, [.62, .58, .54], NONE, 0, 0, [.12, .1, 1.2, .09]); gl.drawElements(gl.TRIANGLES, HI.n, gl.UNSIGNED_SHORT, 0); continue; }
-      put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), m.M || rotY(m.p + clock * .05)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), m.tex ? TEX[m.tex] : TEX.moon, m.tex ? PHOTO : m.tint, m.rim || NONE, 0, 0, m.shape); }
+      put(mul(mul(trans(m.x - ship.x, m.y - ship.y, m.z - ship.z), m.M || rotY(m.p + clock * .05)), scale(m.r * g[0], m.r * g[1], m.r * g[2])), m.tex ? TEX[m.tex] : TEX.moon, m.far ? m.tint : m.tex ? PHOTO : m.tint, m.rim || NONE, m.emis || 0, 0, m.shape); }
     else { const q = b.sq || ONE, T = trans(b.x - ship.x, b.y - ship.y, b.z - ship.z), real = POLE[b.name], R0 = real ? orient(b.name, dNow, false) : rotX((b.tilt || 0) * DEG);
       b.M0 = mul(T, R0);            // the ring plane follows the real equator
       put(mul(mul(T, real ? orient(b.name, spinD, true) : mul(R0, rotY(clock * b.spin))), scale(b.r * q[0], b.r * q[1], b.r * q[2])), TEX[b.tex], ONE, b.rim || NONE, b.emis || 0, b.night); }
-    gl.drawElements(gl.TRIANGLES, (sh || HI).n, gl.UNSIGNED_SHORT, 0); if (sh) { useMesh(HI); gl.uniform1f(pBody.u.uGeo, 0); } }
+    gl.drawElements(gl.TRIANGLES, (sh || HI).n, gl.UNSIGNED_SHORT, 0); if (sh) { useMesh(HI); gl.uniform1f(pBody.u.uGeo, 0); } if (hs) { gl.uniform3fv(pBody.u.uSun, sunRel); gl.uniform3f(pBody.u.uLight, 1, 1, 1); } }
   gl.uniform1f(pBody.u.uBump, 0); useMesh(LO);
   for (const k of ROCKS) { const dx = k.x - ship.x, dz = k.z - ship.z, d2 = dx * dx + dz * dz; if (d2 > 12100 || dx * f[0] + dz * f[2] < -2 || k.s * focal < .7 * Math.sqrt(d2)) continue;
     put(mul(mul(mul(trans(dx, k.y - ship.y, dz), rotY(k.ry + clock * .1)), rotX(k.rx)), scale(k.s, k.s * k.sy, k.s * k.sz)), TEX.moon, [k.t, k.t * .93, k.t * .86], NONE, 0);
@@ -1462,7 +1521,8 @@ function frame(now) { const dt = Math.min(.05, (now - last) / 1000 || 0); last =
   gl.blendFunc(gl.ONE, gl.ONE); gl.useProgram(pGlow.p);
   gl.enableVertexAttribArray(pGlow.a.aQ); gl.vertexAttribPointer(pGlow.a.aQ, 2, gl.FLOAT, false, 0, 0);
   gl.uniformMatrix4fv(pGlow.u.uVP, false, VP); gl.uniform3fv(pGlow.u.uR, right); gl.uniform3fv(pGlow.u.uU, up); gl.uniform3fv(pGlow.u.uC, sunRel);
-  gl.uniform1f(pGlow.u.uSize, sun.r * 4.2); gl.drawArrays(gl.TRIANGLES, 0, 6);
+  gl.uniform3f(pGlow.u.uCol, 1, .62, .26); gl.uniform1f(pGlow.u.uSize, sun.r * 4.2); gl.drawArrays(gl.TRIANGLES, 0, 6);
+  for (const k of FAR) if (k.star && sep(k) < 2.5e6) { gl.uniform3fv(pGlow.u.uC, [k.x - ship.x, k.y - ship.y, k.z - ship.z]); gl.uniform3fv(pGlow.u.uCol, k.glow); gl.uniform1f(pGlow.u.uSize, k.r * 4.2); gl.drawArrays(gl.TRIANGLES, 0, 6); }
   // comet tails: a straight blue ion tail blown directly away from the Sun, and a broader yellowish dust tail curving behind the comet's path
   for (const c of COMETS) { if (!(c.act > .002)) continue; const C = [c.x - ship.x, c.y - ship.y, c.z - ship.z], cd = Math.hypot(...C) || 1e-9, out = [c.x, c.y, c.z], ol = Math.hypot(...out) || 1, aS = out.map(v => v / ol);
     const vl = Math.hypot(...c.vel) || 1, dust = aS.map((v, j) => v * .75 - c.vel[j] / vl * .35), dl = Math.hypot(...dust), L = c.tail * c.act, w0 = Math.min(1, cd / (L * .05 + 1e-9));
